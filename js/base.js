@@ -12,6 +12,7 @@ function switchMenu(params) {
             document.querySelector("#top-menu").classList.remove("menu-inright")
             document.querySelector("#perspective").style.backgroundColor = "transparent"
             document.querySelector(".aside").style.display = "block"
+            document.querySelector("#cover").style.display = "none"//调整点击面板
             setTimeout(function (params) {
                 document.querySelector("#container").style.overflow = "visible"
             }, 800);
@@ -24,6 +25,7 @@ function switchMenu(params) {
             document.querySelector("#top-menu").classList.add("menu-inright")
             document.querySelector(".menu").classList.add("open")
             document.querySelector(".aside").style.display = "none"
+            document.querySelector("#cover").style.display = "block"//盖住点击面板
         }
     }
 }
@@ -112,3 +114,6 @@ if (document.querySelector('#word')) {
 if ( document.querySelector('main')) {
     document.querySelector('main').style.borderColor = "#" + Math.round(Math.random() * 0x1000000).toString(16);
 }
+var canvas = document.createElement("canvas");
+canvas.setAttribute("id", "cover");
+document.querySelector(".blogs").appendChild(canvas)
