@@ -121,3 +121,7 @@ ap.on('play', function () {
 document.querySelector("#iframe").contentWindow.addEventListener("click", function (e) {
     ap.setMode("mini")
 })
+document.querySelector("#iframe").contentWindow.addEventListener("touchstart",function () {
+    ap.setMode("mini")
+    document.querySelector(".aplayer-body").style.left = "-66px" //位置响应
+})
