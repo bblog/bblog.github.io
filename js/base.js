@@ -70,7 +70,7 @@ secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=js&sel
 document.body.insertBefore(secScript, document.body.lastChild);
 // 防止iframe消失
 if (!parent.document.body.querySelector("#iframe")) {
-    window.location.href = "http://127.0.0.1:5500/";
+    window.location.href = "http://www.bblog.github.io/";
 }
 //设置导航栏文字
 if (document.querySelector(".tabbed li:last-child a")) {
