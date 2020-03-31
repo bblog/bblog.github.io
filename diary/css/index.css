@@ -559,7 +559,7 @@
 }
 
 /* 适配手机 */
-@media only screen and (max-width: 379px) {
+@media only screen and (max-width: 479px) {
 
 
 	.flipbook-viewport .container {
