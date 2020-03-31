@@ -318,7 +318,7 @@ xmlhttp.onreadystatechange = function () {
         document.querySelector('#word-number').innerHTML = "总字数：" + words + " 字"
     }
 };
-xmlhttp.open("GET", "json/template.json", true);
+xmlhttp.open("GET", "json/diary.json", true);
 xmlhttp.send();
 //切换页面
 var change_index = 0
