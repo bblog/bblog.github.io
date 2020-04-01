@@ -12,11 +12,12 @@ function switchMenu(params) {
             document.querySelector("#top-menu").classList.remove("menu-inright")
             document.querySelector("#perspective").style.backgroundColor = "transparent"
             document.querySelector(".aside").style.display = "block"
-            document.querySelector("#cover").style.display = "none"//调整点击面板
             setTimeout(function (params) {
                 document.querySelector("#container").style.overflow = "visible"
             }, 800);
             document.querySelector(".menu").classList.remove("open")
+            document.querySelector("#cover").style.display = "none" //调整点击面板
+
         } else { //左侧菜单没有打开  点击打开菜单  close to open
             document.querySelector("#perspective").style.backgroundColor = "cornflowerblue" //菜单栏背景颜色
             document.querySelector(".menubar").classList.add("arrow")
@@ -25,7 +26,7 @@ function switchMenu(params) {
             document.querySelector("#top-menu").classList.add("menu-inright")
             document.querySelector(".menu").classList.add("open")
             document.querySelector(".aside").style.display = "none"
-            document.querySelector("#cover").style.display = "block"//盖住点击面板
+            document.querySelector("#cover").style.display = "block" //盖住点击面板
         }
     }
 }
@@ -70,7 +71,7 @@ secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=js&sel
 document.body.insertBefore(secScript, document.body.lastChild);
 // 防止iframe消失
 if (!parent.document.body.querySelector("#iframe")) {
-    window.location.href = "https://bblog.github.io/";
+    window.location.href = "http://127.0.0.1:5500/"; //上传使更改
 }
 //设置导航栏文字
 if (document.querySelector(".tabbed li:last-child a")) {
@@ -111,11 +112,31 @@ if (document.querySelector('#word')) {
 }
 
 //随机边框颜色
-if ( document.querySelector('main')) {
+if (document.querySelector('main')) {
     document.querySelector('main').style.borderColor = "#" + Math.round(Math.random() * 0x1000000).toString(16);
 }
+document.querySelector(".top-title").addEventListener("touchstart", function (e) {
+    window.parent.Mask("11111111")
+})
+
+// 添加一个模糊层，防止菜单展开后，返回时点到其他链接
 if (document.querySelector("#container")) {
     var canvas = document.createElement("canvas");
     canvas.setAttribute("id", "cover");
     document.querySelector("#container").appendChild(canvas);
+}
+// 添加进度条标签
+if (document.querySelector("#top-menu")) {
+    var progress = document.createElement("progress");
+    progress.setAttribute("class", "top_progress");
+    progress.setAttribute("value", "0");
+    document.body.appendChild(progress);
+}
+// 进度条的响应
+if (document.querySelector('.top_progress')) {
+    document.querySelector('.top_progress').max = document.body.scrollHeight - window.screen.availHeight
+    window.onscroll = function () {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        document.querySelector('.top_progress').value = scrollTop
+    }
 }
