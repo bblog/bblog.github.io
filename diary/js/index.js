@@ -398,7 +398,7 @@ $("#control").click(function () {
             $(".flipbook").turn("page", 5); //跳转到首页
             break;
         case "home":
-            window.location.href = "../index0.html";
+            window.location.href = "../";
             break;
         default:
     }
