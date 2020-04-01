@@ -70,7 +70,7 @@ secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=js&sel
 document.body.insertBefore(secScript, document.body.lastChild);
 // 防止iframe消失
 if (!parent.document.body.querySelector("#iframe")) {
-    window.location.href = "http://www.bblog.github.io/";
+    window.location.href = "https://www.bblog.github.io/";
 }
 //设置导航栏文字
 if (document.querySelector(".tabbed li:last-child a")) {
@@ -114,6 +114,8 @@ if (document.querySelector('#word')) {
 if ( document.querySelector('main')) {
     document.querySelector('main').style.borderColor = "#" + Math.round(Math.random() * 0x1000000).toString(16);
 }
-var canvas = document.createElement("canvas");
-canvas.setAttribute("id", "cover");
-document.querySelector(".blogs").appendChild(canvas)
+if (document.querySelector("#container")) {
+    var canvas = document.createElement("canvas");
+    canvas.setAttribute("id", "cover");
+    document.querySelector("#container").appendChild(canvas);
+}
