@@ -125,3 +125,6 @@ document.querySelector("#iframe").contentWindow.addEventListener("touchstart",fu
     ap.setMode("mini")
     document.querySelector(".aplayer-body").style.left = "-66px" //位置响应
 })
+if (ap.audio.paused) {
+    ap.lrc.hide() //优化、某些播放器不允许自动播放
+}
