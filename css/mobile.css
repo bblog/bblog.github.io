@@ -12,6 +12,11 @@
      .blogs {
          width: 100%;
      }
+       .blogs .article-list li:hover,
+     ul#columns li:hover {
+         border: none;
+         box-shadow: 0 0 40px #dcdbff;;
+     }
  }
 
  /* 超小手机 */
