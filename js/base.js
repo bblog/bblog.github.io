@@ -30,7 +30,6 @@ function switchMenu(params) {
         }
     }
 }
-window.onload = function () {
     // 监听菜单键
     document.querySelector(".menubar").addEventListener("click", switchMenu);
     document.querySelector("#container").addEventListener("click", function () {
@@ -130,14 +129,13 @@ window.onload = function () {
     }
     // 进度条的响应
     if (document.querySelector('.top_progress')) {
-        document.querySelector('.top_progress').max = document.body.scrollHeight - window.screen.availHeight
+      
         console.log(document.body.scrollHeight)
         console.log(window.screen.availHeight)
         window.onscroll = function () {
-            console.log(document.body.scrollHeight)
-            console.log(window.screen.availHeight)
+            document.querySelector('.top_progress').max = document.body.scrollHeight - window.screen.availHeight
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             document.querySelector('.top_progress').value = scrollTop
         }
     }
-}
+
