@@ -398,7 +398,7 @@ $("#control").click(function () {
             $(".flipbook").turn("page", 5); //跳转到首页
             break;
         case "home":
-            window.location.href = "../";
+            window.location.href = "https://bblog.github.io";
             break;
         default:
     }
