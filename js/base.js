@@ -71,7 +71,7 @@ window.onload = function () {
     document.body.insertBefore(secScript, document.body.lastChild);
     // 防止iframe消失
     if (!parent.document.body.querySelector("#iframe")) {
-        window.location.href = "http://127.0.0.1:5500/"; //上传使更改
+        window.location.href = "https://bblog.github.io"; //上传使更改
     }
     //设置导航栏文字
     if (document.querySelector(".tabbed li:last-child a")) {
