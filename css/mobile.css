@@ -210,7 +210,10 @@
      #top-menu {
          height: 80px;
      }
-
+    /*进度条  */
+    .top_progress {
+        top: 80px;
+    }
      .top-title div {
          font-size: 28px;
 
