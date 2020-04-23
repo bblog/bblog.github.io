@@ -1,30 +1,11 @@
 /*！ 作用：
-*1.加载网站标题  
-*2.地址栏响应  
-*3.定义反馈层函数  
-*4.Aplayer播放器的配置与音乐加载
-*/
-// 加载网站标题
-var iframe = document.getElementById('iframe');
-iframe.onload = function () {
-    if (document.querySelector("#iframe").contentDocument.querySelector("#menu")) {
-        document.querySelector("#iframe").contentDocument.querySelector("#menu").addEventListener("click", function (e) {
-            Mask("仿佛刚刚发");
-        })
-    }
-    // 标题更新与iframe内一致
-    document.querySelector("title").innerHTML = iframe.contentWindow.document.title
-    // 刷新地址栏  与iframe内一致
-    document.getElementById("iframe").contentWindow.location.href.add
-    var stateObject = {};
-    var title = iframe.contentWindow.document.title;
-    var newUrl = document.getElementById("iframe").contentWindow.location.href;
-    //修改地址栏中的地址
-    history.pushState(stateObject, title, newUrl);
-}
-
+ *1.加载网站标题  
+ *2.地址栏响应  
+ *3.定义反馈层函数  
+ *4.Aplayer播放器的配置与音乐加载
+ */
 //反馈层函数
-function Mask(text) {
+function Mask(text, src) {
     // r为反馈层圆的半径   text为提示的文本
     var r
     window.innerHeight > window.innerWidth ? r = window.innerHeight : r = window.innerWidth
@@ -33,13 +14,16 @@ function Mask(text) {
     document.querySelector(".mask").style.display = "block"
     document.querySelector('.feedback').style.display = "block"
     if (text) {
-        document.querySelector('.feedback').innerHTML = text
+        document.querySelector('.feedback p').innerHTML = text
+    }
+    if (src) {
+        document.querySelector('.feedback img').src = src
     }
     setTimeout(function () {
         document.querySelector('.feedback').style.width = "200px"
         document.querySelector('.feedback').style.height = "200px"
     }, 10);
-    document.querySelector(".mask").addEventListener("click", function (e) {//点击灰色部位 反馈层消失
+    document.querySelector(".mask").addEventListener("click", function (e) { //点击灰色部位 反馈层消失
         document.querySelector('.feedback').style.width = r + 200 + "px"
         document.querySelector('.feedback').style.height = r + 200 + "px"
         setTimeout(function () {
@@ -51,8 +35,8 @@ function Mask(text) {
 //配置音乐播放器属性  new 一个播放器
 window.ap = new APlayer({
     container: document.querySelector('#aplayer'),
-    fixed: true,//位置
-    lrcType: 1,//歌词类型
+    fixed: true, //位置
+    lrcType: 1, //歌词类型
     autoplay: true, //自动播放
 });
 
@@ -63,11 +47,11 @@ function setMusic(id) { //形参为含有id的url  将网易云数据加载到�
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText); //获得字符串形式的响应数据。data内含有所有数据
             ap.list.add([{
-                name: data.songs[0].name,//歌曲名
-                artist: data.songs[0].artists[0],//艺术家
-                url: data.songs[0].url,//歌曲链接
-                cover: data.songs[0].album.picture,//封面图片链接
-                lrc: data.songs[0].lyric.base,//歌词
+                name: data.songs[0].name, //歌曲名
+                artist: data.songs[0].artists[0], //艺术家
+                url: data.songs[0].url, //歌曲链接
+                cover: data.songs[0].album.picture, //封面图片链接
+                lrc: data.songs[0].lyric.base, //歌词
             }]);
         }
     }
@@ -81,50 +65,52 @@ function getMusicId(name) { //形参为含有歌名的url
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText); //获得字符串形式的响应数据。
             var id = data.result.songs[0].id; //通过搜索获取id
-            var url_id = "https://v1.hitokoto.cn/nm/summary/" + id + "?common=true&lyric=true&quick=true"//改造id的HTTP格式
+            var url_id = "https://v1.hitokoto.cn/nm/summary/" + id + "?common=true&lyric=true&quick=true" //改造id的HTTP格式
             setMusic(url_id);
         }
     }
-    xhr.open('get', name, false); //name为搜索的歌曲的url
+    xhr.open('get', name, true); //name为搜索的歌曲的url
     xhr.send();
 }
-var songs = new Array() //歌曲列表  歌单
-songs[0] = "空"
-songs[1] = "sold out"
-songs[2] = "海阔天空"
-songs[3] = "boom"
-songs[4] = "平凡天使"
-songs[5] = "shake that"
-for (let index = 0; index < songs.length; index++) {//用for一次加载一首歌
-    var name_url = "https://v1.hitokoto.cn/nm/search/" + songs[index] + "?type=SONG&offset=0&limit=1" //搜索歌曲  limit：歌曲数量
-    getMusicId(name_url);
-}
-
-document.querySelector(".aplayer-miniswitcher").addEventListener("click", function (e) {
-    if (ap.audio.paused) {
-        document.querySelector(".aplayer-body").style.left = "0px"
+// 播放器设置与配置
+    var songs = new Array() //歌曲列表  歌单
+    songs[0] = "空"
+    songs[1] = "sold out"
+    songs[2] = "海阔天空"
+    songs[3] = "boom"
+    songs[4] = "平凡天使"
+    songs[5] = "shake that"
+    for (let index = 0; index < songs.length; index++) { //用for一次加载一首歌
+        var name_url = "https://v1.hitokoto.cn/nm/search/" + songs[index] + "?type=SONG&offset=0&limit=1" //搜索歌曲  limit：歌曲数量
+        getMusicId(name_url);
     }
-})
 
-//歌曲暂停和播放的设置
-ap.on('pause', function () {
-    ap.setMode("mini") //
-    ap.lrc.hide() //歌词设置
-    document.querySelector(".aplayer-body").style.left = "-66px" //位置响应
-});
-ap.on('play', function () {
-    ap.lrc.show()
-    document.querySelector(".aplayer-body").style.left = "0px"
-})
+    document.querySelector(".aplayer-miniswitcher").addEventListener("click", function (e) {
+        if (ap.audio.paused) {
+            document.querySelector(".aplayer-body").style.left = "0px"
+        }
+    })
 
-// 监听iframe的点击事件  make Aplayer go to  mini mode
-document.querySelector("#iframe").contentWindow.addEventListener("click", function (e) {
-    ap.setMode("mini")
-})
-document.querySelector("#iframe").contentWindow.addEventListener("touchstart",function () {
-    ap.setMode("mini")
-    document.querySelector(".aplayer-body").style.left = "-66px" //位置响应
-})
-if (ap.audio.paused) {
-    ap.lrc.hide() //优化、某些播放器不允许自动播放
-}
+    //歌曲暂停和播放的设置
+    ap.on('pause', function () {
+        ap.setMode("mini") //
+        ap.lrc.hide() //歌词设置
+        document.querySelector(".aplayer-body").style.left = "-66px" //位置响应
+    });
+    ap.on('play', function () {
+        ap.lrc.show()
+        document.querySelector(".aplayer-body").style.left = "0px"
+    })
+
+    // 监听iframe的点击事件  make Aplayer go to  mini mode
+    document.querySelector("#iframe").contentWindow.addEventListener("click", function (e) {
+        ap.setMode("mini")
+    })
+    //移动端
+    document.querySelector("#iframe").contentWindow.addEventListener("touchstart", function () {
+        ap.setMode("mini")
+        document.querySelector(".aplayer-body").style.left = "-66px" //位置响应
+    })
+    if (ap.audio.paused) {
+        ap.lrc.hide() //优化、某些播放器不允许自动播放
+    }
