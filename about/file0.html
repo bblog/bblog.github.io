@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<!-- PC端优先设计 -->
+<!--  iPad   480px~767px-->
+<!-- 正常手机360px~479px -->
+<!-- 小手机    <360px -->
+<!-- index、article的css相同   sentence和mysentence的css相同 -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>本站时光轴</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/mobile.css" rel="stylesheet">
+    <link href="../css/details.css" rel="stylesheet">
+    <link href="file.css" rel="stylesheet">
+    <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
+</head>
+
+<body>
+    <div id="top-menu">
+        <div class="menubar">
+            <svg>
+                <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                <path class="line--2" d="M0 50h80" />
+                <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+            </svg>
+        </div>
+        <div class="top-title">
+            <div>我的文章</div>
+        </div>
+        <div class="my-daily"><a href=""><img src="https://i.loli.net/2020/03/11/u1aN6VbOEi2Psnd.png" alt=""></a></div>
+    </div>
+    </div>
+    <div id="perspective">
+        <div id="container">
+            <!-- 正文，文章列表 -->
+            <main>
+                <header class="title">
+                    <h2>本站时光轴</h2>
+                </header>
+
+                <div class="massage">
+                    <script src="https://use.typekit.net/bkt6ydm.js"></script>
+                    <script>
+                        try {
+                            Typekit.load({
+                                async: true
+                            });
+                        } catch (e) {}
+                    </script>
+                    <div class="container-fluid">
+                        <div class="row example-split">
+                            <div class="col-md-12 example-title">
+                                <h2>Split Timeline</h2>
+                                <p>Small devices (tablets, 768px and up)</p>
+                            </div>
+                            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                                <ul class="timeline timeline-split">
+                                    <li class="timeline-item">
+                                        <div class="timeline-info">
+                                            <span>March 12, 2016</span>
+                                        </div>
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <h3 class="timeline-title">Event Title</h3>
+                                        </div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="timeline-info">
+                                            <span>March 23, 2016</span>
+                                        </div>
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <h3 class="timeline-title">Event Title</h3>
+                                        </div>
+                                    </li>
+                                    <li class="timeline-item period">
+                                        <div class="timeline-info"></div>
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <h2 class="timeline-title">April 2016</h2>
+                                        </div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="timeline-info">
+                                            <span>April 02, 2016</span>
+                                        </div>
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <h3 class="timeline-title">Event Title</h3>
+                                        </div>
+                                    </li>
+                                    <li class="timeline-item">
+                                        <div class="timeline-info">
+                                            <span>April 28, 2016</span>
+                                        </div>
+                                        <div class="timeline-marker"></div>
+                                        <div class="timeline-content">
+                                            <h3 class="timeline-title">Event Title</h3>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+            <!-- 底部栏 -->
+            <footer class="footer">
+                <div class="copyright">Copyright ©2020.3.8 —— <span id="now_date"></span> 蒙大明版权所有</div>
+                <div class="access">
+                    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+                    <span id="busuanzi_container_site_uv">访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+                    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+                </div>
+            </footer>
+        </div>
+        <!-- ========移动端菜单 -->
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index0.html">主页</a></li>
+                <li><a href="../article">精选美文</a></li>
+                <li><a href="../sentence/">名人名言</a></li>
+                <li><a href="../mysentence">个人感悟</a></li>
+                <li><a href="../about/guestbook.html">留言板</a></li>
+                <li><a href="https://mdming.github.io">第一个网站</a></li>
+                <li><a href="../diary">我的日记</a></li>
+                <li><a href="#">本站信息</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 头部导航栏 -->
+    <div class='tabbed round'>
+        <ul>
+            <li><a href="../about/guestbook.html">留言板</a></li>
+            <li><a href="../mysentence">个人感悟</a></li>
+            <li><a href="../sentence">名人名言</a></li>
+            <li><a href="../article">精选美文</a></li>
+            <li><a href="../index0.html">我的文章</a></li>
+        </ul>
+        <h1 class="t_nav"><span id="hitokoto">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 </span></h1>
+    </div>
+
+    <!-- 返回按钮及侧边栏 -->
+    <aside class="aside">
+        <div><a id="qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=790430354&site=qq&menu=yes">
+                <img src="https://ae01.alicdn.com/kf/H7af94cac043845c9a8779d35c29da9a7A.png" alt=""></a></div>
+        <div class="top">
+            <a href="#top"><img src="https://ae01.alicdn.com/kf/H9227752dda6c455ead9336cb46fffdd8T.png" alt=""></a>
+        </div>
+    </aside>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+
+
+</body>
+
+</html>

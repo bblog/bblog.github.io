@@ -8,13 +8,32 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>留言板</title>
+    <title>分类查找</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/mobile.css" rel="stylesheet">
     <link href="../css/details.css" rel="stylesheet">
     <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
+    <style>
+        #tags_list a {
 
+            text-decoration: none;
+            display: block;
+            float: left;
+            background-color: chartreuse;
+            font-size: 24px;
+            padding: 3px 10px;
+            margin: 10px 5px 0 0;
+            border-radius: 3px;
+            -moz-transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+            color: #FFF;
+            /* width: 30px; */
+            /* height: 30px; */
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +46,7 @@
             </svg>
         </div>
         <div class="top-title">
-            <div>我的文章</div>
+            <div>分类查找</div>
         </div>
         <div class="my-daily"><a href=""><img src="https://i.loli.net/2020/03/11/u1aN6VbOEi2Psnd.png" alt=""></a></div>
     </div>
@@ -37,21 +56,13 @@
             <!-- 正文，文章列表 -->
             <main>
                 <header class="title">
-                    <h2>留言板</h2>
+                    <h2>分类查找</h2>
                 </header>
-                <div class="massage">
-                    <p>感谢您来到本博客！如果你能在茫茫网络中来到本站，那我们肯定是十分有缘的！</p>
-                    <p>由于本站为个人博客，能力有限，时间有限，其中肯定难免有bug，如果您发现了bug，恳请您留言或者联系我提出您宝贵的发现。</p>
-                    <p>欢迎点评本博客的缺点和待提高的地方，为本站建设提供您宝贵的意见。</p>
-                    <p>您也可以在这里随意吐槽、畅所欲言，即使内容与本站无关。</p>
-                    <p> 不过活在天朝，请遵守天朝的法律法规！来者不惧、惧者不来，有话您请讲！但您的留言与本站无关，更加不代表本站的立场！</p>
-                    <h2>留言<span id="tips">文明上网，理性发言</span></h2>
-                    <!-- 来必力City版安装代码 -->
-                    <div id="lv-container" data-id="city" data-uid="MTAyMC80OTE3Mi8yNTY2Ng==">
 
-                    </div>
-                    <!-- City版安装代码已完成 -->
+                <div class="massage">
+                    <div id="tags_list"></div>
                 </div>
+
             </main>
             <!-- 底部栏 -->
             <footer class="footer">
@@ -64,7 +75,7 @@
             </footer>
         </div>
         <!-- ========移动端菜单 -->
- 
+
         <div class="menu">
             <ul>
                 <li><a href="../index0.html">主页</a></li>
@@ -74,21 +85,20 @@
                 <li><a href="../about/guestbook.html">留言板</a></li>
                 <li><a href="https://mdming.github.io">第一个网站</a></li>
                 <li><a href="../diary">我的日记</a></li>
-                <li><a href="index.html">本站信息</a></li>
+                <li><a href="#">本站信息</a></li>
             </ul>
         </div>
     </div>
     <!-- 头部导航栏 -->
     <div class='tabbed round'>
         <ul>
-            <li id="active"><a href="../about/guestbook.html">留言板</a></li>
+            <li><a href="../about/guestbook.html">留言板</a></li>
             <li><a href="../mysentence">个人感悟</a></li>
             <li><a href="../sentence">名人名言</a></li>
             <li><a href="../article">精选美文</a></li>
             <li><a href="../index0.html">我的文章</a></li>
         </ul>
         <h1 class="t_nav"><span id="hitokoto">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 </span></h1>
-
     </div>
 
     <!-- 返回按钮及侧边栏 -->
@@ -99,24 +109,45 @@
             <a href="#top"><img src="https://ae01.alicdn.com/kf/H9227752dda6c455ead9336cb46fffdd8T.png" alt=""></a>
         </div>
     </aside>
-    <script type="text/javascript" src="../js/base.js"></script>
- 
-    <script type="text/javascript">
-        (function (d, s) {
-            var j, e = d.getElementsByTagName(s)[0];
+    <script>
+        var xmlhttp = new XMLHttpRequest()
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var articles = JSON.parse(this.responseText).articles //例化
+                var div = document.querySelector("#tags_list")
+                var tags = new Array
+                var num = new Array
+                for (let index = 0; index < articles.length; index++) {
+                    const element = articles[index];
 
-            if (typeof LivereTower === 'function') {
-                return;
+                    if (!tags.includes(element.tag)) {
+                        num.push(1)
+                        tags.push(element.tag)
+                    } else {
+                        var i = tags.indexOf(element.tag)
+                        num[i]++
+
+                    }
+                    console.log()
+
+
+
+                }
+                for (let index = 0; index < tags.length; index++) {
+                    var a = document.createElement("a");
+                    a.innerHTML = tags[index] + "（" + num[index] + "）"
+                    a.style.backgroundColor = "#" + Math.round(Math.random() * 0x1000000).toString(16)
+                    // a.href = element.url
+                    div.appendChild(a)
+                }
             }
-
-            j = d.createElement(s);
-            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-            j.async = true;
-
-            e.parentNode.insertBefore(j, e);
-        })(document, 'script');
+        }
+        xmlhttp.open("GET", "../../../../json/index.json", true);
+        xmlhttp.send();
     </script>
-    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+
 </body>
 
 </html>

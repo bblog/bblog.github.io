@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<!-- PC端优先设计 -->
+<!--  iPad   480px~767px-->
+<!-- 正常手机360px~479px -->
+<!-- 小手机    <360px -->
+<!-- index、article的css相同   sentence和mysentence的css相同 -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>本站文档</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/mobile.css" rel="stylesheet">
+    <link href="../css/details.css" rel="stylesheet">
+    <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
+    <style>
+
+    </style>
+</head>
+
+<div id="top-menu">
+    <div class="menubar">
+        <svg>
+            <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+            <path class="line--2" d="M0 50h80" />
+            <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+        </svg>
+    </div>
+    <div class="top-title">
+        <div>我的文章</div>
+    </div>
+    <div class="my-daily"><a href=""><img src="https://i.loli.net/2020/03/11/u1aN6VbOEi2Psnd.png" alt=""></a></div>
+</div>
+</div>
+<div id="perspective">
+    <div id="container">
+        <!-- 正文，文章列表 -->
+        <main>
+            <header class="title">
+                <h2>存档</h2>
+            </header>
+            <div class="massage">
+                <h3 class="contents"><span>添加文章</span></h3>
+                <p>添加文章，写一个HTML(复制一下)，引入base.js base.css details.css</p>
+                <h3 class="contents"><span>json的添加</span></h3>
+                <p>index.json是首页的文章，现阶段可以将所有文章都写进去，以后文章多了可以添加一个json文件来存储所有的文章。
+                    转载的文章在article.json也存储一下。</p>
+                <h3 class="contents"><span>目录的添加</span></h3>
+                <p>只要有显示本文字数（#word）的HTML就会自动生成目录，如果没#word就引用函数addLeftList()。</p>
+                <h3 class="contents"><span>锚点的添加</span></h3>
+                <p>锚点的添加，即选择那些地方会生成锚点并被添加到目录中。添加class="contents" （最好是一个标题即h3、h4标签），
+                    如果是则可以在前面加一个div，会自动选择该元素的文本（有第一个子元素的话会选择）。另外data-title-name可以重定义标题名称。
+                </p>
+            </div>
+        </main>
+        <!-- 底部栏 -->
+        <footer class="footer">
+            <div class="copyright">Copyright ©2020.3.8 —— <span id="now_date"></span> 蒙大明版权所有</div>
+            <div class="access">
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+                <span id="busuanzi_container_site_uv">访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+                <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+            </div>
+        </footer>
+    </div>
+    <!-- ========移动端菜单 -->
+
+    <div class="menu">
+        <ul>
+            <li><a href="../index0.html">主页</a></li>
+            <li><a href="../article">精选美文</a></li>
+            <li><a href="../sentence/">名人名言</a></li>
+            <li><a href="../mysentence">个人感悟</a></li>
+            <li><a href="../about/guestbook.html">留言板</a></li>
+            <li><a href="https://mdming.github.io">第一个网站</a></li>
+            <li><a href="../diary">我的日记</a></li>
+            <li><a href="#">本站信息</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 头部导航栏 -->
+<div class='tabbed round' style="display: block;">
+    <ul>
+        <li><a href="../about/guestbook.html">留言板</a></li>
+        <li><a href="../mysentence">个人感悟</a></li>
+        <li><a href="../sentence">名人名言</a></li>
+        <li><a href="../article">精选美文</a></li>
+        <li><a href="../index0.html">我的文章</a></li>
+    </ul>
+    <h1 class="t_nav"><span id="hitokoto">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 </span></h1>
+</div>
+
+<!-- 返回按钮及侧边栏 -->
+<aside class="aside">
+    <div><a id="qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=790430354&site=qq&menu=yes">
+            <img src="https://ae01.alicdn.com/kf/H7af94cac043845c9a8779d35c29da9a7A.png" alt=""></a></div>
+    <div class="top">
+        <a href="#top"><img src="https://ae01.alicdn.com/kf/H9227752dda6c455ead9336cb46fffdd8T.png" alt=""></a>
+    </div>
+</aside>
+<script type="text/javascript" src="../js/base.js"></script>
+<script>addLeftList()</script>
+</body>
+
+</html>

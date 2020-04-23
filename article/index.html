@@ -13,12 +13,19 @@
 	<link href="../css/index.css" rel="stylesheet">
 	<link href="../css/mobile.css" rel="stylesheet">
 	<link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
-	<script src="https://unpkg.com/scrollreveal"></script>
+	<style>
+		.footer {
+			position: absolute;
+		}
 
+		#bottom_frame {
+			position: absolute;
+		}
+	</style>
 </head>
 
-<body>
-	
+<body class="no_particle">
+
 
 	<div id="top-menu">
 		<div class="menubar">
@@ -36,6 +43,33 @@
 	</div>
 	<div id="perspective">
 		<div id="container">
+
+			<!-- 左边栏 -->
+			<div class="sidebar">
+
+				<div class="lmnav">
+					<div class="navbor">
+						<img class="photo" src="https://s1.ax1x.com/2020/03/12/8ZwECT.jpg" alt="">
+						<div class="myname"> 蒙大明</div>
+						<div class="myname">Damir Meng</div>
+						<p class="myin">在校大学生，一个不理想的理想主义者！</p>
+					</div>
+				</div>
+				<div class="category">
+					<div class="widget-inner">
+						<div class="widget-title">
+							<h3 id="menu">传送门</h3>
+						</div>
+						<div class="category-list">
+							<ul>
+								<li><a href="https://mdming.github.io">第一个网站</a></li>
+								<li><a href="../diary">我的日记</a></li>
+								<li><a href="../about">本站信息</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- 正文，文章列表 -->
 			<div class="blogs">
 				<ul id="article_ul" class="article-list">
@@ -150,6 +184,8 @@
 						</li>
 					</ul>
 				</div>
+				<!-- bottom_frame -->
+				<iframe id="bottom_frame" frameborder="0"></iframe>
 				<!-- 底部栏 -->
 				<footer class="footer">
 					<div class="copyright">Copyright ©2020.3.8 —— <span id="now_date"></span> 蒙大明版权所有</div>
@@ -162,7 +198,7 @@
 		</div>
 		<!-- ========移动端菜单 -->
 		<!-- 搜索栏 -->
- 
+
 		<div class="menu">
 			<ul>
 				<li><a href="../index0.html">主页</a></li>
@@ -188,32 +224,6 @@
 		<h1 class="t_nav"><span id="hitokoto">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 </span></h1>
 	</div>
 
-	<!-- 左边栏 -->
-	<div class="sidebar">
-		 
-		<div class="lmnav">
-			<div class="navbor">
-				<img class="photo" src="https://s1.ax1x.com/2020/03/12/8ZwECT.jpg" alt="">
-				<div class="myname"> 蒙大明</div>
-				<div class="myname">Damir Meng</div>
-				<p class="myin">在校大学生，一个不理想的理想主义者！</p>
-			</div>
-		</div>
-		<div class="category">
-			<div class="widget-inner">
-				<div class="widget-title">
-					<h3 id="menu">传送门</h3>
-				</div>
-				<div class="category-list">
-					<ul>
-						<li><a href="https://mdming.github.io">第一个网站</a></li>
-						<li><a href="../diary">我的日记</a></li>
-						<li><a href="../about">本站信息</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- 返回按钮及侧边栏 -->
 	<aside class="aside">
 		<div><a id="qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=790430354&site=qq&menu=yes">
@@ -222,27 +232,28 @@
 			<a href="#top"><img src="https://ae01.alicdn.com/kf/H9227752dda6c455ead9336cb46fffdd8T.png" alt=""></a>
 		</div>
 	</aside>
-	<script type="text/javascript" src="../js/base.js"></script>
-	<script type="text/javascript" src="../js/index.js"></script>
-	<script type="text/javascript" >getArticleData("../json/article.json");</script>
-	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-	
+	<script src="https://unpkg.com/scrollreveal"></script>
 	<script>
 		if (document.querySelector("#article_ul li")) {
-		ScrollReveal().reveal('#article_ul li', {
-        // delay: 400, //延时
-        distance: '24px', //距离
-        // duration: 800, //持续事件
-        easing: 'ease-in-out', //动画
-        interval: 300, //间隔F
-        origin: 'bottom', //起点
-        reset: true,
-    
-    });}
+			ScrollReveal().reveal('#article_ul li', {
+				// delay: 400, //延时
+				distance: '24px', //距离
+				// duration: 800, //持续事件
+				easing: 'ease-in-out', //动画
+				interval: 300, //间隔F
+				origin: 'bottom', //起点
+				reset: true,
+
+			});
+		}
 	</script>
-</body>
+	<script type="text/javascript" src="../js/base.js"></script>
+	<script type="text/javascript" src="../js/index.js"></script>
+	<script type="text/javascript">
+		getArticleData("../json/article.json");
+	</script>
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 </body>
 
 </html>

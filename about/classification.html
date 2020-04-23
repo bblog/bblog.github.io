@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+<!-- PC端优先设计 -->
+<!--  iPad   480px~767px-->
+<!-- 正常手机360px~479px -->
+<!-- 小手机    <360px -->
+<!-- index、article的css相同   sentence和mysentence的css相同 -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>分类查找</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/mobile.css" rel="stylesheet">
+    <link href="../css/details.css" rel="stylesheet">
+    <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
+    <style>
+        .cards_wrapper {
+            font-family: "Roboto", sans-serif;
+        }
+
+        .number {
+            background-color: #fffffff5;
+            color: #000;
+            border-radius: 10px;
+            padding: 0;
+            float: right;
+            display: block;
+            width: 43px;
+            height: 22px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 22px;
+        }
+
+        .card {
+            width: 100%;
+            margin: 0 auto 5px;
+            cursor: pointer;
+        }
+
+        .card .card_description {
+            border-radius: 5px;
+            height: 80px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            transition: border-radius 0.6s ease-in-out;
+            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .card .card_description .title {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 20px;
+            margin-left: 20%;
+            width: 54%;
+        }
+
+        .card.myarticle .card_description {
+            background-color: #f44336;
+        }
+
+        .card.mymind .card_description {
+            background-color: #2196f3;
+        }
+
+        .card.other .card_description {
+            background-color: #ff5722;
+        }
+
+        .card.mind .card_description {
+            background-color: #673ab7;
+        }
+
+
+        .card.novel .card_description {
+            background-color: #ffb300;
+        }
+
+        .card.essay .card_description {
+            background-color: #ffc107;
+        }
+
+        .card.poetry .card_description {
+            background-color: #4caf50;
+        }
+
+        .card.classical .card_description {
+            background-color: #00bcd4;
+        }
+
+        .card.other_c .card_description {
+            background-color: #7fc3f9;
+        }
+
+
+
+        .card.unfolded .top {
+            animation: unfold_top 0.6s ease-in-out;
+        }
+
+        .card.unfolded .bottom {
+            animation: unfold_bottom 0.6s ease-in-out;
+        }
+
+        .card.unfolded .card_description {
+            border-radius: 5px 5px 0 0;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 60px;
+            z-index: 2;
+        }
+
+        .card.folded .top {
+            animation: fold_top 0.6s forwards ease-in-out;
+        }
+
+        .card.folded .bottom {
+            animation: fold_bottom 0.6s forwards ease-in-out;
+        }
+
+        .top,
+        .bottom {
+            position: relative;
+            overflow: hidden;
+            height: 80px;
+            background-color: #fff;
+            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .bottom {
+            border-radius: 0 0 5px 5px;
+        }
+
+        .alarm_item {
+            display: flex;
+            align-items: center;
+        }
+
+        .alarm_item a {
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+            padding: 20px;
+        }
+
+        .alarm_item .day_part {
+            font-size: 10px;
+            margin: 0 25px 0 5px;
+            color: #798384;
+        }
+
+        .alarm_item .time {
+            padding: 10px;
+            border-radius: 3px;
+            color: #fff;
+            background-color: #03a9f4;
+            float: left;
+            /* height: 24px; */
+
+        }
+
+        .alarm_item .alarm_item_description {
+            /* padding: 10px; */
+            color: #798384;
+            margin-left: 20px;
+            float: left;
+            width: 60%;
+            text-align: center;
+            font-size: 14px;
+            line-height: 40px;
+        }
+
+        @keyframes fold_top {
+            100% {
+                transform-origin: top;
+                transform: perspective(100px) rotateX(-10deg);
+                height: 0;
+            }
+        }
+
+        @keyframes fold_bottom {
+            100% {
+                transform-origin: bottom;
+                transform: perspective(100px) rotateX(10deg);
+                height: 0;
+            }
+        }
+
+        @keyframes unfold_top {
+            0% {
+                transform-origin: top;
+                height: 0;
+                transform: perspective(100px) rotateX(-10deg);
+            }
+
+            100% {
+                transform: perspective(100px) rotateX(0deg);
+                height: 80px;
+            }
+        }
+
+        @keyframes unfold_bottom {
+            0% {
+                transform-origin: bottom;
+                height: 0;
+                transform: perspective(100px) rotateX(10deg);
+            }
+
+            100% {
+                transform: perspective(100px) rotateX(0deg);
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top-menu">
+        <div class="menubar">
+            <svg>
+                <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                <path class="line--2" d="M0 50h80" />
+                <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+            </svg>
+        </div>
+        <div class="top-title">
+            <div>分类查找</div>
+        </div>
+        <div class="my-daily"><a href=""><img src="https://i.loli.net/2020/03/11/u1aN6VbOEi2Psnd.png" alt=""></a></div>
+    </div>
+    </div>
+    <div id="perspective">
+        <div id="container">
+            <!-- 正文，文章列表 -->
+            <main>
+                <header class="title">
+                    <h2>分类查找</h2>
+                </header>
+
+                <div class="massage">
+                    <ul class="cards_wrapper">
+                        <li class="card folded myarticle">
+                            <div class="card_description">
+                                <div class="title">我的文章（原创）</div>
+                                <div class="number">32篇</div>
+                            </div>
+                            <ul></ul>
+                        </li>
+
+                        </li>
+                        <li class="card folded mymind">
+                            <div class="card_description">
+                                <div class="title">思维导图（原创）</div>
+                                <div class="number">32篇</div>
+                            </div>
+                            <ul>
+                            </ul>
+                        </li>
+                        <li class="card folded other">
+                            <div class="card_description">
+                                <div class="title">其他（原创）</div>
+                                <div class="number">32篇</div>
+                            </div>
+                            <ul>
+                            </ul>
+                        </li>
+                        <li class="card folded mind">
+                            <div class="card_description">
+                                <div class="title">思维导图（转载）</div>
+                                <div class="number">32篇</div>
+                            </div>
+                            <ul>
+                            </ul>
+                        </li>
+                        <li class="card folded essay">
+                            <div class="card_description">
+                                <div class="title">散文（转载）</div>
+                                <div class="number">32篇</div>
+                            </div>
+                            <ul>
+                            </ul>
+                        </li>
+                        <li class="card folded novel">
+                            <div class="card_description">
+                                <div class="title">小说（转载）</div>
+                                <div class="number">32篇</div>
+                            </div>
+                            <ul>
+                            </ul>
+                        </li>
+                        <li class="card folded poetry">
+                            <div class="card_description">
+                                <div class="title">诗歌（转载）</div>
+                                <div class="number">32篇</div>
+                            </div>
+                            <ul>
+                            </ul>
+                        </li>
+                        <li class="card folded classical">
+                            <div class="card_description">
+                                <div class="title">文言文（转载）</div>
+                                <div class="number">32篇</div>
+                            </div>
+                            <ul>
+                            </ul>
+                        </li>
+                        <li class="card folded other_c">
+                            <div class="card_description">
+                                <div class="title">其他（转载）</div>
+                                <div class="number">32篇</div>
+                            </div>
+                            <ul> </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </main>
+            <!-- 底部栏 -->
+            <footer class="footer">
+                <div class="copyright">Copyright ©2020.3.8 —— <span id="now_date"></span> 蒙大明版权所有</div>
+                <div class="access">
+                    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+                    <span id="busuanzi_container_site_uv">访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+                    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+                </div>
+            </footer>
+        </div>
+        <!-- ========移动端菜单 -->
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index0.html">主页</a></li>
+                <li><a href="../article">精选美文</a></li>
+                <li><a href="../sentence/">名人名言</a></li>
+                <li><a href="../mysentence">个人感悟</a></li>
+                <li><a href="../about/guestbook.html">留言板</a></li>
+                <li><a href="https://mdming.github.io">第一个网站</a></li>
+                <li><a href="../diary">我的日记</a></li>
+                <li><a href="#">本站信息</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 头部导航栏 -->
+    <div class='tabbed round'>
+        <ul>
+            <li><a href="../about/guestbook.html">留言板</a></li>
+            <li><a href="../mysentence">个人感悟</a></li>
+            <li><a href="../sentence">名人名言</a></li>
+            <li><a href="../article">精选美文</a></li>
+            <li><a href="../index0.html">我的文章</a></li>
+        </ul>
+        <h1 class="t_nav"><span id="hitokoto">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 </span></h1>
+    </div>
+
+    <!-- 返回按钮及侧边栏 -->
+    <aside class="aside">
+        <div><a id="qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=790430354&site=qq&menu=yes">
+                <img src="https://ae01.alicdn.com/kf/H7af94cac043845c9a8779d35c29da9a7A.png" alt=""></a></div>
+        <div class="top">
+            <a href="#top"><img src="https://ae01.alicdn.com/kf/H9227752dda6c455ead9336cb46fffdd8T.png" alt=""></a>
+        </div>
+    </aside>
+    <script>
+        for (var i = 0; i < document.querySelectorAll('.card').length; i++) { //监听所有class=card
+            document.querySelectorAll(".card")[i].addEventListener("click", function (e) {
+                if (this.classList.contains('unfolded') == true) { //如果已经展开
+                    this.classList.replace("unfolded", "folded") //关闭
+                } else { //如果没展开
+                    for (var j = 0; j < document.querySelectorAll('.card').length; j++) { //把展开的关闭
+                        document.querySelectorAll('.card')[j].classList.replace("unfolded", "folded")
+                    }
+                    this.classList.replace("folded", "unfolded") //展开点击的地方
+                }
+            })
+        }
+    </script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="classification.js"></script>
+</body>
+
+</html>

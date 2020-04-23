@@ -19,7 +19,7 @@
          width: 70%;
          margin: 80px 0 0;
          overflow: hidden;
-         background-color: hsla(0,0%,100%,.66);
+         
      }
 
      .article-list {
@@ -28,6 +28,7 @@
      }
 
      .blogs .article-list li {
+         
         border: 1px solid #eaeaea00;
          box-shadow: 0 0 40px #dcdbff;
          margin-bottom: 5px;
@@ -35,7 +36,7 @@
          height: 180px;
          padding: 16px;
          position: relative;
-         background: #fff0;
+         background: #ffffffdb;
          visibility: hidden;
      }
 

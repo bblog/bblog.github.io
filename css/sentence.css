@@ -16,7 +16,8 @@
 }
 
 ul#columns li {
-  background: #fefefe00;
+  border-radius: 4px;
+  background: #ffffffdb;
   border: 2px solid #fefefe00;
   box-shadow: 0 0 40px #dcdbff;
   margin: 0 2px 15px;
@@ -51,7 +52,7 @@ ul#columns li p:last-child {
   text-align: right;
   padding: 12px 0px 0px 0;
 }
-ul#columns:hover li:hover {
+ul#columns li:hover {
   border: 2px solid #00bcd4;
 }
 
@@ -59,7 +60,6 @@ ul#columns:hover li:hover {
   margin-top: 80px;
   width: 73%;
   float: right;
-  background-color: hsla(0,0%,100%,.4);
 }
 
 
