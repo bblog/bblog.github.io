@@ -253,8 +253,11 @@ if (width < 783) {
     }
 } else { //PC
     //左侧栏
-    if (document.querySelector(".category-list ul li:nth-last-child(2) a")) {
-        document.querySelector(".category-list ul li:nth-last-child(2) a").innerHTML = "每日明记";
+    if (document.querySelector(".category-list ul li:nth-child(2) a")) {
+        document.querySelector(".category-list ul li:nth-child(2) a").innerHTML = "每日明记";
+    }
+    if (document.querySelector(".category-list ul li:nth-child(1) a")) {
+        document.querySelector(".category-list ul li:nth-child(1) a").innerHTML = "首个网站";
     }
     // 加载左上角句子的script 不用一个一个添加   一言API
     var secScript = document.createElement("script");
@@ -278,7 +281,7 @@ if (width < 783) {
     var str = [
         "本站信息",
         "首个网站",
-        "每日铭记",
+        "每日明记",
         "本站文档",
         "留言板"
     ]
