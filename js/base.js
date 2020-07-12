@@ -637,3 +637,7 @@ if (document.querySelector("#word")) {
     addLeftList()
 }
 
+//底部栏优化
+if (document.querySelector('#busuanzi_container_site_uv')) {
+    document.querySelector('#busuanzi_container_site_uv').innerHTML = document.querySelector('#busuanzi_container_site_uv').innerHTML.slice(0, -1)
+}
