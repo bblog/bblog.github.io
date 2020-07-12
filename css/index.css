@@ -1,5 +1,6 @@
  @charset "gb2312";
-/* ===首页 
+
+ /* ===首页 
 ==========精选美文也适用===*/
  article {
      width: 1200px;
@@ -19,7 +20,7 @@
          width: 70%;
          margin: 80px 0 0;
          overflow: hidden;
-         
+
      }
 
      .article-list {
@@ -28,8 +29,8 @@
      }
 
      .blogs .article-list li {
-         
-        border: 1px solid #eaeaea00;
+
+         border: 1px solid #eaeaea00;
          box-shadow: 0 0 40px #dcdbff;
          margin-bottom: 5px;
          overflow: hidden;
@@ -54,6 +55,7 @@
          height: 20%;
          margin: 10px 0;
      }
+
      h3.blogtitle a {
          color: #000;
      }
@@ -153,61 +155,92 @@
 
  /* ===============动画区域结束==================== */
  #headerDown {
-    -webkit-animation: bounce 4s 2s infinite alternate;
-    animation: bounce 4s 2s infinite;
-    color: #2196f3;
-    height: 34px;
-    width: 34px;
+     -webkit-animation: bounce 4s 2s infinite alternate;
+     animation: bounce 4s 2s infinite;
+     color: #2196f3;
+     height: 34px;
+     width: 34px;
+     position: absolute;
+     fill: currentColor;
+     bottom: 10px;
+     left: 50%;
+     transform: translateX(-50%);
+     margin: 50px auto;
+     cursor: pointer;
+ }
+
+ .top_svg {
+     position: relative;
+ }
+
+ @-webkit-keyframes bounce {
+
+     0%,
+     20%,
+     50%,
+     80%,
+     to {
+         -webkit-transform: translateY(0);
+         transform: translateY(0)
+     }
+
+     40% {
+         -webkit-transform: translateY(-10px);
+         transform: translateY(-10px)
+     }
+
+     60% {
+         -webkit-transform: translateY(-5px);
+         transform: translateY(-5px)
+     }
+ }
+
+ @keyframes bounce {
+
+     0%,
+     20%,
+     50%,
+     80%,
+     to {
+         -webkit-transform: translateY(0);
+         transform: translateY(0)
+     }
+
+     40% {
+         -webkit-transform: translateY(-10px);
+         transform: translateY(-10px)
+     }
+
+     60% {
+         -webkit-transform: translateY(-5px);
+         transform: translateY(-5px)
+     }
+ }
+
+ .my-name {
+     color: #03a9f4;
+     font-size: 50px;
+     position: absolute;
+     top: 16%;
+     right: 4%;
+     margin: 50px auto;
+     cursor: pointer;
+ }
+
+ @media only screen and (max-width: 800px) {
+     
+ .my-name {
+     /* width: 100%; */
+    color: #03a9f4;
+    font-size: 35px;
     position: absolute;
-    fill: currentColor;
-    bottom: 10px;
+    top: unset;
+    right: unset;
+    white-space:nowrap;
+    bottom: 25%;
     left: 50%;
     transform: translateX(-50%);
     margin: 50px auto;
     cursor: pointer;
 }
-.top_svg{
-    position: relative;
-}
-@-webkit-keyframes bounce {
-    0%,20%,50%,80%,to {
-        -webkit-transform: translateY(0);
-        transform: translateY(0)
-    }
-
-    40% {
-        -webkit-transform: translateY(-10px);
-        transform: translateY(-10px)
-    }
-
-    60% {
-        -webkit-transform: translateY(-5px);
-        transform: translateY(-5px)
-    }
-}
-
-@keyframes bounce {
-    0%,20%,50%,80%,to {
-        -webkit-transform: translateY(0);
-        transform: translateY(0)
-    }
-
-    40% {
-        -webkit-transform: translateY(-10px);
-        transform: translateY(-10px)
-    }
-
-    60% {
-        -webkit-transform: translateY(-5px);
-        transform: translateY(-5px)
-    }
-}
-.my-name {
-    color: #03a9f4;
-    font-size: 50px;
-    position: absolute;
-    top: 16%;
-    right: 4%;
-    margin: 50px auto;
-    cursor: pointer;
-}
+ }
