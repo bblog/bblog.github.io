@@ -86,7 +86,7 @@
          padding: 1%;
      }
 
-     .autor {
+     .author {
          height: 20%;
          width: 70%;
          position: absolute;
@@ -100,16 +100,16 @@
          font-size: 12px
      }
 
-     .autor span {
+     .author span {
          margin-right: 11%;
          padding-left: 20px
      }
 
-     .autor span a {
+     .author span a {
          color: #096;
      }
 
-     .autor span a:hover {
+     .author span a:hover {
          text-decoration: underline
      }
 
