@@ -152,3 +152,53 @@
  }
 
  /* ===============动画区域结束==================== */
+ #headerDown {
+    -webkit-animation: bounce 4s 2s infinite alternate;
+    animation: bounce 4s 2s infinite;
+    color: #2196f3;
+    height: 34px;
+    width: 34px;
+    position: absolute;
+    fill: currentColor;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 50px auto;
+    cursor: pointer;
+}
+.top_svg{
+    position: relative;
+}
+@-webkit-keyframes bounce {
+    0%,20%,50%,80%,to {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    40% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px)
+    }
+
+    60% {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px)
+    }
+}
+
+@keyframes bounce {
+    0%,20%,50%,80%,to {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    40% {
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px)
+    }
+
+    60% {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px)
+    }
+}

@@ -280,11 +280,8 @@
     }
 
     #top_h {
-        /* height: 400px; */
         width: 100%;
         margin-top: 60px;
-
-        /* background-color: floralwhite; */
     }
 
     #cover {
@@ -584,12 +581,10 @@
     .sidebar {
         float: left;
         width: 18%;
-        /* overflow: hidden; */
         background-color: hsla(0, 0%, 100%, .6);
         position: sticky;
-        margin-top: 100px;
         left: 4%;
-        top: 120px;
+        top: 80px;
     }
 
     /*lmnav*/
