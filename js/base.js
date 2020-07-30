@@ -288,7 +288,7 @@ if (width < 783) {
     var href = [
         "../../../../about",
         "https://mdming.github.io",
-        "../../../../daily",
+        "../../../../diary",
         "../../../../about/docs.html",
         "../../../../about/guestbook.html"
     ] //展开的链接

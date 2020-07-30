@@ -322,6 +322,7 @@ xmlhttp.open("GET", "json/diary.json", true);
 xmlhttp.send();
 //切换页面
 var change_index = 0
+
 function setControl() {
     //切换按钮的设置
     $(document).on("click", ".change", function () {
@@ -378,7 +379,7 @@ document.querySelector("#val").onchange = function () {
         $(".flipbook").turn("display", "double"); //单页展示
 
     }
-    var password = "mdming"
+    var password = "mdm"
     if (this.value == password) {
         $("#font-cover").css("display", "none")
     } else {
