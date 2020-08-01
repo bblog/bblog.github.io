@@ -7,6 +7,7 @@ xmlhttp.onreadystatechange = function () {
         setItems("myarticle", "我的文章")
         setItems("mymind", "思维导图")
         setItems("other", "其他")
+        //转载
         setItems("essay", "散文")
         setItems("novel", "小说")
         setItems("poetry", "诗歌")
@@ -23,11 +24,7 @@ xmlhttp.onreadystatechange = function () {
                 if (element.classification == chinese) {
                     index1++
                     var li = document.createElement("li");
-                    if (index % 2 == 0) {
-                        li.setAttribute("class", "alarm_item top");
-                    } else {
-                        li.setAttribute("class", "alarm_item bottom");
-                    }
+                    li.setAttribute("class", "alarm_item bottom");
                     var a = document.createElement("a");
                     a.setAttribute("href", element.url);
                     li.appendChild(a)
@@ -37,7 +34,7 @@ xmlhttp.onreadystatechange = function () {
                     a.appendChild(div1)
                     var div2 = document.createElement("div");
                     div2.setAttribute("class", "alarm_item_description")
-                    div2.innerHTML = element.title + " — " + element.tag
+                    div2.innerHTML = element.title + " — " + element.writer
                     a.appendChild(div2)
                     document.querySelector("" + classname + " ul").appendChild(li);
                 }

@@ -14,9 +14,6 @@
     <link href="../css/mobile.css" rel="stylesheet">
     <link href="../css/details.css" rel="stylesheet">
     <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
-    <style>
-
-    </style>
 </head>
 
 <div id="top-menu">
@@ -28,7 +25,7 @@
         </svg>
     </div>
     <div class="top-title">
-        <div>我的文章</div>
+        <div>本站文档</div>
     </div>
     <div class="my-daily"><a href=""><img src="https://i.loli.net/2020/03/11/u1aN6VbOEi2Psnd.png" alt=""></a></div>
 </div>
@@ -38,19 +35,37 @@
         <!-- 正文，文章列表 -->
         <main>
             <header class="title">
-                <h2>存档</h2>
+                <h2>本站文档</h2>
             </header>
             <div class="massage">
                 <h3 class="contents"><span>添加文章</span></h3>
-                <p>添加文章，写一个HTML(复制一下)，引入base.js base.css details.css</p>
-                <h3 class="contents"><span>json的添加</span></h3>
-                <p>index.json是首页的文章，现阶段可以将所有文章都写进去，以后文章多了可以添加一个json文件来存储所有的文章。
-                    转载的文章在article.json也存储一下。</p>
+                <p>添加文章，写一个HTML(复制一下同一目录的文章)，引入base.js base.css details.css</p>
+                <h3 class="contents"><span>文章内容的编写</span></h3>
+                <p>标题：&lt;h3 class="contents"&gt;&lt;span&gt;文章内容的编写&lt;/span&gt;&lt;/h3&gt;</p>
+                <p>网页链接：&lt;a&gt; class="blue-link"&gt;本站信息&lt;/a&gt;</p>
+                <h3 class="contents"><span>json的编写</span></h3>
+                <p>index.json是首页的文章，存储所有文章的信息，原创文章在myarticle.json里面存储，
+                    转载的文章在article.json里存储。只要编写了这些json文件首页、精选美文就会更新目录（倒序），文章分类、标签查找、文章查询、归档都会自动更新。
+                    需要注意的是：json里面关于文章的分类是由限制的，应当遵循，其规则。</p>
+                    <p>json中添加"top": true文章可置顶。</p>
+                    <p>json中添加"recommend": true即可会在“站长推荐”中显示。</p>
                 <h3 class="contents"><span>目录的添加</span></h3>
                 <p>只要有显示本文字数（#word）的HTML就会自动生成目录，如果没#word就引用函数addLeftList()。</p>
                 <h3 class="contents"><span>锚点的添加</span></h3>
                 <p>锚点的添加，即选择那些地方会生成锚点并被添加到目录中。添加class="contents" （最好是一个标题即h3、h4标签），
-                    如果是则可以在前面加一个div，会自动选择该元素的文本（有第一个子元素的话会选择）。另外data-title-name可以重定义标题名称。
+                    如果是则可以在前面加一个div，会自动选择该元素的文本（如果有子元素的话）。没有可以直接用data-title-name来重定义标题名称。
+                </p>
+                <h3 class="contents"><span>代码更新</span></h3>
+                <p>每次代码更新后应当编写“本站时光轴”，便于记录网站改动。虽然git也有记录，但还是要以防万一，并且每次都备份一下文件。便于版本管理。
+                </p>
+                <h3 class="contents"><span>待实现的功能</span></h3>
+                <p>图片的显示</p>
+                <p>代码的显示</p>
+                <p>文章添加导语、标签、分类</p>
+                <p>编写文章时一些常用样式</p>
+                <p>文章显示、句子显示模块页数多之后瀑布流的显示</p>
+                <h3 class="contents"><span>更多关于本站</span></h3>
+                <p>了解更多关于本站的信息请进入<a class="blue-link" href="index.html">本站信息</a>页面。
                 </p>
             </div>
         </main>
@@ -100,7 +115,9 @@
     </div>
 </aside>
 <script type="text/javascript" src="../js/base.js"></script>
-<script>addLeftList()</script>
+<script>
+    addLeftList()
+</script>
 </body>
 
 </html>

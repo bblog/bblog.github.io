@@ -15,6 +15,7 @@ xmlhttp.onreadystatechange = function () {
                 li.classList.add("period")
                 li.querySelector(".title h3").classList.add("contents")
                 li.querySelector(".title h3").innerHTML = element.time.replace(/[^0-9]/ig, "").substring(0, 4)
+                li.querySelector(".title p").innerHTML = " "
                 li.querySelector(".body a").innerHTML = " "
                 document.querySelector(".timeline").appendChild(li)
                 year = element.time.replace(/[^0-9]/ig, "").substring(0, 4)
@@ -34,7 +35,7 @@ xmlhttp.onreadystatechange = function () {
             li.querySelector(".title h3").innerHTML = element.time
             li.querySelector(".body a").innerHTML = element.title
             li.querySelector(".body a").href = element.url
-            li.querySelector(".title p").innerHTML = element.tag
+            li.querySelector(".title p").innerHTML = element.writer
             document.querySelector(".timeline").appendChild(li)
         }
         addLeftList()

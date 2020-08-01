@@ -25,9 +25,9 @@
     header.title {
         position: relative;
         width: 100%;
-        height: 120px;
+        height: 236px;
         padding: 0 10%;
-        margin-bottom: 40px;
+        margin-bottom: 140px;
         border-bottom: 1px solid #9e9e9e40;
 
     }
@@ -39,8 +39,8 @@
     }
 
     .title h2 {
-        font-size: 30px;
-        line-height: 90px;
+        font-size: 40px;
+        line-height: 206px;
         text-align: center;
     }
 
@@ -79,7 +79,7 @@
         padding: 8px 15px;
         border-left: 4px solid #3ca5f6;
         background-color: #b2ebf28a;
-        border-radius: 0 8px 10px 0;
+        border-radius: 0 5px 5px 0;
     }
 }
 

@@ -1,14 +1,21 @@
 @import url('https://fonts.font.im/css?family=Dancing+Script:700');
 
+.blue-link{
+    color: #0366d6 ;
+}
+
+.blue-link:hover {
+    text-decoration: underline;
+}
 #list {
     position: fixed;
     bottom: 10px;
     right: 25px;
     width: 32px;
     height: 32px;
-  color: #03a9f4;
-  fill: currentColor;
-  z-index: 1000;
+    color: #03a9f4;
+    fill: currentColor;
+    z-index: 1000;
 }
 
 
@@ -28,13 +35,14 @@
     margin-top: -150px !important;
 } */
 /* .contents { */
-    .contents:before {
-        content: "";
-        display: block;
-        margin-top: -100px;
-        height: 100px;
-        visibility: hidden;
-    }
+.contents:before {
+    content: "";
+    display: block;
+    margin-top: -100px;
+    height: 100px;
+    visibility: hidden;
+}
+
 /* } */
 
 #side-nav {
@@ -48,9 +56,11 @@
     width: 200px;
     transition: all .8s;
 }
-#side-nav.left{
+
+#side-nav.left {
     left: 0;
 }
+
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 #side-nav::-webkit-scrollbar {
     width: 3px;

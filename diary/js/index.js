@@ -322,7 +322,6 @@ xmlhttp.open("GET", "json/diary.json", true);
 xmlhttp.send();
 //切换页面
 var change_index = 0
-
 function setControl() {
     //切换按钮的设置
     $(document).on("click", ".change", function () {

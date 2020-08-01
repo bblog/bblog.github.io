@@ -5,223 +5,561 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <link href="../css/mobile.css" rel="stylesheet">
+    <title>搜索</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
+        .pagination{
+            margin-bottom: 0;
+        }
+        .blogs {
+            width: 100% !important;
+        }
+
         .search {
             position: relative;
-            height: 30px;
-            text-align: right;
+            height: 100px;
+            width: 50%;
+            margin: 50px auto 20px auto;
             line-height: 30px;
-            padding-right: 10px;
         }
 
         .search .search-icon {
-            float: right;
+
+            float: left;
             height: 100%;
-            margin: 0 10px;
-            line-height: 30px;
+            line-height: 40px;
             cursor: pointer;
             user-select: none;
         }
 
+        .search-start {
+            position: absolute;
+            left: -25px;
+            transform: translateX(30px);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 10px;
+        }
+
+        input[type=text]:focus {
+            background-color: #fff;
+            box-shadow: inset 0 1px 2px rgba(27, 31, 35, .075), 0 0 0 0.2em #dbedff;
+            border: 1px solid #4285f4;
+        }
+
         .search .search-input {
-            float: right;
-            width: 30%;
-            height: 30px;
-            line-height: 30px;
+            padding-left: 30px;
+            float: left;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
             margin: 0;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            box-sizing: border-box;
+            border: 1px solid #d1d5da;
+            background-color: #fafafa;
+            border-radius: 3px;
+            box-shadow: inset 0 1px 2px rgba(27, 31, 35, .075);
         }
 
         .search .search-clear {
             display: none;
         }
 
-        .search .search-results {
-            display: block;
-            z-index: 1000;
-            position: absolute;
-            top: 30px;
-            right: 50px;
-            width: 50%;
-            max-height: 400px;
-            overflow: auto;
-            text-align: left;
-            border-radius: 5px;
-            background: #ccc;
-            box-shadow: 0 .3rem .5rem #333;
+        .show-result {
+            text-align: center;
+            padding: 25px 25px 25px 2px;
+            height: 100px;
+            width: 80%;
+            margin: auto;
+            font-size: 22px;
         }
 
-        .search .search-results .result-item {
-            background: aqua;
-            color: #000;
-            margin: 5px;
-            padding: 3px;
-            border-radius: 3px;
-            cursor: pointer;
+        .length,
+        .keyword {
+            color: #2196f3;
+        }
+
+        @media only screen and (min-width: 800px) {
+
+
+            .article-list {
+                width: 68% !important;
+            }
         }
     </style>
 </head>
 
-<body>
-    <div class="search">
-        <i class="material-icons search-icon search-start">search</i>
-        <input type="text" class="search-input" placeholder="Searching..." />
-        <i class="material-icons search-icon search-clear">clear</i>
-        <div class="search-results"></div>
+<body class="no_particle none-top-word">
+
+
+    <div id="top-menu">
+        <div class="menubar">
+            <svg>
+                <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                <path class="line--2" d="M0 50h80" />
+                <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+            </svg>
+        </div>
+        <div class="top-title">
+            <div>搜索</div>
+        </div>
+        <div class="my-daily"><a href=""><img src="https://i.loli.net/2020/03/11/u1aN6VbOEi2Psnd.png" alt=""></a></div>
     </div>
+    </div>
+    <div id="perspective">
+        <div id="container">
+
+            <!-- 正文，文章列表 -->
+            <div class="blogs">
+                <div class="search">
+                    <i class="material-icons search-icon search-start">search</i>
+                    <input type="text" class="search-input" placeholder="请输入要搜索的关键词！" />
+                    <i class="material-icons search-icon search-clear">clear</i>
+                </div>
+                <div class="show-result">搜索到“<span class="keyword"></span>”：共 <span class="length"></span> 条</div>
+                <ul id="article_ul" class="article-list">
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                    <li> <span class="blogpic"><a href="/"><img></a></span>
+                        <h3 class="blogtitle"><a></a></h3>
+                        <div class="bloginfo">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <span class="lm"><a></a></span>
+                            <span class="dtime"><a></a></span>
+                            <span class="writer"><a></a></span>
+                        </div>
+                    </li>
+                </ul>
+                <!-- 分页 -->
+                <div>
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" class="page-link" aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                            </a>
+                        </li>
+                        <li class="active"><a class="page-link" href="#">1</a></li>
+                        <li><a class="page-link" href="#">2</a></li>
+                        <li><a class="page-link" href="#">3</a></li>
+                        <li><a class="page-link" href="#">4</a></li>
+                        <li><a class="page-link" href="#">5</a></li>
+                        <li>
+                            <a href="#" class="page-link" aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- bottom_frame -->
+                <iframe id="bottom_frame" frameborder="0"></iframe>
+                <!-- 底部栏 -->
+                <footer class="footer">
+                    <div class="copyright">Copyright ©2020.3.8 —— <span id="now_date"></span> 蒙大明版权所有</div>
+                    <div class="access">
+                        <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+                        <span id="busuanzi_container_site_uv">访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <!-- ========移动端菜单 -->
+        <!-- 搜索栏 -->
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index0.html">主页</a></li>
+                <li><a href="../article">精选美文</a></li>
+                <li><a href="../sentence/">名人名言</a></li>
+                <li><a href="../mysentence">个人感悟</a></li>
+                <li><a href="../about/guestbook.html">留言板</a></li>
+                <li><a href="https://mdming.github.io">第一个网站</a></li>
+                <li><a href="../diary">我的日记</a></li>
+                <li><a href="../about">本站信息</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 头部导航栏 -->
+    <div class='tabbed round'>
+        <ul>
+            <li><a href="../about/guestbook.html">留言板</a></li>
+            <li><a href="../mysentence">个人感悟</a></li>
+            <li><a href="../sentence">名人名言</a></li>
+            <li><a href="../article">精选美文</a></li>
+            <li><a href="/../index0.html">我的文章</a></li>
+        </ul>
+        <h1 class="t_nav"><span id="hitokoto">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 </span></h1>
+    </div>
+
+    <!-- 返回按钮及侧边栏 -->
+    <aside class="aside">
+        <div><a id="qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=790430354&site=qq&menu=yes">
+                <img src="https://ae01.alicdn.com/kf/H7af94cac043845c9a8779d35c29da9a7A.png" alt=""></a></div>
+        <div class="top">
+            <a href="#top"><img src="https://ae01.alicdn.com/kf/H9227752dda6c455ead9336cb46fffdd8T.png" alt=""></a>
+        </div>
+    </aside>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <script>
-        // 获取搜索框、搜索按钮、清空搜索、结果输出对应的元素
-        var searchBtn = document.querySelector('.search-start');
-        var searchClear = document.querySelector('.search-clear');
-        var searchInput = document.querySelector('.search-input');
-        var searchResults = document.querySelector('.search-results');
+        if (document.querySelector("#article_ul li")) {
+            ScrollReveal().reveal('#article_ul li', {
+                // delay: 400, //延时
+                distance: '24px', //距离
+                // duration: 800, //持续事件
+                easing: 'ease-in-out', //动画
+                interval: 300, //间隔F
+                origin: 'bottom', //起点
+                reset: false,
 
-        // 申明保存文章的标题、链接、内容的数组变量
-        var searchValue = '',
-            arrItems = [],
-            arrContents = [],
-            arrLinks = [],
-            arrTitles = [],
-            arrResults = [],
-            indexItem = [],
-            itemLength = 0;
-        var tmpDiv = document.createElement('div');
-        tmpDiv.className = 'result-item';
-
+            });
+        }
+    </script>
+    <script>
         // ajax 的兼容写法
-        var xhr = new XMLHttpRequest() || new ActiveXObject('Microsoft.XMLHTTP');
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                xml = xhr.responseXML;
-                arrItems = xml.getElementsByTagName('item');
-                itemLength = arrItems.length;
-
-                // 遍历并保存所有文章对应的标题、链接、内容到对应的数组中
-                // 同时过滤掉 HTML 标签
-                for (i = 0; i < itemLength; i++) {
-                    arrContents[i] = arrItems[i].getElementsByTagName('description')[0].
-                    childNodes[0].nodeValue.replace(/<.*?>/g, '');
-                    arrLinks[i] = arrItems[i].getElementsByTagName('link')[0].
-                    childNodes[0].nodeValue.replace(/<.*?>/g, '');
-                    arrTitles[i] = arrItems[i].getElementsByTagName('title')[0].
-                    childNodes[0].nodeValue.replace(/<.*?>/g, '');
-                }
+        var articles
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                articles = JSON.parse(this.responseText).articles //例化
+                //decodeURI对锚点解码  substring(1)去#号
+                getJsonItems(decodeURI(document.location.hash.substring(1)))
             }
         }
+        xmlhttp.open('get', '../json/index.json', true);
+        xmlhttp.send();
+        // 获取搜索框、清空搜索
+        var searchClear = document.querySelector('.search-clear');
+        var searchInput = document.querySelector('.search-input');
 
-        // 开始获取根目录下 feed.xml 文件内的数据
-        xhr.open('get', '/feed.xml', true);
-        xhr.send();
-
-        searchBtn.onclick = searchConfirm;
-
-        // 清空按钮点击函数
-        searchClear.onclick = function () {
-            searchInput.value = '';
-            searchResults.style.display = 'none';
-            searchClear.style.display = 'none';
-        }
-
-        // 输入框内容变化后就开始匹配，可以不用点按钮
-        // 经测试，onkeydown, onchange 等方法效果不太理想，
-        // 存在输入延迟等问题，最后发现触发 input 事件最理想，
-        // 并且可以处理中文输入法拼写的变化
         searchInput.oninput = function () {
             setTimeout(searchConfirm, 0);
         }
-        searchInput.onfocus = function () {
-            searchResults.style.display = 'block';
+        // 清空按钮点击函数
+        searchClear.onclick = function () {
+            searchInput.value = '';
+            searchClear.style.display = 'none';
         }
 
         function searchConfirm() {
             if (searchInput.value == '') {
-                searchResults.style.display = 'none';
                 searchClear.style.display = 'none';
             } else if (searchInput.value.search(/^\s+$/) >= 0) {
+                searchInput.value = '';
                 // 检测输入值全是空白的情况
-                searchInit();
-                var itemDiv = tmpDiv.cloneNode(true);
-                itemDiv.innerText = '请输入有效内容...';
-                searchResults.appendChild(itemDiv);
+                // searchInit();
             } else {
                 // 合法输入值的情况
-                searchInit();
-                searchValue = searchInput.value;
-                // 在标题、内容中查找
-                searchMatching(arrTitles, arrContents, searchValue);
+                searchClear.style.display = 'block';
+                getJsonItems(searchInput.value)
             }
         }
 
-        // 每次搜索完成后的初始化
-        function searchInit() {
-            arrResults = [];
-            indexItem = [];
-            searchResults.innerHTML = '';
-            searchResults.style.display = 'block';
-            searchClear.style.display = 'block';
-        }
+        var result = new Array
 
-        function searchMatching(arr1, arr2, input) {
-            // 忽略输入大小写
-            input = new RegExp(input, 'i');
-            // 在所有文章标题、内容中匹配查询值
-            for (i = 0; i < itemLength; i++) {
-                if (arr1[i].search(input) !== -1 || arr2[i].search(input) !== -1) {
-                    // 优先搜索标题
-                    if (arr1[i].search(input) !== -1) {
-                        var arr = arr1;
-                    } else {
-                        var arr = arr2;
+        function getJsonItems(searchText) {
+            document.querySelector('.keyword').innerHTML = searchText
+            var result = []
+            for (let index = 0; index < articles.length; index++) {
+                // 搜索标题
+                if (articles[index].title.search(searchText) != -1 && !result.includes(index)) {
+                    result.push(index)
+                }
+            }
+            for (let index = 0; index < articles.length; index++) {
+                // 搜索简介
+                if (articles[index].introduction.search(searchText) != -1 && !result.includes(index)) {
+                    result.push(index)
+                }
+            }
+            for (let index = 0; index < articles.length; index++) {
+                // 搜索标签
+                if (articles[index].tag.search(searchText) != -1 && !result.includes(index)) {
+                    result.push(index)
+                }
+            }
+            for (let index = 0; index < articles.length; index++) { // 搜索作者
+                if (articles[index].writer.search(searchText) != -1 && !result.includes(index)) {
+                    result.push(index)
+                }
+            }
+            for (let index = 0; index < articles.length; index++) {
+                // 搜索分类
+                if (articles[index].classification.search(searchText) != -1 && !result.includes(index)) {
+                    result.push(index)
+                }
+            }
+            for (let index = 0; index < articles.length; index++) {
+                // 搜索日期
+                if (articles[index].time.search(searchText) != -1 && !result.includes(index)) {
+                    result.push(index)
+                }
+            }
+            // 单字检索
+            var s_word = searchText.split(""); //剪辑成数组
+            var j = 0
+
+
+            for (let i = 0; i < s_word.length; i++) { //遍历是否有对应的字
+                for (let index = 0; index < articles.length; index++) {
+                    // 搜索标题
+                    if (articles[index].title.search(s_word[i]) != -1 && !result.includes(index)) {
+                        result.push(index)
                     }
-                    indexItem.push(i); // 保存匹配值的索引
-                    var indexContent = arr[i].search(input);
-                    // 此时 input 为 RegExp 格式 /input/i，转换为原 input 字符串长度
-                    var l = input.toString().length - 3;
-                    var step = 10;
-
-                    // 将匹配到内容的地方进行黄色标记，并包括周围一定数量的文本
-                    arrResults.push(arr[i].slice(indexContent - step, indexContent) +
-                        '<mark>' + arr[i].slice(indexContent, indexContent + l) + '</mark>' +
-                        arr[i].slice(indexContent + l, indexContent + l + step));
+                }
+            }
+            for (let i = 0; i < s_word.length; i++) { //遍历是否有对应的字
+                for (let index = 0; index < articles.length; index++) {
+                    // 搜索简介
+                    if (articles[index].introduction.search(s_word[i]) != -1 && !result.includes(index)) {
+                        result.push(index)
+                    }
+                }
+            }
+            for (let i = 0; i < s_word.length; i++) { //遍历是否有对应的字
+                for (let index = 0; index < articles.length; index++) {
+                    // 搜索标签
+                    if (articles[index].tag.search(s_word[i]) != -1 && !result.includes(index)) {
+                        result.push(index)
+                    }
+                }
+            }
+            for (let i = 0; i < s_word.length; i++) { //遍历是否有对应的字
+                for (let index = 0; index < articles.length; index++) { // 搜索作者
+                    if (articles[index].writer.search(s_word[i]) != -1 && !result.includes(index)) {
+                        result.push(index)
+                    }
+                }
+            }
+            for (let i = 0; i < s_word.length; i++) { //遍历是否有对应的字
+                for (let index = 0; index < articles.length; index++) {
+                    // 搜索分类
+                    if (articles[index].classification.search(s_word[i]) != -1 && !result.includes(index)) {
+                        result.push(index)
+                    }
+                }
+            }
+            for (let i = 0; i < s_word.length; i++) { //遍历是否有对应的字
+                for (let index = 0; index < articles.length; index++) {
+                    // 搜索日期
+                    if (articles[index].time.search(s_word[i]) != -1 && !result.includes(index)) {
+                        result.push(index)
+                    }
                 }
             }
 
-            // 输出总共匹配到的数目
-            var totalDiv = tmpDiv.cloneNode(true);
-            totalDiv.innerHTML = '总匹配：<b>' + indexItem.length + '</b> 项';
-            searchResults.appendChild(totalDiv);
 
-            // 未匹配到内容的情况
-            if (indexItem.length == 0) {
-                var itemDiv = tmpDiv.cloneNode(true);
-                itemDiv.innerText = '未匹配到内容...';
-                searchResults.appendChild(itemDiv);
-            }
+            showResult(result)
 
-            // 将所有匹配内容进行组合
-            for (i = 0; i < arrResults.length; i++) {
-                var itemDiv = tmpDiv.cloneNode(true);
-                itemDiv.innerHTML = '<b>《' + arrTitles[indexItem[i]] +
-                    '》</b><hr />' + arrResults[i];
-                itemDiv.setAttribute('onclick', 'changeHref(arrLinks[indexItem[' + i + ']])');
-                searchResults.appendChild(itemDiv);
-            }
         }
+        // 展示结果
+        function showResult(result) {
+            document.querySelector('.length').innerHTML = result.length
 
-        function changeHref(href) {
+            for (let index = 0; index < document.querySelectorAll('.pagination li').length; index++) {
+                document.querySelectorAll(".pagination li")[index].classList.remove(
+                    "active") //清除之前就存在的active
+                document.querySelectorAll(".pagination li")[1].classList.add(
+                    "active")
+            }
+            var per_page_amount = 10 //决定每页卡片数量  可以调整
+            var nth_page = 0 //第几页  
+            setCardHTML(0);
+            document.querySelector(".pagination").addEventListener("click", function (e) { //监听页码
+                for (let index = 0; index < document.querySelectorAll('.pagination li').length; index++) {
+                    document.querySelectorAll(".pagination li")[index].classList.remove(
+                        "active") //清除之前就存在的active
+                    if (document.querySelectorAll(".pagination li")[index] == e.target.parentElement ||
+                        document.querySelectorAll(".pagination li")[index] == e.target.parentElement
+                        .parentElement) {
+                        // 确定触发源
+                        if (index == 0) { //到首页
+                            nth_page = 0
+                        } else if (index == document.querySelectorAll('.pagination li').length -
+                            1) { //到有页码的页
+                            nth_page = document.querySelectorAll('.pagination li').length - 3
+                        } else { //到末页
+                            nth_page = index - 1
+                        }
+                    }
+                }
+                document.querySelectorAll(".pagination li")[nth_page + 1].classList.add("active") //显示是第几页
+                setCardHTML(nth_page); //设置对应的HTML
+            })
+            // ==================HTML的设置函数
+            function setCardHTML(nth_page) {
+                var start_card = nth_page * per_page_amount //开始的页面
+                var articlesHTML = document.querySelectorAll("#article_ul li") //
 
-            // 在当前页面点开链接的情况
-            location.href = href;
+                for (let nth_card = start_card; nth_card < start_card +
+                    per_page_amount; nth_card++) { //遍历所有的s十个json对象
+                    //nth_card是json中的序号
+                    var nth_li = nth_card - start_card //nth_li是HTML里的序号
+                    var result_item = result[nth_card]
+                    // console.log(nth_li);
 
-            // 在新标签页面打开链接的代码，与上面二者只能取一个，自行决定
-            // window.open(href);
+                    if (result_item >= 0) { //还存在json对象数据
+                        articlesHTML[nth_li].querySelector("span a").href = articles[result_item].url //图片的目的链接
+                        articlesHTML[nth_li].querySelector("span a img").src = articles[result_item]
+                            .img_url //图片链接src用于图片显示
+                        articlesHTML[nth_li].querySelector(".blogtitle a").innerHTML = articles[result_item]
+                            .title //标题
+                        articlesHTML[nth_li].querySelector(".blogtitle a").href = articles[result_item]
+                            .url //标题的目的链接
+                        articlesHTML[nth_li].querySelector(".bloginfo p").innerHTML = articles[result_item]
+                            .introduction //文章简介
+                        articlesHTML[nth_li].querySelector(".lm a").innerHTML = articles[result_item].tag //标签
+                        articlesHTML[nth_li].querySelector(".lm a").href = '../../../../about/search.html' + '#' +
+                            articles[result_item].tag
+                        articlesHTML[nth_li].querySelector(".dtime a").innerHTML = articles[result_item].time //发表时间
+                        articlesHTML[nth_li].querySelector(".dtime a").href = '../../../../about/search.html' + '#' +
+                            articles[result_item].time
+                        articlesHTML[nth_li].querySelector(".writer a").innerHTML = articles[result_item].writer //作者
+                        articlesHTML[nth_li].querySelector(".writer a").href = '#' +
+                            articles[result_item].writer
+                    } else { //无数据，加载默认内容
+                        articlesHTML[nth_li].querySelector("span a img").src =
+                            "https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"
+                        // 图片采用必应API 图片动态更新
+                        // 延时几毫秒使图片不同？  待实现
+                        articlesHTML[nth_li].querySelector(".blogtitle a").innerHTML = "没有更多结果了！"
+                        articlesHTML[nth_li].querySelector(".bloginfo p").innerHTML = "没有更多结果了！"
+                        articlesHTML[nth_li].querySelector(".lm a").innerHTML = "没有更多结果了！"
+                        articlesHTML[nth_li].querySelector(".dtime a").innerHTML = "2012-12-12"
+                        articlesHTML[nth_li].querySelector(".writer a").innerHTML = "null"
+                    }
+                }
+
+            }
+
+        }
+        var author = document.querySelectorAll(".author");
+        for (let index = 0; index < author.length; index++) {
+            author[index].addEventListener('click', function (e) {
+                getJsonItems(e.target.innerHTML);
+                document.documentElement.scrollTop = 0;
+            });
         }
     </script>
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script src="https://cdn.bootcss.com/scrollReveal.js/4.0.5/scrollreveal.js"></script>
+	<script>
+		if (document.querySelector("#article_ul li")) {
+			ScrollReveal().reveal('#article_ul li', {
+				delay: 100, //延时
+				distance: '24px', //距离
+				duration: 800, //持续时间
+				easing: 'ease-in-out', //动画
+				interval: 300, //间隔F
+				origin: 'bottom', //起点
+				cleanup: false,
+				reset: true,
+			});
+		}
+	</script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 </body>
 
 </html>

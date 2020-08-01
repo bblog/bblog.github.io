@@ -1,17 +1,17 @@
 /* 各个网页均存在的JS  
  */
 // 防止iframe消失  刷新时---
-if (!parent.document.body.querySelector("#iframe")) {
-    function GetUrlRelativePath() { //获取相对路径
-        var url = document.location.toString();
-        var arrUrl = url.split("//");
-        var start = arrUrl[1].indexOf("/");
-        var relUrl = arrUrl[1].substring(start); //stop省略，截取从start开始到结尾的所有字符
-        if (relUrl.indexOf("?") != -1) {
-            relUrl = relUrl.split("?")[0];
-        }
-        return relUrl;
+function GetUrlRelativePath() { //获取相对路径
+    var url = document.location.toString();
+    var arrUrl = url.split("//");
+    var start = arrUrl[1].indexOf("/");
+    var relUrl = arrUrl[1].substring(start); //stop省略，截取从start开始到结尾的所有字符
+    if (relUrl.indexOf("?") != -1) {
+        relUrl = relUrl.split("?")[0];
     }
+    return relUrl;
+}
+if (!parent.document.body.querySelector("#iframe")) {
     window.location.href = "/" + "#" + GetUrlRelativePath(); //刷新时传递锚点
 }
 //地址栏  标题  主题
@@ -22,6 +22,9 @@ window.parent.addEventListener("popstate", function (e) { //后退的优化
 var stateObject = {};
 var title = document.querySelector("title").innerHTML
 var newUrl = document.location.href;
+if (GetUrlRelativePath() == "/index0.html") {//主页优化
+    newUrl = window.location.origin
+}
 window.parent.history.pushState(stateObject, title, newUrl);
 var container = document.querySelector('#container');
 //用word方式计算正文字数
@@ -120,7 +123,7 @@ var width = document.documentElement.clientWidth
             document.onscroll = function () {
                 if (scrollTop < (document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset)) { //判断页面滚动的方向
                     //向下
-                    document.querySelector('.top_progress').style.top = "2px"; //进度条
+                    document.querySelector('.top_progress').style.top = "0px"; //进度条
                     document.querySelector('#top-menu').style.top = "-62px"; //移动端
                     document.querySelector('.tabbed').style.top = "-62px"; //PC
                     document.querySelector('.aside').style.right = -45 + "px"; //置顶键
@@ -130,7 +133,7 @@ var width = document.documentElement.clientWidth
                     document.querySelector('.tabbed').style.top = 0;
                     document.querySelector('.aside').style.right = 5 + "px";
                 }
-                if (scrollTop < 150) {
+                if (scrollTop < 250) {
                     document.querySelector('.top_progress').style.top = "60px"; //进度条
                     document.querySelector('#top-menu').style.top = "0px"; //移动端
                     document.querySelector('.aside').style.right = -45 + "px";
@@ -235,8 +238,10 @@ if (width < 783) {
                 document.querySelector(".menu").classList.remove("open")
                 document.querySelector("#cover").style.display = "none" //调整点击面板
                 document.querySelector(".aside").style.display = "block" //置顶栏优化
-                document.querySelector("#list").style.display = "block" //目录优化
-                document.querySelector("#side-nav").style.display = "block" //目录按钮优化
+                if (document.querySelector("#list")) {
+                    document.querySelector("#list").style.display = "block" //目录优化
+                    document.querySelector("#side-nav").style.display = "block" //目录按钮优化
+                }
             } else { //左侧菜单没有打开  点击打开菜单  close to open
                 container.classList.add("page_inright")
                 document.querySelector(".menubar").classList.add("arrow")
@@ -246,19 +251,16 @@ if (width < 783) {
                 document.querySelector(".menu").classList.add("open")
                 document.querySelector("#cover").style.display = "none" //盖住点击面板
                 document.querySelector(".aside").style.display = "none" //置顶栏优化
-                document.querySelector("#list").style.display = "none" //目录优化
-                document.querySelector("#side-nav").style.display = "none" //目录按钮优化
+
+                if (document.querySelector("#list")) {
+                    document.querySelector("#list").style.display = "none" //目录优化
+                    document.querySelector("#side-nav").style.display = "none" //目录按钮优化
+                }
+
             }
         }
     }
 } else { //PC
-    //左侧栏
-    if (document.querySelector(".category-list ul li:nth-child(2) a")) {
-        document.querySelector(".category-list ul li:nth-child(2) a").innerHTML = "每日明记";
-    }
-    if (document.querySelector(".category-list ul li:nth-child(1) a")) {
-        document.querySelector(".category-list ul li:nth-child(1) a").innerHTML = "首个网站";
-    }
     // 加载左上角句子的script 不用一个一个添加   一言API
     var secScript = document.createElement("script");
     secScript.setAttribute("type", "text/javascript");
@@ -321,7 +323,7 @@ if (width < 783) {
         "../../../../about/classification.html",
         "../../../../about/tags.html",
         "../../../../about/file.html",
-        "../../../../about/search.html",
+        "../../../../about/search.html#我的",
     ] //链接
     for (let index = 0; index < str.length; index++) {
         //由str的长度添加<li><a></a></li>
@@ -495,19 +497,12 @@ if (document.querySelector(".title h2")) { //通过是否有标题判断是否�
                 //   e.target.classList.add("active")
                 //  }
                 if (e.target.innerHTML == "站长推荐") { //点击站长推荐
-                    var recommendation = [ //推荐列表
-                        "《半生缘》读后感",
-                        "CSS思维导图",
-                        "前赤壁赋"
-                    ]
                     var num = new Array
                     for (let index = 0; index < articles.length; index++) {
                         var element = articles[index];
-                        for (let i = 0; i < recommendation.length; i++) { //遍历列表找序号
-                            if (element.title == recommendation[i]) {
+                        if(element.recommend) {//优先显示json中recommend=true的文章
                                 num.push(index)
                             }
-                        }
                     }
                     // 防止数量不够，随机添加
                     while (num.length < list.length) {
@@ -639,7 +634,6 @@ function addLeftList(params) {
 if (document.querySelector("#word")) {
     addLeftList()
 }
-
 //底部栏优化
 if (document.querySelector('#busuanzi_container_site_uv')) {
     document.querySelector('#busuanzi_container_site_uv').innerHTML = document.querySelector('#busuanzi_container_site_uv').innerHTML.slice(0, -1)

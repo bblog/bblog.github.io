@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>分类查找</title>
+    <title>标签</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/mobile.css" rel="stylesheet">
@@ -16,22 +16,19 @@
     <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
     <style>
         #tags_list a {
-
             text-decoration: none;
             display: block;
             float: left;
             background-color: chartreuse;
-            font-size: 24px;
-            padding: 3px 10px;
-            margin: 10px 5px 0 0;
-            border-radius: 3px;
+            font-size: 22px;
+            padding: 12px 16px;
+            margin: 12px 10px 0 0;
+            border-radius: 5px;
             -moz-transition: all 0.5s;
             -webkit-transition: all 0.5s;
             -o-transition: all 0.5s;
             transition: all 0.5s;
             color: #FFF;
-            /* width: 30px; */
-            /* height: 30px; */
         }
     </style>
 </head>
@@ -46,7 +43,7 @@
             </svg>
         </div>
         <div class="top-title">
-            <div>分类查找</div>
+            <div>标签</div>
         </div>
         <div class="my-daily"><a href=""><img src="https://i.loli.net/2020/03/11/u1aN6VbOEi2Psnd.png" alt=""></a></div>
     </div>
@@ -56,7 +53,7 @@
             <!-- 正文，文章列表 -->
             <main>
                 <header class="title">
-                    <h2>分类查找</h2>
+                    <h2>标签</h2>
                 </header>
 
                 <div class="massage">
@@ -117,27 +114,44 @@
                 var div = document.querySelector("#tags_list")
                 var tags = new Array
                 var num = new Array
-                for (let index = 0; index < articles.length; index++) {
-                    const element = articles[index];
-
-                    if (!tags.includes(element.tag)) {
-                        num.push(1)
-                        tags.push(element.tag)
-                    } else {
-                        var i = tags.indexOf(element.tag)
-                        num[i]++
-
+                for (let index = 0; index < articles.length; index++) { //遍历json
+                    var str = articles[index].tag.split(" ")//以空格划分，可能存在多个标签
+                    for (let index = 0; index < str.length; index++) {//遍历划分的标签
+                        if (!tags.includes(str[index])) { //将不重名的标签放进数组
+                            num.push(1)
+                            tags.push(str[index])
+                        } else { //有重名、数量+1
+                            var i = tags.indexOf(str[index])
+                            num[i]++
+                        }
                     }
-                    console.log()
-
-
 
                 }
+                // 排序
+                var max;
+                //遍历数组，默认arr中的某一个元素为最大值，进行逐一比较
+                for (var i = 0; i < num.length; i++) {
+                    //外层循环一次，就拿arr[i] 和 内层循环arr.legend次的 arr[j] 做对比
+                    for (var j = i; j < num.length; j++) {
+                        if (num[i] < num[j]) {
+                            //如果arr[j]大就把此时的值赋值给最大值变量max
+                            max = num[j];
+                            num[j] = num[i];
+                            num[i] = max;
+                            // 一起交换
+                            max = tags[j];
+                            tags[j] = tags[i];
+                            tags[i] = max;
+                        }
+                    }
+                }
+                // 添加 设置
+                var colors=["#66CCFF","#FF6600","#FF0033","#0099CC","#0066CC","#ff9800","#2196f3","#FF6666","#FF9966"]
                 for (let index = 0; index < tags.length; index++) {
                     var a = document.createElement("a");
-                    a.innerHTML = tags[index] + "（" + num[index] + "）"
-                    a.style.backgroundColor = "#" + Math.round(Math.random() * 0x1000000).toString(16)
-                    // a.href = element.url
+                    a.innerHTML = tags[index]  //设置内容+ "（" + num[index] + "）"
+                    a.href='../../../../about/search.html'+'#'+tags[index]
+                    a.style.backgroundColor =  colors[Math.floor(Math.random() * colors.length)] //随机颜色
                     div.appendChild(a)
                 }
             }

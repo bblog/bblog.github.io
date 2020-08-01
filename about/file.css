@@ -8,6 +8,7 @@ main {
   padding: 100px 50px;
   position: relative;
   box-shadow: 0.5rem 0.5rem 2rem 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .timeline:before {
@@ -128,8 +129,43 @@ li:after {
 }
 
 .period.entry .title {
+  /* width: 100%; */
   margin: 20px 0;
   padding: 60px 0;
   background-color: #fff;
   transform: translateX(10px);
+}
+
+@media only screen and (max-width: 800px) {
+  .entry .title {
+    padding-right: 20px;
+    font-size: 13px;
+    width: 37%;
+  }
+
+  .timeline {
+    padding: 100px 5px;
+  }
+
+  .entry .body {
+    width: 63%;
+    padding-right: 20px;
+
+  }
+
+  .period.entry .title {
+    width: 100%;
+  }
+
+  .period.entry .title:before {
+    transform: translateX(-3px);
+    left: 33%;
+  }
+
+  .period.entry h3 {
+    font-size: xx-large;
+    text-align: center;
+    transform: translateX(0px);
+    z-index: 5;
+  }
 }
