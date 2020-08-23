@@ -22,7 +22,7 @@ window.parent.addEventListener("popstate", function (e) { //后退的优化
 var stateObject = {};
 var title = document.querySelector("title").innerHTML
 var newUrl = document.location.href;
-if (GetUrlRelativePath() == "/index0.html") {//主页优化
+if (GetUrlRelativePath() == "/index0.html") { //主页优化
     newUrl = window.location.origin
 }
 window.parent.history.pushState(stateObject, title, newUrl);
@@ -500,9 +500,9 @@ if (document.querySelector(".title h2")) { //通过是否有标题判断是否�
                     var num = new Array
                     for (let index = 0; index < articles.length; index++) {
                         var element = articles[index];
-                        if(element.recommend) {//优先显示json中recommend=true的文章
-                                num.push(index)
-                            }
+                        if (element.recommend) { //优先显示json中recommend=true的文章
+                            num.push(index)
+                        }
                     }
                     // 防止数量不够，随机添加
                     while (num.length < list.length) {
@@ -632,7 +632,33 @@ function addLeftList(params) {
     }
 }
 if (document.querySelector("#word")) {
-    addLeftList()
+    addLeftList(); //添加目录
+    // 添加来必力评论
+    //添加html
+    var main = document.querySelector("main"),
+        h2 = document.createElement("h2"),
+        div = document.createElement("div"),
+        span = document.createElement("span");
+    h2.innerText = "留言";
+    span.innerText = "文明上网，理性发言";
+    span.setAttribute('id', 'tips');
+    h2.appendChild(span);
+    div.setAttribute('id', 'lv-container');
+    div.setAttribute('data-id', 'city');
+    div.setAttribute('data-uid', 'MTAyMC80OTE3Mi8yNTY2Ng==');
+    main.appendChild(h2);
+    main.appendChild(div);
+    //添加js
+    (function (d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') {
+            return;
+        }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
 }
 //底部栏优化
 if (document.querySelector('#busuanzi_container_site_uv')) {
