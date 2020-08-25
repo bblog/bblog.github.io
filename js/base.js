@@ -1,5 +1,11 @@
 /* 各个网页均存在的JS  
  */
+//标题添加“蒙大明的个人博客”
+var title = document.querySelector("title");
+if (title.innerText != "蒙大明的个人博客") {
+    title.innerText = title.innerText + " - 蒙大明的个人博客"
+}
+
 // 防止iframe消失  刷新时---
 function GetUrlRelativePath() { //获取相对路径
     var url = document.location.toString();
@@ -666,9 +672,9 @@ if (document.querySelector('#busuanzi_container_site_uv')) {
 }
 //百度统计
 var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?dfb2e9af2c4ea3536c96e73ddb3dc6b8";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
+(function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?dfb2e9af2c4ea3536c96e73ddb3dc6b8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
 })();
