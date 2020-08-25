@@ -664,3 +664,11 @@ if (document.querySelector("#word")) {
 if (document.querySelector('#busuanzi_container_site_uv')) {
     document.querySelector('#busuanzi_container_site_uv').innerHTML = document.querySelector('#busuanzi_container_site_uv').innerHTML.slice(0, -1)
 }
+//百度统计
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?dfb2e9af2c4ea3536c96e73ddb3dc6b8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
