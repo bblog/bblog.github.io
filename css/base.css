@@ -35,13 +35,13 @@
     margin-top: -150px !important;
 } */
 /* .contents { */
-.contents:before {
+/* .contents:before {
     content: "";
     display: block;
     margin-top: -100px;
     height: 100px;
     visibility: hidden;
-}
+} */
 
 /* } */
 

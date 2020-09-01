@@ -150,7 +150,6 @@
             "tag": "散文",
             "time": "2020-03-14",
             "writer": "张爱玲",
-            "top": true,
             "recommend": true
 
         }, {
@@ -239,6 +238,17 @@
             "tag": "健康",
             "time": "2020-08-23",
             "writer": "蒙大明"
+        }, {
+            "url": "../../../../article/other/paobu.html",
+            "img_url": "https://s1.ax1x.com/2020/09/01/dzVwM4.jpg",
+            "title": "新手跑步入门指南——8周训练计划",
+            "introduction": "很多刚跑步的新人缺乏科学的规划，导致自身受伤或是无法长期坚持。现在跟着这份8周跑步计划，完成后，你也是能轻松跑30分钟的高手哟~ 一起享受跑步的乐趣吧！",
+            "classification": "其他",
+            "tag": "健康",
+            "time": "2020-09-01",
+            "writer": "转载",
+            "top": true,
+            "recommend": true
         }
 
 
