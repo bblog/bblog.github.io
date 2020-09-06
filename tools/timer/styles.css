@@ -116,6 +116,7 @@ form a {
 	font-size: 26px;
 	color: #fff;
 	padding: 30px 40px;
+	text-decoration: none;
 }
 
 .start {
@@ -433,7 +434,7 @@ label[for="auto-start"] {
 	/* 时钟 */
 	.clock {
 		position: relative;
-		height: 300px;
+		height: 200px;
 		max-width: 888px;
 		width: 100%;
 		display: block;
@@ -441,7 +442,7 @@ label[for="auto-start"] {
 		font-size: 66px;
 		color: #0277BD;
 		text-align: center;
-		line-height: 300px;
+		line-height: 200px;
 		/* background-color: #fff; */
 		border-radius: 2px;
 		transition: all 0.4s ease-in, box-shadow 0.2s;

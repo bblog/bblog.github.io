@@ -194,7 +194,7 @@ $('.focus-start').on('click', function () {
                     loop();
                 } else {
                     clearInterval(judgeInterval);
-                    timerClock.text(returnAllTime(timerTime));
+                    timerClock.text(returnAllTime(timerTime)+count);
                 }
             }
         }, 10);
@@ -204,15 +204,15 @@ $('.focus-start').on('click', function () {
 
 
 if (window.innerWidth < 783) {
-    $(".focus,.timer form,#record").css("display", "none");
+    $(".focus,.timer form").css("display", "none");
     $('#toggle').on('click', function () {
         $("#toggle").toggleClass("showClock");
         if ($("#toggle").hasClass('showClock')) {
-            $("#myProgress,.clock").css("display", "block");
-            $(".focus,.timer form,#record").css("display", "none");
+            $("#myProgress,.clock,#record").css("display", "block");
+            $(".focus,.timer form").css("display", "none");
         } else {
-            $("#myProgress,.clock").css("display", "none");
-            $(".focus,.timer form,#record").css("display", "block");
+            $("#myProgress,.clock,#record").css("display", "none");
+            $(".focus,.timer form").css("display", "block");
         }
     });
 } else {
