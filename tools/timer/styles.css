@@ -105,36 +105,7 @@ form a {
 	Responsiveness
 -----------------------*/
 
-@media (max-width: 800px) {
 
-	.switch-clocks a {
-		padding: 20px;
-	}
-
-	form {
-		height: auto;
-		padding: 10px;
-		margin: 10px auto;
-	}
-
-	.checkbox {
-		padding-left: 0;
-		display: none;
-	}
-
-	.clock {
-		font-size: 60px;
-		height: 180px;
-		line-height: 180px;
-		margin-top: 20px;
-	}
-
-	.stopwatch form a {
-		padding: 0 1rem;
-	}
-
-
-}
 
 .switch-clocks {
 	display: block;
@@ -361,9 +332,11 @@ progress::-moz-progress-bar {
 	text-align: center;
 	margin: auto;
 }
-.focus form{
+
+.focus form {
 	margin: 0 auto;
 }
+
 .focus label {
 	margin-left: 35px;
 	color: #000;
@@ -383,40 +356,95 @@ select {
 	-o-appearance: none;
 	-khtml-appearance: none;
 }
+
 select:focus,
-select option:focus{
+select option:focus {
 	outline: none;
-}	
-select option{
+}
+
+select option {
 	font-size: 28px;
 	background-color: white;
-    color: #2980b9;
+	color: #2980b9;
 	text-align: right;
 	border: none;
 }
-.focus-start{
+
+.focus-start {
 	margin-left: 60px;
 }
-label[for="auto-start"]{
+
+label[for="auto-start"] {
 	margin-left: 0;
 	color: #2980b9;
-	
+
 }
+
 /* 历史记录 */
-#record{
+#record {
 	position: fixed;
 	left: 0;
 	top: 160px;
 }
-#record li{
+
+#record li {
 	width: 200px;
 }
-.title{
+
+.title {
 	margin-bottom: 30px;
 	font-size: 20px;
 }
-.time{
+
+.time {
 	padding: 2px 3px;
 	font-size: 22px;
 	color: blue;
+}
+
+@media (max-width: 800px) {
+
+	.switch-clocks a {
+		padding: 20px;
+	}
+
+	form {
+		height: auto;
+		padding: 10px;
+		margin: 10px auto;
+	}
+
+	.checkbox {
+		padding-left: 0;
+		display: none;
+	}
+
+	.clock {
+		font-size: 60px;
+		height: 180px;
+		line-height: 180px;
+		margin-top: 20px;
+	}
+
+	.stopwatch form a {
+		padding: 0 1rem;
+	}
+
+	/* 时钟 */
+	.clock {
+		position: relative;
+		height: 300px;
+		max-width: 888px;
+		width: 100%;
+		display: block;
+		margin: 50px auto;
+		font-size: 66px;
+		color: #0277BD;
+		text-align: center;
+		line-height: 300px;
+		/* background-color: #fff; */
+		border-radius: 2px;
+		transition: all 0.4s ease-in, box-shadow 0.2s;
+	}
+
 }
