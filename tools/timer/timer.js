@@ -109,7 +109,7 @@ if (window.innerWidth > 783) {
     });
 }
 // 计时程序
-function startTimer() {
+function startTimer(count) {
     // 防止同时进行多个间隔。
     var totalTime = timerTime,
         timeString = returnAllTime(totalTime);
@@ -122,7 +122,11 @@ function startTimer() {
         timerClock.text(returnAllTime(timerTime));
         if (timerTime <= 0) {
             // 历史记录
-            $('#record ul').append('<li class="time" >' + timeString +count+ '</li>');
+            if (count) {
+                $('#record ul').append('<li class="time" >' + timeString +' 剩余次数:'+ count/2-1 + '</li>');
+            } else {
+                $('#record ul').append('<li class="time" >' + timeString + '</li>');
+            }
             alarmSound.play();
             pauseTimer();
         }
@@ -186,7 +190,7 @@ $('.focus-start').on('click', function () {
         timeFlag = !timeFlag;
         $('#myProgress')[0].max = $('#myProgress')[0].value = timerTime;
         timerClock.text(returnAllTime(timerTime));
-        autoStart ? startTimer() : pauseTimer();
+        autoStart ? startTimer(count) : pauseTimer();
         judgeInterval = setInterval(function () {
             if (timerTime <= 0) {
                 count--;
