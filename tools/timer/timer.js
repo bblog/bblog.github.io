@@ -122,7 +122,7 @@ function startTimer() {
         timerClock.text(returnAllTime(timerTime));
         if (timerTime <= 0) {
             // 历史记录
-            $('#record ul').append('<li class="time" >' + timeString + '</li>');
+            $('#record ul').append('<li class="time" >' + timeString +count+ '</li>');
             alarmSound.play();
             pauseTimer();
         }
@@ -194,7 +194,7 @@ $('.focus-start').on('click', function () {
                     loop();
                 } else {
                     clearInterval(judgeInterval);
-                    timerClock.text(returnAllTime(timerTime)+count);
+                    timerClock.text(returnAllTime(timerTime));
                 }
             }
         }, 10);
