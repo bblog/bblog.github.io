@@ -92,21 +92,22 @@ $('.timer-btn.timing').on('click', function () {
     positiveTiming();
 });
 //点击时钟监听。
+if (window.innerWidth > 783) {
+    timerClock.on('click', function (e) {
 
-timerClock.on('click', function (e) {
-
-    if (timerClock.hasClass('inactive')) {
-        if (timerTime > 0) {
-            startTimer();
+        if (timerClock.hasClass('inactive')) {
+            if (timerTime > 0) {
+                startTimer();
+            }
+        } else {
+            pauseTimer();
         }
-    } else {
-        pauseTimer();
-    }
 
-});
-timerClock.on('dblclick', function (e) {
-    resetTimer();
-});
+    });
+    timerClock.on('dblclick', function (e) {
+        resetTimer();
+    });
+}
 // 计时程序
 function startTimer() {
     // 防止同时进行多个间隔。
@@ -182,6 +183,7 @@ $('.focus-start').on('click', function () {
         timeFlag = true; //判断是工作时间还是休息时间
     function loop() {
         timerTime = timeFlag ? focusTime * 6000 : restTime * 6000;
+        timeFlag = !timeFlag;
         $('#myProgress')[0].max = $('#myProgress')[0].value = timerTime;
         timerClock.text(returnAllTime(timerTime));
         autoStart ? startTimer() : pauseTimer();
@@ -199,3 +201,27 @@ $('.focus-start').on('click', function () {
     }
     loop();
 });
+
+
+if (window.innerWidth < 783) {
+    $(".focus,.timer form,#record").css("display", "none");
+    $('#toggle').on('click', function () {
+        $("#toggle").toggleClass("showClock");
+        if ($("#toggle").hasClass('showClock')) {
+            $("#myProgress,.clock").css("display", "block");
+            $(".focus,.timer form,#record").css("display", "none");
+        } else {
+            $("#myProgress,.clock").css("display", "none");
+            $(".focus,.timer form,#record").css("display", "block");
+        }
+    });
+} else {
+    $("#toggle").text('计时器')
+}
+
+navigator.vibrate = navigator.vibrate ||
+    navigator.webkitVibrate ||
+    navigator.mozVibrate ||
+    navigator.msVibrate;
+
+navigator.vibrate([500, 300, 400, 300]);

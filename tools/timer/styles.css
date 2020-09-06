@@ -447,4 +447,29 @@ label[for="auto-start"] {
 		transition: all 0.4s ease-in, box-shadow 0.2s;
 	}
 
+	#myProgress {
+		display: block;
+	}
+
+	.focus {
+		top: 30%;
+	}
+
+	.focus label {
+		margin-left: 20px;
+	}
+	.input-field {
+		float: left;
+	}
+	.control {
+		width: 110px;
+	}
+	.timer-btn {
+		margin-top: 20px;
+	}
+	#record {
+		position: fixed;
+		left: 0;
+		top: 45%;
+	}
 }
