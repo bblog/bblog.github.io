@@ -103,6 +103,24 @@
             "tag": "健康",
             "time": "2020-08-23",
             "writer": "蒙大明"
+        }, {
+            "url": "../../../../myarticle/other/20201026.html",
+            "img_url": "https://s1.ax1x.com/2020/10/29/BGDBmF.jpg",
+            "title": "博客将使用Markdown编辑器来编写",
+            "introduction": "Markdown是一种可以使用普通文本编辑器编写的标记语言，通过简单的标记语法，它可以使普通文本内容具有一定的格式。它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面,简化了博客的编写流程。",
+            "classification": "其他",
+            "tag": "Markdown",
+            "time": "2020-10-26",
+            "writer": "蒙大明"
+        }, {
+            "url": "../../../../myarticle/other/20201027.html",
+            "img_url": "https://s1.ax1x.com/2020/10/29/BGD2Sx.jpg",
+            "title": "typora样式参考",
+            "introduction": "Typora扩展了Markdown的功能（如表格、脚注、内嵌HTML等等），以使让Markdown转换并导出更多的格式，其中就有我需要的HTML，通过在Typora上面写文档并导出HTML，可以方便的编写博客。简而言之，Typora能让你如在Word上面写文档一样写自己的网页。",
+            "classification": "其他",
+            "tag": "Typora",
+            "time": "2020-10-27",
+            "writer": "蒙大明"
         }
 
 

@@ -331,7 +331,7 @@
     }
 
     ul,
-    li {
+   ol {
         list-style: none;
     }
 
@@ -421,7 +421,7 @@
     }
 
     .tabbed>ul {
-        margin-right: 20%;
+        margin: auto 20% auto auto ;
         float: right;
         list-style-type: none;
         width: auto;
