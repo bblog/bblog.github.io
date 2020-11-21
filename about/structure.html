@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<!-- PC端优先设计 -->
+<!--  iPad   480px~767px-->
+<!-- 正常手机360px~479px -->
+<!-- 小手机    <360px -->
+<!-- index、article的css相同   sentence和mysentence的css相同 -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>标签</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/mobile.css" rel="stylesheet">
+    <link href="../css/details.css" rel="stylesheet">
+    <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
+    <style>
+        #tags_list a {
+            text-decoration: none;
+            display: block;
+            float: left;
+            font-size: 22px;
+            padding: 12px 16px;
+            margin: 15px 14px 0 0;
+            border-radius: 5px;
+            -moz-transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+            color: #FFF;
+            box-shadow: 6px 6px 0px #9E9E9E;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top-menu">
+        <div class="menubar">
+            <svg>
+                <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                <path class="line--2" d="M0 50h80" />
+                <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+            </svg>
+        </div>
+        <div class="top-title">
+            <div>标签</div>
+        </div>
+        <div class="my-daily"><a href=""><img src="https://i.loli.net/2020/03/11/u1aN6VbOEi2Psnd.png" alt=""></a></div>
+    </div>
+    </div>
+    <div id="perspective">
+        <div id="container">
+            <!-- 正文，文章列表 -->
+            <main>
+                <header class="title">
+                    <h2>标签</h2>
+                </header>
+
+                <div class="massage">
+                    <div id="tags_list"></div>
+                </div>
+
+            </main>
+            <!-- 底部栏 -->
+            <footer class="footer">
+                <div class="copyright">Copyright ©2020.3.8 —— <span id="now_date"></span> 蒙大明版权所有</div>
+                <div class="access">
+                    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+                    <span id="busuanzi_container_site_uv">访客数<span id="busuanzi_value_site_uv"></span>人次</span>
+                    <span id="busuanzi_container_page_pv">本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span>
+                </div>
+            </footer>
+        </div>
+        <!-- ========移动端菜单 -->
+
+        <div class="menu">
+            <ul>
+                <li><a href="../index0.html">主页</a></li>
+                <li><a href="../article">精选美文</a></li>
+                <li><a href="../sentence/">名人名言</a></li>
+                <li><a href="../mysentence">个人感悟</a></li>
+                <li><a href="../about/guestbook.html">留言板</a></li>
+                <li><a href="https://mdming.github.io">第一个网站</a></li>
+                <li><a href="../diary">我的日记</a></li>
+                <li><a href="#">本站信息</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 头部导航栏 -->
+    <div class='tabbed round'>
+        <ul>
+            <li><a href="../about/guestbook.html">留言板</a></li>
+            <li><a href="../mysentence">个人感悟</a></li>
+            <li><a href="../sentence">名人名言</a></li>
+            <li><a href="../article">精选美文</a></li>
+            <li><a href="../index0.html">我的文章</a></li>
+        </ul>
+        <h1 class="t_nav"><span id="hitokoto">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 </span></h1>
+    </div>
+
+    <!-- 返回按钮及侧边栏 -->
+    <aside class="aside">
+        <div><a id="qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=790430354&site=qq&menu=yes">
+                <img src="https://ae01.alicdn.com/kf/H7af94cac043845c9a8779d35c29da9a7A.png" alt=""></a></div>
+        <div class="top">
+            <a href="#top"><img src="https://ae01.alicdn.com/kf/H9227752dda6c455ead9336cb46fffdd8T.png" alt=""></a>
+        </div>
+    </aside>
+    <script>
+        var xmlhttp = new XMLHttpRequest()
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var articles = JSON.parse(this.responseText).articles //例化
+                var div = document.querySelector("#tags_list")
+                var tags = new Array
+                var num = new Array
+                for (let index = 0; index < articles.length; index++) { //遍历json
+                    var str = articles[index].tag.split(" ") //以空格划分，可能存在多个标签
+                    for (let index = 0; index < str.length; index++) { //遍历划分的标签
+                        if (!tags.includes(str[index])) { //将不重名的标签放进数组
+                            num.push(1)
+                            tags.push(str[index])
+                        } else { //有重名、数量+1
+                            var i = tags.indexOf(str[index])
+                            num[i]++
+                        }
+                    }
+
+                }
+                // 排序
+                var max;
+                //遍历数组，默认arr中的某一个元素为最大值，进行逐一比较
+                for (var i = 0; i < num.length; i++) {
+                    //外层循环一次，就拿arr[i] 和 内层循环arr.legend次的 arr[j] 做对比
+                    for (var j = i; j < num.length; j++) {
+                        if (num[i] < num[j]) {
+                            //如果arr[j]大就把此时的值赋值给最大值变量max
+                            max = num[j];
+                            num[j] = num[i];
+                            num[i] = max;
+                            // 一起交换
+                            max = tags[j];
+                            tags[j] = tags[i];
+                            tags[i] = max;
+                        }
+                    }
+                }
+                // 添加 设置
+                var colors = ["#66CCFF", "#FF6600", "#FF0033", "#0099CC", "#0066CC", "#ff9800", "#2196f3",
+                    "#FF6666", "#FF9966"
+                ]
+                for (let index = 0; index < tags.length; index++) {
+                    var a = document.createElement("a");
+                    a.innerHTML = tags[index] //设置内容+ "（" + num[index] + "）"
+                    a.href = '../../../../about/search.html' + '#' + tags[index]
+                    a.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)] //随机颜色
+                    div.appendChild(a)
+                }
+            }
+        }
+        xmlhttp.open("GET", "../../../../json/index.json", true);
+        xmlhttp.send();
+    </script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script type="text/javascript" src="../js/base.js"></script>
+
+</body>
+
+</html>

@@ -62,10 +62,10 @@
 						</div>
 						<div class="category-list">
 							<ul>
-								<li><a href="https://mdming.github.io">第一个网站</a></li>
-								<li><a href="../diary/">我的日记</a></li>
+								<li><a target="_blank" href="https://mdming.github.io">第一个网站</a></li>
+								<li><a target="_blank" href="../diary/">我的日记</a></li>
 								<li><a href="../about/">本站信息</a></li>
-								<li><a href="../tools/timer">计时器</a></li>
+								<li><a target="_blank" href="../tools/timer">计时器</a></li>
 							</ul>
 						</div>
 					</div>
@@ -74,7 +74,7 @@
 			<!-- 正文，文章列表 -->
 			<div class="blogs">
 				<ul id="article_ul" class="article-list">
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -85,7 +85,7 @@
 							<span class="writer"><a></a></span>
 						</div>
 					</li>
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -96,7 +96,7 @@
 							<span class="writer"><a></a></span>
 						</div>
 					</li>
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -107,7 +107,7 @@
 							<span class="writer"><a></a></span>
 						</div>
 					</li>
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -118,7 +118,7 @@
 							<span class="writer"><a></a></span>
 						</div>
 					</li>
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -129,7 +129,7 @@
 							<span class="writer"><a></a></span>
 						</div>
 					</li>
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -140,7 +140,7 @@
 							<span class="writer"><a></a></span>
 						</div>
 					</li>
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -151,7 +151,7 @@
 							<span class="writer"><a></a></span>
 						</div>
 					</li>
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -162,7 +162,7 @@
 							<span class="writer"><a></a></span>
 						</div>
 					</li>
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -173,7 +173,7 @@
 							<span class="writer"><a></a></span>
 						</div>
 					</li>
-					<li> <span class="blogpic"><a href="/"><img src="images/ariel.jpg"></a></span>
+					<li> <span class="blogpic"><a href="/"><img></a></span>
 						<h3 class="blogtitle"><a href="/mysentence/index0.html"></a></h3>
 						<div class="bloginfo">
 							<p></p>
@@ -239,7 +239,7 @@
 			<li><a href="../about/guestbook.html">留言板</a></li>
 			<li><a href="../mysentence">个人感悟</a></li>
 			<li><a href="../sentence">名人名言</a></li>
-			<li id='active'><a href="../article">精选美文</a></li>
+			<li><a href="../article">精选美文</a></li>
 			<li><a href="/../index0.html">我的文章</a></li>
 		</ul>
 		<h1 class="t_nav"><span id="hitokoto">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 </span></h1>
@@ -259,7 +259,7 @@
 			ScrollReveal().reveal('#article_ul li', {
 				// delay: 400, //延时
 				distance: '24px', //距离
-				// duration: 800, //持续事件
+				duration: 500, //持续时间
 				easing: 'ease-in-out', //动画
 				interval: 300, //间隔F
 				origin: 'bottom', //起点

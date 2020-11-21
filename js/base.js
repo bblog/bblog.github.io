@@ -1,177 +1,46 @@
-/* 各个网页均存在的JS  
+/* 
+ *各个网页均存在的JS  
  */
-//标题添加“蒙大明的个人博客”
-var title = document.querySelector("title");
-if (title.innerText != "蒙大明的个人博客") {
-    title.innerText = title.innerText + " - 蒙大明的个人博客"
-}
-
-// 防止iframe消失  刷新时---
-function GetUrlRelativePath() { //获取相对路径
-    var url = document.location.toString();
-    var arrUrl = url.split("//");
-    var start = arrUrl[1].indexOf("/");
-    var relUrl = arrUrl[1].substring(start); //stop省略，截取从start开始到结尾的所有字符
-    if (relUrl.indexOf("?") != -1) {
-        relUrl = relUrl.split("?")[0];
+! function () { //使用ifram的优化
+    //标题添加“蒙大明的个人博客”
+    var title = document.querySelector("title");
+    if (title.innerText != "蒙大明的个人博客") {
+        title.innerText = title.innerText + " - 蒙大明的个人博客"
     }
-    return relUrl;
-}
-if (!parent.document.body.querySelector("#iframe")) {
-    window.location.href = "/" + "#" + GetUrlRelativePath(); //刷新时传递锚点
-}
-//地址栏  标题  主题
-window.parent.document.querySelector("title").innerHTML = document.querySelector("title").innerHTML
-window.parent.addEventListener("popstate", function (e) { //后退的优化
-    window.history.back(-2);
-}, false);
-var stateObject = {};
-var title = document.querySelector("title").innerHTML
-var newUrl = document.location.href;
-if (GetUrlRelativePath() == "/index0.html") { //主页优化
-    newUrl = window.location.origin
-}
-window.parent.history.pushState(stateObject, title, newUrl);
+
+    // 防止iframe消失  刷新时---
+    function GetUrlRelativePath() { //获取相对路径
+        var url = document.location.toString();
+        var arrUrl = url.split("//");
+        var start = arrUrl[1].indexOf("/");
+        var relUrl = arrUrl[1].substring(start); //stop省略，截取从start开始到结尾的所有字符
+        if (relUrl.indexOf("?") != -1) {
+            relUrl = relUrl.split("?")[0];
+        }
+        return relUrl;
+    }
+    if (!parent.document.body.querySelector("#iframe")) {
+        window.location.href = "/" + "#" + GetUrlRelativePath(); //刷新时传递锚点
+    }
+    //地址栏  标题  主题
+    window.parent.document.querySelector("title").innerHTML = document.querySelector("title").innerHTML
+    window.parent.addEventListener("popstate", function (e) { //后退的优化
+        window.history.back(-2);
+    }, false);
+    var stateObject = {};
+    var title = document.querySelector("title").innerHTML
+    var newUrl = document.location.href;
+    if (GetUrlRelativePath() == "/index0.html") { //主页优化
+        newUrl = window.location.origin
+    }
+    window.parent.history.pushState(stateObject, title, newUrl);
+}()
+
+var width = document.documentElement.clientWidth;
 var container = document.querySelector('#container');
-//用word方式计算正文字数
-function fnGetCpmisWords(str) {
-    sLen = 0;
-    try {
-        //先将回车换行符做特殊处理
-        str = str.replace(/(\r\n+|\s+|　+)/g, "龘");
-        //处理英文字符数字，连续字母、数字、英文符号视为一个单词
-        str = str.replace(/[\x00-\xff]/g, "m");
-        //合并字符m，连续字母、数字、英文符号视为一个单词
-        str = str.replace(/m+/g, "*");
-        //去掉回车换行符
-        str = str.replace(/龘+/g, "");
-        //返回字数
-        sLen = str.length;
-    } catch (e) {}
-    return sLen;
-}
 
-! function () { //文字设置
-    // 设置footer日期  设置到当前日期
-    var date = new Date();
-    document.querySelector('#now_date').innerHTML = (date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate());
-    // 设置字数
-    if (document.querySelector('#word')) {
-        var p = document.querySelector('.massage').textContent
-        document.querySelector('#word').innerHTML = fnGetCpmisWords(p) + " 字"
-    }
-}()
-
-! function () { //样式设置
-    //随机边框颜色
-    if (document.querySelector('main')) {
-        document.querySelector('main').style.borderColor = "#" + Math.round(Math.random() * 0x1000000).toString(16);
-    }
-    // 添加进度条标签
-    if (document.querySelector("#top-menu")) {
-        var progress = document.createElement("progress");
-        progress.setAttribute("class", "top_progress");
-        progress.setAttribute("value", "0");
-        document.body.appendChild(progress);
-    }
-    // 进度条的响应
-    if (document.querySelector('.top_progress')) {
-        window.onscroll = function () {
-            document.querySelector('.top_progress').max = document.body.scrollHeight - window.screen.availHeight
-            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            document.querySelector('.top_progress').value = scrollTop
-        }
-    }
-}()
-//添加框架、画布、SVG
-! function () {
-    // add iframe  粒子文字
-    var h = window.innerHeight / 2 - 50 + "px"
-    if (!document.querySelector(".none-top-word")) {
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute("id", "top_h")
-        iframe.setAttribute("frameborder", "0")
-        iframe.setAttribute("height", h)
-        iframe.setAttribute("src", "../../../iframe/particle_word.html")
-        container.insertBefore(iframe, container.childNodes[0]);
-    }
-    // add iframe  底部动画
-    //随机几个
-    var bottom_src = [
-        "../../../iframe/bike.html",
-        "../../../iframe/horse.html",
-        "../../../iframe/train.html"
-    ]
-    if (document.querySelector(".no_particle")) { //首页几个页面footer有问题，独立添加
-        document.querySelector("#bottom_frame").setAttribute("height", h)
-        document.querySelector("#bottom_frame").setAttribute("src", bottom_src[Math.floor(Math.random() * bottom_src.length)])
-    } else {
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute("id", "bottom_frame")
-        iframe.setAttribute("frameborder", "0")
-        iframe.setAttribute("height", h)
-        iframe.setAttribute("src", bottom_src[Math.floor(Math.random() * bottom_src.length)])
-        container.insertBefore(iframe, document.querySelector(".footer"));
-    }
-}()
-var width = document.documentElement.clientWidth
-    //结构设置
-    ! function () {
-
-        // 改变QQ地址  （腾讯QQ的API移动端与PC端链接不同） PC优先
-
-        if (width < 600) {
-            document.querySelector('#qq').href = "mqqwpa://im/chat?chat_type=wpa&uin=790430354&version=1&src_type=web&web_src=oicqzone.com"
-        }
-        // 置顶键的响应（右下角）
-        window.onload = function () {
-            var scrollTop = 0;
-            document.onscroll = function () {
-                if (scrollTop < (document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset)) { //判断页面滚动的方向
-                    //向下
-                    document.querySelector('.top_progress').style.top = "0px"; //进度条
-                    document.querySelector('#top-menu').style.top = "-62px"; //移动端
-                    document.querySelector('.tabbed').style.top = "-62px"; //PC
-                    document.querySelector('.aside').style.right = -45 + "px"; //置顶键
-                } else { //向上
-                    document.querySelector('.top_progress').style.top = "60px"; //进度条
-                    document.querySelector('#top-menu').style.top = "0px"; //移动端
-                    document.querySelector('.tabbed').style.top = 0;
-                    document.querySelector('.aside').style.right = 5 + "px";
-                }
-                if (scrollTop < 250) {
-                    document.querySelector('.top_progress').style.top = "60px"; //进度条
-                    document.querySelector('#top-menu').style.top = "0px"; //移动端
-                    document.querySelector('.aside').style.right = -45 + "px";
-                    document.querySelector('.tabbed').style.top = 0;
-                }
-                scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
-            }
-        }
-    }()
-//优化pc和移动端的代码，防止无效的执行
-var width = document.documentElement.clientWidth
-
-function addListSVg(params) {
-    if (document.documentElement.clientWidth < 783) {
-        // 添加svg——菜单是否展示
-        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
-        svg.setAttribute("id", "list")
-        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttribute("d", "M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z")
-        svg.appendChild(path)
-        document.body.appendChild(svg)
-        svg.addEventListener('click', function (params) {
-            if (document.querySelector('#side-nav').classList.contains('left')) {
-                document.querySelector('#side-nav').classList.remove("left")
-            } else {
-                document.querySelector('#side-nav').classList.add("left")
-            }
-        })
-    }
-}
-(function () {
-    if (width < 783) {
+(function () { //导航栏设置
+    if (width < 783) { //移动端菜单栏
         document.querySelector('#qq').href = "mqqwpa://im/chat?chat_type=wpa&uin=790430354&version=1&src_type=web&web_src=oicqzone.com"
         // 移动端菜单栏标题响应当前HTML的title
         document.querySelector('.top-title div').innerHTML = "Blue Blog"
@@ -267,71 +136,58 @@ function addListSVg(params) {
                 }
             }
         }
-    } else { //PC
+    } else { //PC端导航栏
         // 加载左上角句子的script 不用一个一个添加   一言API
         var secScript = document.createElement("script");
         secScript.setAttribute("type", "text/javascript");
         secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=js&select=%23hitokoto"); //一言c参数可以设置句子类型
         document.body.insertBefore(secScript, document.body.lastChild);
         //设置导航栏文字
-        if (document.querySelectorAll(".tabbed ul li")) {
-            var title_li = document.querySelectorAll(".tabbed ul li")
-            title_li[title_li.length - 1].querySelector("a").innerHTML = "网站首页"
+
+        // 第一行
+        var tabbed = document.querySelectorAll(".tabbed ul li")
+        while (document.querySelectorAll(".tabbed ul li").length < 6) { //li的数量为6
+            var last = document.querySelectorAll(".tabbed ul li")[1].cloneNode(true);
+            document.querySelector(".tabbed ul").appendChild(last);
+        }
+        var str = [ //第一行的文字
+            "首页",
+            "好物收录",
+            "我的原创",
+            "查找文章",
+            "关于",
+            "发现更多"
+        ]
+        var href = [ //链接 
+            "../../../../index0.html",
+            "javascript:void(0);",
+            "javascript:void(0);",
+            "../../../../about/search.html",
+            "../../../../about",
+            "javascript:void(0);"
+        ]
+        for (let index = 0; index < tabbed.length; index++) {
+            //为每个li设置文字与链接
+            const element = tabbed[index];
+            element.querySelector("a").innerHTML = str[index]
+            element.querySelector("a").href = href[index]
         }
 
-        //关于的设置
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        var ul2 = document.createElement("ul");
-        a.href = "../../../../about" //链接
-        a.innerHTML = "关于" //标题
-        ul2.setAttribute("id", "ul_c")
-        li.appendChild(a) //li里面的a
-        var str = [
-            "本站信息",
-            "首个网站",
-            "每日明记",
-            "本站文档",
-            "留言板"
-        ]
-        var href = [
-            "../../../../about",
-            "https://mdming.github.io",
-            "../../../../diary",
-            "../../../../about/docs.html",
-            "../../../../about/guestbook.html"
-        ] //展开的链接
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-            var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
-            var li1 = document.createElement("li");
-            li1.appendChild(a)
-            ul2.appendChild(li1)
-        }
-        li.appendChild(ul2) //li里面有ul
+        // 第2个的展开页
         var ul = document.querySelector(".tabbed ul")
-        ul.insertBefore(li, ul.childNodes[0]); //插入  关于li
-        //查找文章  的设置
-        ul.children[1].querySelector("a").textContent = "查找文章"
-        ul.children[1].querySelector("a").href = "../../../../about/search.html"
         var article_li = ul.children[1]
         var ul2 = document.createElement("ul");
-        ul2.setAttribute("id", "ul_c")
+        ul2.setAttribute("class", "ul_c")
         var str = [
-            "分类查找",
-            "标签",
-            "存档",
-            "搜索"
+            "经典文章",
+            "技术文章",
+            "美句收录"
         ]
-        var href = [
-            "../../../../about/classification.html",
-            "../../../../about/tags.html",
-            "../../../../about/file.html",
-            "../../../../about/search.html#我的",
-        ] //链接
+        var href = [ //链接
+            "../../../../article",
+            "javascript:void(0);",
+            "../../../../sentence"
+        ]
         for (let index = 0; index < str.length; index++) {
             //由str的长度添加<li><a></a></li>
             //并设置文字  href
@@ -343,9 +199,287 @@ function addListSVg(params) {
             ul2.appendChild(li1)
         }
         article_li.appendChild(ul2)
+
+        // 第3个的展开页
+        var article_li = ul.children[2]
+        var ul2 = document.createElement("ul");
+        ul2.setAttribute("class", "ul_c")
+        var str = [
+            "我的文章",
+            "个人感悟",
+            "闲言碎语"
+        ]
+        var href = [ //链接
+            "../../../../about/classification.html",
+            "../../../../sentence",
+            "javascript:void(0);"
+        ]
+        for (let index = 0; index < str.length; index++) {
+            //由str的长度添加<li><a></a></li>
+            //并设置文字  href
+            var a = document.createElement("a");
+            a.innerHTML = str[index]
+            a.href = href[index]
+            var li1 = document.createElement("li");
+            li1.appendChild(a)
+            ul2.appendChild(li1)
+        }
+        article_li.appendChild(ul2)
+
+        // 第4个的展开页
+        var article_li = ul.children[3]
+        var ul2 = document.createElement("ul");
+        ul2.setAttribute("class", "ul_c")
+        var str = [
+            "分类查找",
+            "标签",
+            "存档",
+            "搜索"
+        ]
+        var href = [
+            "../../../../about/classification.html",
+            "../../../../about/tags.html",
+            "../../../../about/file.html",
+            "../../../../about/search.html#我的",
+        ]
+        for (let index = 0; index < str.length; index++) {
+            //由str的长度添加<li><a></a></li>
+            //并设置文字  href
+            var a = document.createElement("a");
+            a.innerHTML = str[index]
+            a.href = href[index]
+            var li1 = document.createElement("li");
+            li1.appendChild(a)
+            ul2.appendChild(li1)
+        }
+        article_li.appendChild(ul2)
+
+        // 第5个的展开页
+        var article_li = ul.children[4]
+        //article_li.classList.add("li-list")
+        var ul2 = document.createElement("ul");
+        ul2.setAttribute("class", "ul_c")
+        var str = [
+            "关于本站",
+            "更新日志",
+            "本站统计",
+            "本站代码结构",
+            "关于发文",
+            "留言板"
+        ]
+        var href = [
+            "../../../../about",
+            "../../../../about/timeline.html",
+            "https://tongji.baidu.com/web/welcome/ico?s=dfb2e9af2c4ea3536c96e73ddb3dc6b8",
+            "../../../../about/structure.html",
+            "../../../../about/docs.html",
+            "../../../../about/guestbook.html"
+        ]
+        for (let index = 0; index < str.length; index++) {
+            //由str的长度添加<li><a></a></li>
+            //并设置文字  href
+
+            var a = document.createElement("a");
+            a.innerHTML = str[index]
+            a.href = href[index]
+            if (str[index] == "本站统计") {
+                a.target = "_blank";
+            }
+            var li1 = document.createElement("li");
+            li1.appendChild(a)
+            ul2.appendChild(li1)
+        }
+        article_li.appendChild(ul2)
+
+
+        // 第6个的展开页
+
+        var article_li = ul.children[5]
+        //article_li.classList.add("li-list")
+        var ul2 = document.createElement("ul");
+        ul2.setAttribute("class", "ul_c")
+        var str = [
+            "首个网站",
+            "每日明记",
+            "计时器"
+        ]
+        var href = [
+            "https://mdming.github.io",
+            "../../../../diary",
+            "../../../../tools/timer"
+        ]
+        for (let index = 0; index < str.length; index++) {
+            //由str的长度添加<li><a></a></li>
+            //并设置文字  href
+            var a = document.createElement("a");
+            a.innerHTML = str[index]
+            a.href = href[index]
+            a.target = "_blank"; //新页面
+            var li1 = document.createElement("li");
+            li1.appendChild(a)
+            ul2.appendChild(li1)
+        }
+        article_li.appendChild(ul2)
+
+        // 添加logo
+        var logo_parent = document.querySelector(".tabbed");
+        var a = document.createElement("a");
+        a.href = "../../../../"
+        a.setAttribute('class', 'logo')
+        var img = document.createElement('img'); //创建一个标签
+        img.setAttribute('src', 'https://s3.ax1x.com/2020/11/18/DneSpV.png'); //给标签定义src链接
+        img.setAttribute('class', 'logo-img');
+        a.appendChild(img); //放到指定的id里
+        var span = document.createElement('span'); //创建一个标签
+        span.textContent = "Less is more"
+        // span.setAttribute('src','https://s3.ax1x.com/2020/11/18/DneSpV.png');//给标签定义src链接
+        span.setAttribute('class', 'logo-text');
+        a.appendChild(span); //放到指定的id里
+        logo_parent.insertBefore(a, ul); //ul之前logo_parent里面插入
+
     }
 }());
-if (document.querySelector(".title h2")) { //通过是否有标题判断是否要添加
+
+! function () { //文字设置
+    // 设置footer日期  设置到当前日期
+    var date = new Date();
+    document.querySelector('#now_date').innerHTML = (date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate());
+    // 设置字数
+    // 文章页
+
+    //用word方式计算正文字数
+    function fnGetCpmisWords(str) {
+        sLen = 0;
+        try {
+            //先将回车换行符做特殊处理
+            str = str.replace(/(\r\n+|\s+|　+)/g, "龘");
+            //处理英文字符数字，连续字母、数字、英文符号视为一个单词
+            str = str.replace(/[\x00-\xff]/g, "m");
+            //合并字符m，连续字母、数字、英文符号视为一个单词
+            str = str.replace(/m+/g, "*");
+            //去掉回车换行符
+            str = str.replace(/龘+/g, "");
+            //返回字数
+            sLen = str.length;
+        } catch (e) {}
+        return sLen;
+    }
+    if (document.querySelector('#word')) {
+        var p = document.querySelector('.massage').textContent
+        document.querySelector('#word').innerHTML = fnGetCpmisWords(p) + " 字"
+    }
+}()
+
+! function () { //样式设置
+    //随机边框颜色
+    if (document.querySelector('main')) {
+        document.querySelector('main').style.borderColor = "#" + Math.round(Math.random() * 0x1000000).toString(16);
+    }
+    // 添加进度条标签
+    if (document.querySelector("#top-menu")) {
+        var progress = document.createElement("progress");
+        progress.setAttribute("class", "top_progress");
+        progress.setAttribute("value", "0");
+        document.body.appendChild(progress);
+    }
+    // 进度条的响应
+    if (document.querySelector('.top_progress')) {
+        window.onscroll = function () {
+            document.querySelector('.top_progress').max = document.body.scrollHeight - window.screen.availHeight
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            document.querySelector('.top_progress').value = scrollTop
+        }
+    }
+}()
+
+//添加框架、画布、SVG
+! function () {
+    // add iframe  粒子文字
+    var h = window.innerHeight / 2 - 50 + "px"
+    if (!document.querySelector(".none-top-word")) {
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("id", "top_h")
+        iframe.setAttribute("frameborder", "0")
+        iframe.setAttribute("height", h)
+        iframe.setAttribute("src", "../../../iframe/particle_word.html")
+        container.insertBefore(iframe, container.childNodes[0]);
+    }
+    // add iframe  底部动画
+    //随机几个
+    var bottom_src = [
+        "../../../iframe/bike.html",
+        "../../../iframe/horse.html",
+        "../../../iframe/train.html"
+    ]
+    if (document.querySelector(".no_particle")) { //首页几个页面footer有问题，独立添加
+        document.querySelector("#bottom_frame").setAttribute("height", h)
+        document.querySelector("#bottom_frame").setAttribute("src", bottom_src[Math.floor(Math.random() * bottom_src.length)])
+    } else {
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("id", "bottom_frame")
+        iframe.setAttribute("frameborder", "0")
+        iframe.setAttribute("height", h)
+        iframe.setAttribute("src", bottom_src[Math.floor(Math.random() * bottom_src.length)])
+        container.insertBefore(iframe, document.querySelector(".footer"));
+    }
+}()
+
+//置顶键、qq相应
+! function () {
+
+    // 改变QQ地址  （腾讯QQ的API移动端与PC端链接不同） PC优先
+
+    if (width < 600) {
+        document.querySelector('#qq').href = "mqqwpa://im/chat?chat_type=wpa&uin=790430354&version=1&src_type=web&web_src=oicqzone.com"
+    }
+    // 置顶键的响应（右下角）
+    window.onload = function () {
+        var scrollTop = 0;
+        document.onscroll = function () {
+            if (scrollTop < (document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset)) { //判断页面滚动的方向
+                //向下
+                // document.querySelector('.top_progress').style.top = "0px"; //进度条
+                document.querySelector('#top-menu').style.top = "-62px"; //移动端
+                // document.querySelector('.tabbed').style.top = "-62px"; //PC
+                document.querySelector('.aside').style.right = -45 + "px"; //置顶键
+            } else { //向上
+                // document.querySelector('.top_progress').style.top = "60px"; //进度条
+                document.querySelector('#top-menu').style.top = "0px"; //移动端
+                // document.querySelector('.tabbed').style.top = 0;
+                document.querySelector('.aside').style.right = 5 + "px";
+            }
+            if (scrollTop < 250) {
+                // document.querySelector('.top_progress').style.top = "60px"; //进度条
+                document.querySelector('#top-menu').style.top = "0px"; //移动端
+                document.querySelector('.aside').style.right = -45 + "px";
+                // document.querySelector('.tabbed').style.top = 0;
+            }
+            scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
+        }
+    }
+}()
+
+//优化pc和移动端的代码，防止无效的执行
+function addListSVg(params) { //移动端菜单键
+    if (width < 783) {
+        // 添加svg——菜单是否展示
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+        svg.setAttribute("id", "list")
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute("d", "M30 18h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM30 6.25h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2h28c1.1 0 2 0.9 2 2s-0.9 2-2 2zM2 25.75h28c1.1 0 2 0.9 2 2s-0.9 2-2 2h-28c-1.1 0-2-0.9-2-2s0.9-2 2-2z")
+        svg.appendChild(path)
+        document.body.appendChild(svg)
+        svg.addEventListener('click', function (params) {
+            if (document.querySelector('#side-nav').classList.contains('left')) {
+                document.querySelector('#side-nav').classList.remove("left")
+            } else {
+                document.querySelector('#side-nav').classList.add("left")
+            }
+        })
+    }
+}
+
+if (document.querySelector(".massage")) { //通过是否有标题判断是否要添加    推荐算法
     var xmlhttp = new XMLHttpRequest()
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -392,7 +526,11 @@ if (document.querySelector(".title h2")) { //通过是否有标题判断是否�
             container.insertBefore(card, document.querySelector("#bottom_frame"));
             var list = document.querySelectorAll(".b-htc ul li")
             var text = new Array();
-            var title = document.querySelector(".title h2").innerHTML
+            if (document.querySelector(".title h2")) {
+                var title = document.querySelector(".title h2").innerHTML
+            } else {
+                var title = document.querySelector(".title h1").innerHTML
+            }
             var writer
             var tag = ""
             var time
@@ -555,8 +693,7 @@ if (document.querySelector(".title h2")) { //通过是否有标题判断是否�
     xmlhttp.send();
 }
 
-function addLeftList(params) {
-    // 生成列表
+function addLeftList(params) { // 生成左侧菜单栏   
     var contents = document.querySelectorAll(".contents")
     if (contents.length > 0) {
         var li = document.createElement("li")
@@ -581,7 +718,7 @@ function addLeftList(params) {
                         //优化,字符串过长时截取前面的非空格字符
                         id = element.innerText.replace(/\s+/g, "").substring(0, l)
                     } else {
-                        id = element.innerText
+                        id = element.innerText //元素里面的所有文本，包括子结点
                     }
                 } else {
                     if (element.innerHTML.replace(/\s+/g, "").length > l) { //优化
@@ -639,7 +776,8 @@ function addLeftList(params) {
         addListSVg()
     }
 }
-if (document.querySelector("#word")||document.querySelector("#write")) {
+
+if (document.querySelector("#word") || document.querySelector("#write")) { //详情页
     addLeftList(); //添加目录
     // 添加来必力评论
     //添加html
@@ -667,24 +805,31 @@ if (document.querySelector("#word")||document.querySelector("#write")) {
         j.async = true;
         e.parentNode.insertBefore(j, e);
     })(document, 'script');
+    // 顶部栏去掉id=active
+    var tabbed = document.querySelectorAll(".tabbed ul li")
+    for (let index = 0; index < tabbed.length; index++) {
+        const element = tabbed[index];
+        element.id = "";
+    }
 }
+
 //底部栏优化
 if (document.querySelector('#busuanzi_container_site_uv')) {
     document.querySelector('#busuanzi_container_site_uv').innerHTML = document.querySelector('#busuanzi_container_site_uv').innerHTML.slice(0, -1)
 }
-//百度统计
+
 var _hmt = _hmt || [];
-(function () {
+(function () { //百度统计
     var hm = document.createElement("script");
     hm.src = "https://hm.baidu.com/hm.js?dfb2e9af2c4ea3536c96e73ddb3dc6b8";
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
 })();
-(function () {
-    // 代码块右上角添加复制按钮和功能
+
+(function () { // 代码块右上角添加复制按钮和功能
     if (document.querySelector('.md-fences')) {
         var codes = document.querySelectorAll('.md-fences');
-        for (let index = 0; index < codes.length; index++) {//添加按钮
+        for (let index = 0; index < codes.length; index++) { //添加按钮
             const element = codes[index];
             element.classList.add('copy-code' + "-" + index)
             var div = document.createElement('div');
@@ -694,7 +839,7 @@ var _hmt = _hmt || [];
             element.appendChild(div)
         }
 
-        function loadScript(src, callback) {//添加clipboard.min.js
+        function loadScript(src, callback) { //添加clipboard.min.js
             var script = document.createElement('script'),
                 head = document.getElementsByTagName('head')[0];
             script.type = 'text/javascript';
@@ -721,7 +866,7 @@ var _hmt = _hmt || [];
             clipboard.on('success', function (e) {
                 if (e.trigger.innerText == '复制成功') {
                     e.trigger.innerText = '复制代码'
-                    e.trigger.style.color = "blue"
+                    e.trigger.style.color = "#22222c"
                 } else {
                     e.trigger.innerText = '复制成功'
                     e.trigger.style.color = "#9e9e9e"
@@ -732,7 +877,7 @@ var _hmt = _hmt || [];
             clipboard.on('error', function (e) {
                 if (e.trigger.innerText == '复制失败') {
                     e.trigger.innerText = '复制代码'
-                    e.trigger.style.color = "blue"
+                    e.trigger.style.color = "red"
                 } else {
                     e.trigger.innerText = '复制失败'
                     e.trigger.style.color = "#9e9e9e"

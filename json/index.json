@@ -246,9 +246,7 @@
             "classification": "其他",
             "tag": "健康",
             "time": "2020-09-01",
-            "writer": "转载",
-            "top": true,
-            "recommend": true
+            "writer": "转载"
         }, {
             "url": "../../../../myarticle/other/20201026.html",
             "img_url": "https://s1.ax1x.com/2020/10/29/BGDBmF.jpg",
@@ -267,7 +265,63 @@
             "tag": "Typora",
             "time": "2020-10-27",
             "writer": "蒙大明"
+        }, {
+            "url": "../../../../myarticle/other/20201106.html",
+            "img_url": "https://s1.ax1x.com/2020/11/06/BhoadK.jpg",
+            "title": "2021届秋招回忆录",
+            "introduction": "写下这篇文章的时间是十月上旬（2020.11.05），2021届秋招基本已经要结束了，秋招这段时间也经历了许多。因此，有必要对极有可能是人生唯一一次的秋招进行一次总结与回顾。",
+            "classification": "其他",
+            "tag": "秋招 求职",
+            "time": "2020-11-06",
+            "writer": "蒙大明"
+        }, {
+            "url": "../../../../myarticle/other/20201107.html",
+            "img_url": "https://s1.ax1x.com/2020/11/07/BInmm4.jpg",
+            "title": "本科毕业设计（论文）记录",
+            "introduction": "本科毕业设计已经开始了，我的选题是饶毅恒老师的基于Android的模拟单片机控制系统，课题是偏向于嵌入式软件的。估计要经历较长的时间，也要付出较多的心力。本篇博客将全程记录毕业设计的大致过程，致于需要学习的Java和Android开发则单独讲述，本篇博客不涉及技术方面的内容。",
+            "classification": "其他",
+            "tag": "毕业设计",
+            "time": "2020-11-07",
+            "writer": "蒙大明"
+        }, {
+            "url": "../../../../myarticle/other/20201108.html",
+            "img_url": "https://s1.ax1x.com/2020/11/08/Boq6PI.png",
+            "title": "C语言中的strlen和sizeof",
+            "introduction": "strlen和sizeof是平时及面试中是十分常见的，本文将讲述C语言中strlen和sizeof的用法和区别，并写出两者的区别和常见的错误，目的是是自己更加了解strlen和sizeof的使用。",
+            "classification": "其他",
+            "tag": "C语言",
+            "time": "2020-11-08",
+            "writer": "蒙大明"
+        }, {
+            "url": "../../../../myarticle/other/20201110.html",
+            "img_url": "https://i.loli.net/2020/11/10/quwGS8UEbFWVRci.jpg",
+            "title": "Java基础",
+            "introduction": "因为毕业设计需要Java，所以我最近在学习Java。这篇博客主要写的一些Java的基础，内容比较简单，主要写一些Java的基础中与C语言不同的点。",
+            "classification": "其他",
+            "tag": "Java",
+            "time": "2020-11-10",
+            "writer": "蒙大明"
+        }, {
+            "url": "../../../../myarticle/other/20201115.html",
+            "img_url": "https://s3.ax1x.com/2020/11/19/DMpuSe.jpg",
+            "title": "Java面向对象（基础）",
+            "introduction": "本文总结了一些Java的面向对象的内容，主要总结自己学习过程中觉得重要的知识点！",
+            "classification": "其他",
+            "tag": "java",
+            "time": "2020-11-15",
+            "writer": "蒙大明"
+        }, {
+            "url": "../../../../myarticle/other/20201119.html",
+            "img_url": "https://s3.ax1x.com/2020/11/19/DKvHMR.jpg",
+            "title": "logo的设计过程",
+            "introduction": "之前设计的logo是只是一个艺术字的“明”，比较简单，而且没有什么设计感。所以最近重新设计了自己的logo，因为我自己本身没有学习svg更加没有艺术细胞，所以经历踩了很多的坑。因此在这里把经历和方法写一写，免得以后重蹈覆辙。",
+            "classification": "其他",
+            "tag": "logo",
+            "time": "2020-11-19",
+            "writer": "蒙大明"
         }
+
+
 
 
 

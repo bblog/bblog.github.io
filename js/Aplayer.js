@@ -5,6 +5,8 @@
  *4.Aplayer播放器的配置与音乐加载
  */
 //反馈层函数
+var iframe = document.querySelector("#iframe")
+
 function Mask(text, src) {
     // r为反馈层圆的半径   text为提示的文本
     var r
@@ -35,9 +37,10 @@ function Mask(text, src) {
 //配置音乐播放器属性  new 一个播放器
 window.ap = new APlayer({
     container: document.querySelector('#aplayer'),
+    //  mini: true,
     fixed: true, //位置
     lrcType: 1, //歌词类型
-    autoplay: true, //自动播放
+    autoplay: false, //自动播放
 });
 
 // 通过id获取网易云歌曲的信息并添加到Aplayer歌单中通过id获得summary
@@ -73,18 +76,40 @@ function getMusicId(name) { //形参为含有歌名的url
     xhr.send();
 }
 // 播放器设置与配置
-    var songs = new Array() //歌曲列表  歌单
-    songs[0] = "空"
-    songs[1] = "sold out"
-    songs[2] = "海阔天空"
-    songs[3] = "boom"
-    songs[4] = "平凡天使"
-    songs[5] = "shake that"
+function addMusic(params) {
+    var songs = new Array( //歌曲列表  歌单
+        "空",
+        "sold out",
+        "海阔天空",
+        "boom",
+        "平凡天使",
+        "shake that",
+        "像我这样的人",
+        "bad gud",
+        "rap god",
+        "侧脸",
+        "evolve",
+        "只要平凡",
+        "洋葱"
+    )
     for (let index = 0; index < songs.length; index++) { //用for一次加载一首歌
         var name_url = "https://v1.hitokoto.cn/nm/search/" + songs[index] + "?type=SONG&offset=0&limit=1" //搜索歌曲  limit：歌曲数量
         getMusicId(name_url);
     }
+    // 监听iframe的点击事件  make Aplayer go to  mini mode
+    document.querySelector("#iframe").contentDocument.addEventListener("click", function (e) {
+        ap.list.show()
+        ap.setMode("mini")
+    })
+}
+var isFirst = true;
 
+function loadIframe(params) {
+    if (isFirst) {
+        // setTimeout("addMusic();", "0"); //2000毫秒后执行test()函数，只执行一次。
+        addMusic();
+        isFirst = false
+    }
     document.querySelector(".aplayer-miniswitcher").addEventListener("click", function (e) {
         if (ap.audio.paused) {
             document.querySelector(".aplayer-body").style.left = "0px"
@@ -103,9 +128,15 @@ function getMusicId(name) { //形参为含有歌名的url
     })
 
     // 监听iframe的点击事件  make Aplayer go to  mini mode
-    document.querySelector("#iframe").contentWindow.addEventListener("click", function (e) {
+    document.querySelector("#iframe").contentDocument.addEventListener("click", function (e) {
+        ap.list.show()
         ap.setMode("mini")
     })
+    document.querySelector("#iframe").contentDocument.addEventListener("scroll", function (e) {
+        ap.list.show()
+        ap.setMode("mini")
+    })
+
     //移动端
     document.querySelector("#iframe").contentWindow.addEventListener("touchstart", function () {
         ap.setMode("mini")
@@ -114,3 +145,6 @@ function getMusicId(name) { //形参为含有歌名的url
     if (ap.audio.paused) {
         ap.lrc.hide() //优化、某些播放器不允许自动播放
     }
+
+}
+iframe.addEventListener("load", loadIframe); //加载完成再添加

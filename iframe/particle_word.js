@@ -8,11 +8,15 @@
  * Copyright 2018, COIDEA
  * https://coidea.website
  */
-if (self != top && window.parent.document.querySelector("title").innerHTML.length <= 6) {
-  var headline = window.parent.document.querySelector("title")
+var index = window.parent.document.querySelector("title").innerHTML.indexOf(" ");
+var title = window.parent.document.querySelector("title").innerHTML.substring(0, index);
+if (self != top && title.length <= 6) {
+
+  var headline = title;
 } else {
-  headline = document.querySelector("#headline")
+  headline = "hello !"
 }
+
 var canvas = document.querySelector("#canvas"),
   ctx = canvas.getContext("2d"),
   link = document.createElement('link');
@@ -87,20 +91,24 @@ function onMouseMove(e) {
   mouse.y = e.clientY;
 }
 
+function onMouseout(e) {
+  mouse.x = -9999;
+  mouse.y = -9999;
+}
+
 function onTouchMove(e) {
 
   if (e.touches.length > 0) {
-
     mouse.x = e.touches[0].clientX;
     mouse.y = e.touches[0].clientY;
   }
 }
 
 function onTouchEnd(e) {
-
   mouse.x = -9999;
   mouse.y = -9999;
 }
+
 
 function initScene() {
 
@@ -116,7 +124,7 @@ function initScene() {
 
   ctx.font = 'bold 16vw "Abril Fatface"';
   ctx.textAlign = "center";
-  ctx.fillText(headline.innerHTML, ww / 2, wh / 1.2); //字体开始位置
+  ctx.fillText(headline, ww / 2, wh / 1.2); //字体开始位置
 
   var data = ctx.getImageData(0, 0, ww, wh).data;
 
@@ -144,9 +152,9 @@ function render(a) {
     particles[i].render();
   }
 }
-
 window.addEventListener("resize", initScene);
 window.addEventListener("mousemove", onMouseMove);
+window.addEventListener("mouseout", onMouseout);
 window.addEventListener("touchmove", onTouchMove);
 window.addEventListener("touchend", onTouchEnd);
 initScene();

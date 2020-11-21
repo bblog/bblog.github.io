@@ -19,16 +19,16 @@
             text-decoration: none;
             display: block;
             float: left;
-            background-color: chartreuse;
             font-size: 22px;
             padding: 12px 16px;
-            margin: 12px 10px 0 0;
+            margin: 15px 14px 0 0;
             border-radius: 5px;
             -moz-transition: all 0.5s;
             -webkit-transition: all 0.5s;
             -o-transition: all 0.5s;
             transition: all 0.5s;
             color: #FFF;
+            box-shadow: 6px 6px 0px #9E9E9E;
         }
     </style>
 </head>
@@ -115,8 +115,8 @@
                 var tags = new Array
                 var num = new Array
                 for (let index = 0; index < articles.length; index++) { //遍历json
-                    var str = articles[index].tag.split(" ")//以空格划分，可能存在多个标签
-                    for (let index = 0; index < str.length; index++) {//遍历划分的标签
+                    var str = articles[index].tag.split(" ") //以空格划分，可能存在多个标签
+                    for (let index = 0; index < str.length; index++) { //遍历划分的标签
                         if (!tags.includes(str[index])) { //将不重名的标签放进数组
                             num.push(1)
                             tags.push(str[index])
@@ -146,12 +146,14 @@
                     }
                 }
                 // 添加 设置
-                var colors=["#66CCFF","#FF6600","#FF0033","#0099CC","#0066CC","#ff9800","#2196f3","#FF6666","#FF9966"]
+                var colors = ["#66CCFF", "#FF6600", "#FF0033", "#0099CC", "#0066CC", "#ff9800", "#2196f3",
+                    "#FF6666", "#FF9966"
+                ]
                 for (let index = 0; index < tags.length; index++) {
                     var a = document.createElement("a");
-                    a.innerHTML = tags[index]  //设置内容+ "（" + num[index] + "）"
-                    a.href='../../../../about/search.html'+'#'+tags[index]
-                    a.style.backgroundColor =  colors[Math.floor(Math.random() * colors.length)] //随机颜色
+                    a.innerHTML = tags[index] //设置内容+ "（" + num[index] + "）"
+                    a.href = '../../../../about/search.html' + '#' + tags[index]
+                    a.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)] //随机颜色
                     div.appendChild(a)
                 }
             }

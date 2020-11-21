@@ -56,7 +56,7 @@ function getYiyan(nth_li) { // 用一言api添加  没有json数据的卡片
 /*
  *加载的JS：https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js 
  *加载的CSS：https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css 
- *文档地址： https://aplayer.js.org/#/home
+ *文档地址： https://aplayer.js.org/#/zh-Hans/
  */
 //配置音乐播放器属性  new 一个播放器
 window.ap = new APlayer({
