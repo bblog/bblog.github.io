@@ -1,6 +1,8 @@
 /* 
  *各个网页均存在的JS  
  */
+var width = document.documentElement.clientWidth;
+var container = document.querySelector('#container');
 ! function () { //使用ifram的优化
     //标题添加“蒙大明的个人博客”
     var title = document.querySelector("title");
@@ -36,309 +38,6 @@
     window.parent.history.pushState(stateObject, title, newUrl);
 }()
 
-var width = document.documentElement.clientWidth;
-var container = document.querySelector('#container');
-
-(function () { //导航栏设置
-    if (width < 783) { //移动端菜单栏
-        document.querySelector('#qq').href = "mqqwpa://im/chat?chat_type=wpa&uin=790430354&version=1&src_type=web&web_src=oicqzone.com"
-        // 移动端菜单栏标题响应当前HTML的title
-        document.querySelector('.top-title div').innerHTML = "Blue Blog"
-        var str = [
-            "网站首页",
-            "精选美文",
-            "名人名言",
-            "个人感悟",
-            "留言板",
-            "分类",
-            "标签",
-            "存档",
-            "搜索",
-            "关于我/博客",
-        ]
-        var href = [
-            "../../../../index0.html",
-            "../../../../article",
-            "../../../../sentence",
-            "../../../../mysentence",
-            "../../../../about/guestbook.html",
-            "../../../../about/classification.html",
-            "../../../../about/tags.html",
-            "../../../../about/file.html",
-            "../../../../about/search.html",
-            "../../../../about",
-        ] //展开的链接
-        var ul = document.querySelector(".menu ul")
-        for (let index = 0; index < 2; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-            var a = document.createElement("a");
-            // a.innerHTML = str[index]
-            // a.href = href[index]
-            var li = document.createElement("li");
-            li.appendChild(a)
-            ul.appendChild(li)
-        }
-        var title_li = document.querySelectorAll(".menu ul li")
-        for (let index = 0; index < title_li.length; index++) {
-            var element = title_li[index].querySelector("a");
-            element.innerHTML = str[index]
-            element.href = href[index]
-        }
-        // 添加一个模糊层，防止菜单展开后，返回时点到其他链接
-        if (container) {
-            var canvas = document.createElement("canvas");
-            canvas.setAttribute("id", "cover");
-            container.appendChild(canvas);
-        }
-        // 监听菜单键
-        document.querySelector(".menubar").addEventListener("click", switchMenu) //switchMenu后面加（）会执行一次
-        container.addEventListener("click", function () {
-            if (container.classList.contains('page_inright')) {
-                switchMenu();
-            }
-        });
-        document.querySelector('#perspective').style.height = window.innerHeight + "px" //为模块设置高度为浏览器的高度
-        // 手机端菜单键点击后执行的函数
-        function switchMenu(params) {
-            // alert("justifyContent: ")
-            if (window.innerWidth < 783) { //宽度小于800才执行
-                if (container.classList.contains('page_inright')) { //左侧菜单已经打开  切换至正常  open to close
-                    container.classList.remove("page_inright")
-                    document.querySelector(".menubar").classList.remove("arrow")
-                    document.querySelector("#top-menu").classList.remove("menu-inright")
-                    document.querySelector("#perspective").style.backgroundColor = "transparent"
-                    setTimeout(function (params) {
-                        container.style.overflow = "visible"
-                    }, 800);
-                    document.querySelector(".menu").classList.remove("open")
-                    document.querySelector("#cover").style.display = "none" //调整点击面板
-                    document.querySelector(".aside").style.display = "block" //置顶栏优化
-                    if (document.querySelector("#list")) {
-                        document.querySelector("#list").style.display = "block" //目录优化
-                        document.querySelector("#side-nav").style.display = "block" //目录按钮优化
-                    }
-                } else { //左侧菜单没有打开  点击打开菜单  close to open
-                    container.classList.add("page_inright")
-                    document.querySelector(".menubar").classList.add("arrow")
-                    document.querySelector("#top-menu").classList.add("menu-inright")
-                    document.querySelector("#perspective").style.backgroundColor = "cornflowerblue" //菜单栏背景颜色
-                    container.style.overflow = "hidden"
-                    document.querySelector(".menu").classList.add("open")
-                    document.querySelector("#cover").style.display = "none" //盖住点击面板
-                    document.querySelector(".aside").style.display = "none" //置顶栏优化
-
-                    if (document.querySelector("#list")) {
-                        document.querySelector("#list").style.display = "none" //目录优化
-                        document.querySelector("#side-nav").style.display = "none" //目录按钮优化
-                    }
-
-                }
-            }
-        }
-    } else { //PC端导航栏
-        // 加载左上角句子的script 不用一个一个添加   一言API
-        var secScript = document.createElement("script");
-        secScript.setAttribute("type", "text/javascript");
-        secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=js&select=%23hitokoto"); //一言c参数可以设置句子类型
-        document.body.insertBefore(secScript, document.body.lastChild);
-        //设置导航栏文字
-
-        // 第一行
-        var tabbed = document.querySelectorAll(".tabbed ul li")
-        while (document.querySelectorAll(".tabbed ul li").length < 6) { //li的数量为6
-            var last = document.querySelectorAll(".tabbed ul li")[1].cloneNode(true);
-            document.querySelector(".tabbed ul").appendChild(last);
-        }
-        var str = [ //第一行的文字
-            "首页",
-            "好物收录",
-            "我的原创",
-            "查找文章",
-            "关于",
-            "发现更多"
-        ]
-        var href = [ //链接 
-            "../../../../index0.html",
-            "javascript:void(0);",
-            "javascript:void(0);",
-            "../../../../about/search.html",
-            "../../../../about",
-            "javascript:void(0);"
-        ]
-        for (let index = 0; index < tabbed.length; index++) {
-            //为每个li设置文字与链接
-            const element = tabbed[index];
-            element.querySelector("a").innerHTML = str[index]
-            element.querySelector("a").href = href[index]
-        }
-
-        // 第2个的展开页
-        var ul = document.querySelector(".tabbed ul")
-        var article_li = ul.children[1]
-        var ul2 = document.createElement("ul");
-        ul2.setAttribute("class", "ul_c")
-        var str = [
-            "经典文章",
-            "技术文章",
-            "美句收录"
-        ]
-        var href = [ //链接
-            "../../../../article",
-            "javascript:void(0);",
-            "../../../../sentence"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-            var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
-            var li1 = document.createElement("li");
-            li1.appendChild(a)
-            ul2.appendChild(li1)
-        }
-        article_li.appendChild(ul2)
-
-        // 第3个的展开页
-        var article_li = ul.children[2]
-        var ul2 = document.createElement("ul");
-        ul2.setAttribute("class", "ul_c")
-        var str = [
-            "我的文章",
-            "个人感悟",
-            "闲言碎语"
-        ]
-        var href = [ //链接
-            "../../../../about/classification.html",
-            "../../../../sentence",
-            "javascript:void(0);"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-            var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
-            var li1 = document.createElement("li");
-            li1.appendChild(a)
-            ul2.appendChild(li1)
-        }
-        article_li.appendChild(ul2)
-
-        // 第4个的展开页
-        var article_li = ul.children[3]
-        var ul2 = document.createElement("ul");
-        ul2.setAttribute("class", "ul_c")
-        var str = [
-            "分类查找",
-            "标签",
-            "存档",
-            "搜索"
-        ]
-        var href = [
-            "../../../../about/classification.html",
-            "../../../../about/tags.html",
-            "../../../../about/file.html",
-            "../../../../about/search.html#我的",
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-            var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
-            var li1 = document.createElement("li");
-            li1.appendChild(a)
-            ul2.appendChild(li1)
-        }
-        article_li.appendChild(ul2)
-
-        // 第5个的展开页
-        var article_li = ul.children[4]
-        //article_li.classList.add("li-list")
-        var ul2 = document.createElement("ul");
-        ul2.setAttribute("class", "ul_c")
-        var str = [
-            "关于本站",
-            "更新日志",
-            "本站统计",
-            "本站代码结构",
-            "关于发文",
-            "留言板"
-        ]
-        var href = [
-            "../../../../about",
-            "../../../../about/timeline.html",
-            "https://tongji.baidu.com/web/welcome/ico?s=dfb2e9af2c4ea3536c96e73ddb3dc6b8",
-            "../../../../about/structure.html",
-            "../../../../about/docs.html",
-            "../../../../about/guestbook.html"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-
-            var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
-            if (str[index] == "本站统计") {
-                a.target = "_blank";
-            }
-            var li1 = document.createElement("li");
-            li1.appendChild(a)
-            ul2.appendChild(li1)
-        }
-        article_li.appendChild(ul2)
-
-
-        // 第6个的展开页
-
-        var article_li = ul.children[5]
-        //article_li.classList.add("li-list")
-        var ul2 = document.createElement("ul");
-        ul2.setAttribute("class", "ul_c")
-        var str = [
-            "首个网站",
-            "每日明记",
-            "计时器"
-        ]
-        var href = [
-            "https://mdming.github.io",
-            "../../../../diary",
-            "../../../../tools/timer"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-            var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
-            a.target = "_blank"; //新页面
-            var li1 = document.createElement("li");
-            li1.appendChild(a)
-            ul2.appendChild(li1)
-        }
-        article_li.appendChild(ul2)
-
-        // 添加logo
-        var logo_parent = document.querySelector(".tabbed");
-        var a = document.createElement("a");
-        a.href = "../../../../"
-        a.setAttribute('class', 'logo')
-        var img = document.createElement('img'); //创建一个标签
-        img.setAttribute('src', 'https://s3.ax1x.com/2020/11/18/DneSpV.png'); //给标签定义src链接
-        img.setAttribute('class', 'logo-img');
-        a.appendChild(img); //放到指定的id里
-        var span = document.createElement('span'); //创建一个标签
-        span.textContent = "Less is more"
-        // span.setAttribute('src','https://s3.ax1x.com/2020/11/18/DneSpV.png');//给标签定义src链接
-        span.setAttribute('class', 'logo-text');
-        a.appendChild(span); //放到指定的id里
-        logo_parent.insertBefore(a, ul); //ul之前logo_parent里面插入
-
-    }
-}());
 
 ! function () { //文字设置
     // 设置footer日期  设置到当前日期
@@ -390,7 +89,7 @@ var container = document.querySelector('#container');
             document.querySelector('.top_progress').value = scrollTop
         }
     }
-}()
+}();
 
 //添加框架、画布、SVG
 ! function () {
@@ -433,30 +132,30 @@ var container = document.querySelector('#container');
         document.querySelector('#qq').href = "mqqwpa://im/chat?chat_type=wpa&uin=790430354&version=1&src_type=web&web_src=oicqzone.com"
     }
     // 置顶键的响应（右下角）
-    window.onload = function () {
-        var scrollTop = 0;
-        document.onscroll = function () {
-            if (scrollTop < (document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset)) { //判断页面滚动的方向
-                //向下
-                // document.querySelector('.top_progress').style.top = "0px"; //进度条
-                document.querySelector('#top-menu').style.top = "-62px"; //移动端
-                // document.querySelector('.tabbed').style.top = "-62px"; //PC
-                document.querySelector('.aside').style.right = -45 + "px"; //置顶键
-            } else { //向上
-                // document.querySelector('.top_progress').style.top = "60px"; //进度条
-                document.querySelector('#top-menu').style.top = "0px"; //移动端
-                // document.querySelector('.tabbed').style.top = 0;
-                document.querySelector('.aside').style.right = 5 + "px";
-            }
-            if (scrollTop < 250) {
-                // document.querySelector('.top_progress').style.top = "60px"; //进度条
-                document.querySelector('#top-menu').style.top = "0px"; //移动端
-                document.querySelector('.aside').style.right = -45 + "px";
-                // document.querySelector('.tabbed').style.top = 0;
-            }
-            scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
+    // window.onload = function () {
+    var scrollTop = 0;
+    document.onscroll = function () {
+        if (scrollTop < (document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset)) { //判断页面滚动的方向
+            //向下
+            // document.querySelector('.top_progress').style.top = "0px"; //进度条
+            // document.querySelector('#top-menu').style.top = "-62px"; //移动端
+            // document.querySelector('.tabbed').style.top = "-62px"; //PC
+            document.querySelector('.aside').style.right = -45 + "px"; //置顶键
+        } else { //向上
+            // document.querySelector('.top_progress').style.top = "60px"; //进度条
+            // document.querySelector('#top-menu').style.top = "0px"; //移动端
+            // document.querySelector('.tabbed').style.top = 0;
+            document.querySelector('.aside').style.right = 5 + "px";
         }
+        if (scrollTop < 250) {
+            // document.querySelector('.top_progress').style.top = "60px"; //进度条
+            document.querySelector('#top-menu').style.top = "0px"; //移动端
+            document.querySelector('.aside').style.right = -45 + "px";
+            // document.querySelector('.tabbed').style.top = 0;
+        }
+        scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
     }
+    // }
 }()
 
 //优化pc和移动端的代码，防止无效的执行
@@ -885,5 +584,26 @@ var _hmt = _hmt || [];
                 e.clearSelection();
             });
         });
+    }
+})();
+
+
+(function (params) {
+    var navButton = document.querySelectorAll('.mobile-navbar li')
+    for (let index = 1; index < navButton.length; index++) {
+        const element = navButton[index];
+        element.addEventListener("click", function (e) {
+            if (this.classList.contains('second-menu-open') == true) { //如果已经展开
+                this.classList.remove("second-menu-open") //关闭
+            } else { //如果没展开
+                this.classList.add("second-menu-open") //展开点击的地方
+            }
+            for (var j = 1; j < navButton.length; j++) { //把其他的关闭
+                if (navButton[j] != this) {
+                    navButton[j].classList.remove("second-menu-open")
+                }
+            }
+        })
+
     }
 })();

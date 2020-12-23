@@ -10,17 +10,17 @@
  */
 var index = window.parent.document.querySelector("title").innerHTML.indexOf(" ");
 var title = window.parent.document.querySelector("title").innerHTML.substring(0, index);
+var headline
 if (self != top && title.length <= 6) {
 
-  var headline = title;
+  headline = title;
 } else {
   headline = "hello !"
 }
 
 var canvas = document.querySelector("#canvas"),
   ctx = canvas.getContext("2d"),
-  link = document.createElement('link');
-particles = [],
+  particles = [],
   amount = 0,
   mouse = {
     x: -9999,
@@ -38,6 +38,8 @@ particles = [],
 
   ww = window.innerWidth,
   wh = window.innerHeight;
+console.log(ww);
+console.log(wh);
 
 function Particle(x, y) {
 
@@ -47,13 +49,13 @@ function Particle(x, y) {
     x: x,
     y: y
   };
-  this.r = Math.random() * 2 * Math.PI;
+  this.r = Math.random() * 0.2 * Math.PI;//粒子大小
   this.vx = (Math.random() - 0.5) * 25;
   this.vy = (Math.random() - 0.5) * 25; //形成时的动作
   this.accX = 0;
   this.accY = 0;
   this.friction = Math.random() * 0.025 + 0.94;
-  this.color = colors[Math.floor(Math.random() * colors.length)]; //修改颜色
+  this.color = colors[Math.floor(Math.random() * colors.length)]; //粒子颜色
 }
 
 Particle.prototype.render = function () {
@@ -85,6 +87,48 @@ Particle.prototype.render = function () {
   }
 }
 
+
+function initScene() {
+
+  ww = canvas.width = window.innerWidth;
+  wh = canvas.height = window.innerHeight;
+  var amount2=200;
+if (ww<600) {
+  amount2=100;
+} else {
+  amount2=200;
+}
+  ctx.clearRect(0, 0, canvas.width, canvas.height);//清除画布
+  ctx.font = '100 35vw "Serif"';//文字样式
+  ctx.textAlign = "center";//文字的位置
+  ctx.fillText(headline, ww / 2, wh / 2); //被填充的文本及其位置
+
+  var data = ctx.getImageData(0, 0, ww, wh).data;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.globalCompositeOperation = "screen";
+
+  particles = [];
+  for (var i = 0; i < ww; i += Math.round(ww / amount2)) {
+    for (var j = 0; j < wh; j += Math.round(ww / amount2)) {
+      if (data[((i + j * ww) * 4) + 3] > amount2) {
+
+        particles.push(new Particle(i, j));
+      }
+    }
+  }
+  amount = particles.length;
+}
+
+function render(a) {
+  requestAnimationFrame(render);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (var i = 0; i < amount; i++) {
+
+    particles[i].render();
+  }
+}
+
 function onMouseMove(e) {
 
   mouse.x = e.clientX;
@@ -109,49 +153,6 @@ function onTouchEnd(e) {
   mouse.y = -9999;
 }
 
-
-function initScene() {
-
-  ww = canvas.width = window.innerWidth;
-  wh = canvas.height = window.innerHeight;
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = 'https://fonts.googleapis.com/css?family=Abril+Fatface';
-  document.getElementsByTagName('head')[0].appendChild(link);
-
-  ctx.font = 'bold 16vw "Abril Fatface"';
-  ctx.textAlign = "center";
-  ctx.fillText(headline, ww / 2, wh / 1.2); //字体开始位置
-
-  var data = ctx.getImageData(0, 0, ww, wh).data;
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.globalCompositeOperation = "screen";
-
-  particles = [];
-  for (var i = 0; i < ww; i += Math.round(ww / 200)) {
-    for (var j = 0; j < wh; j += Math.round(ww / 200)) {
-      if (data[((i + j * ww) * 4) + 3] > 200) {
-
-        particles.push(new Particle(i, j));
-      }
-    }
-  }
-  amount = particles.length;
-}
-
-function render(a) {
-
-  requestAnimationFrame(render);
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (var i = 0; i < amount; i++) {
-
-    particles[i].render();
-  }
-}
 window.addEventListener("resize", initScene);
 window.addEventListener("mousemove", onMouseMove);
 window.addEventListener("mouseout", onMouseout);

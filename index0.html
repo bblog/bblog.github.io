@@ -450,25 +450,62 @@
 			-webkit-transform: rotateX(-37deg) rotateY(-46deg) rotateZ(-23deg) translateX(8px) translateY(20px) translateZ(-50px);
 			transform: rotateX(-37deg) rotateY(-46deg) rotateZ(-23deg) translateX(8px) translateY(20px) translateZ(-50px);
 		}
+
+		/* 想让的光标闪动的话，复制下面的代码 */
+		.typed-cursor {
+			opacity: 1;
+			animation: typedjsBlink 0.7s infinite;
+			-webkit-animation: typedjsBlink 0.7s infinite;
+			animation: typedjsBlink 0.7s infinite;
+		}
+
+		@keyframes typedjsBlink {
+			50% {
+				opacity: 0.0;
+			}
+		}
+
+		@-webkit-keyframes typedjsBlink {
+			0% {
+				opacity: 1;
+			}
+
+			50% {
+				opacity: 0.0;
+			}
+
+			100% {
+				opacity: 1;
+			}
+		}
+
+		.typed-fade-out {
+			opacity: 0;
+			transition: opacity .25s;
+			-webkit-animation: 0;
+			animation: 0;
+		}
+
+		#Damir-say {
+			color: #03a9f4;
+			font-size: 35px;
+			position: absolute;
+			top: unset;
+			right: unset;
+			white-space: nowrap;
+			bottom: 9%;
+			left: 6%;
+			margin: 50px auto;
+			/* width: 70%; */
+			/* cursor: pointer; */
+		}
 	</style>
 
 </head>
 
 <body class="no_particle none-top-word">
-	<div id="top-menu">
-		<div class="menubar">
-			<svg>
-				<path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
-				<path class="line--2" d="M0 50h80" />
-				<path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
-			</svg>
-		</div>
-		<div class="top-title">
-			<div>我的文章</div>
-		</div>
-		<div class="my-daily"><a href="diary/"><img src="https://i.loli.net/2020/03/11/u1aN6VbOEi2Psnd.png" alt=""></a>
-		</div>
-	</div>
+	<!-- PC、移动端导航栏和菜单 -->
+	<script src="../../../../public/nav.js"></script>
 	<div id="perspective">
 		<div id="container">
 			<header class="top_svg">
@@ -698,7 +735,20 @@
 						0.687 0.755 1.832 0.072 2.555l-14.201 14.996c-0.33 0.348-0.795 0.564-1.311 0.564-0.001 0-0.003 0-0.004 0h0z">
 					</path>
 				</svg>
-				<h2 class="my-name">蒙大明的个人博客</h2>
+				<div id="Damir-say">
+					<span id="say"></span>
+				</div>
+				<script type="text/javascript" src="https://cdn.bootcss.com/typed.js/2.0.5/typed.js"></script>
+				<script>
+					var boxObj2 = document.getElementById('say');
+					new Typed(boxObj2, {
+						strings: ['hi！你好，我是蒙大明。', '欢迎你来到我的个人博客。', '祝你有一段美好的时光。', '生如逆旅，一苇以航！'],
+						typeSpeed: 280,
+						startDelay: 100,
+						loop: true,
+						loopCount: Infinity
+					});
+				</script>
 			</header>
 			<div class="sidebar">
 				<div class="lmnav">
@@ -861,50 +911,12 @@
 				<!-- bottom_frame -->
 				<iframe id="bottom_frame" frameborder="0"></iframe>
 				<!-- 底部栏 -->
-				<footer class="footer">
-					<div class="copyright">Copyright ©2020-3-8-<span id="now_date"></span> 蒙大明版权所有</div>
-					<div class="access">
-						<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
-						<span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人次</span>
-					</div>
-				</footer>
+				<script src="../../../../public/footer.js"></script>
 			</div>
 		</div>
-		<!-- ========移动端菜单 -->
-		<div class="menu">
-			<ul>
-				<li><a href="/index0.html">主页</a></li>
-				<li><a href="/article">精选美文</a></li>
-				<li><a href="/sentence/">名人名言</a></li>
-				<li><a href="/mysentence">个人感悟</a></li>
-				<li><a href="/about/guestbook.html">留言板</a></li>
-				<li><a href="https://mdming.github.io">分类</a></li>
-				<li><a href="/diary/">标签</a></li>
-				<li><a href="">存档</a></li>
-			</ul>
-		</div>
 	</div>
-	<!-- 头部导航栏 -->
-	<div class='tabbed round'>
-		<ul>
-			<li id='active'><a href="/mysentence">留言板</a></li>
-			<li><a href="/mysentence">个人感悟</a></li>
-			<li><a href="/sentence">名人名言</a></li>
-			<li><a href="/article">精选美文</a></li>
-			<li><a href="/index0.html">我的文章</a></li>
-		</ul>
-		<h1 class="t_nav"><span id="hitokoto">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 </span></h1>
-	</div>
-	<!-- 左边栏 -->
-
-	<!-- 返回按钮及侧边栏 -->
-	<aside class="aside">
-		<div><a id="qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=790430354&site=qq&menu=yes">
-				<img src="https://ae01.alicdn.com/kf/H7af94cac043845c9a8779d35c29da9a7A.png" alt=""></a></div>
-		<div class="top">
-			<a href="#top"><img src="https://ae01.alicdn.com/kf/H9227752dda6c455ead9336cb46fffdd8T.png" alt=""></a>
-		</div>
-	</aside>
+	<!-- aside可置顶显示 -->
+	<script src="../../../../public/aside.js"></script>
 	<script>
 		document.querySelector(".top_svg").style.height = window.innerHeight + "px";
 		document.querySelector("#headerDown").addEventListener("click", function (e) {
@@ -936,6 +948,7 @@
 	<script type="text/javascript" src="js/base.js"></script>
 
 	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 </body>
 
 </html>

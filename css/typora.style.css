@@ -10,7 +10,7 @@ html {
 
 
 :root {
-    --bg-color: #ffffff;
+    /* --bg-color: #ffffff; */
     --text-color: #333333;
     --select-text-bg-color: #B5D6FC;
     --select-text-font-color: auto;
@@ -19,7 +19,7 @@ html {
 
 html {
     font-size: 14px;
-    background-color: var(--bg-color);
+    /* background-color: var(--bg-color); */
     color: var(--text-color);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -1532,7 +1532,7 @@ content {
 
 #write strong,
 #write em {
-    font-family: var(--em-font);
+    /* font-family: var(--em-font); */
     font-weight: 800;
     color: var(--title-color);
 }
