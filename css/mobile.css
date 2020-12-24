@@ -1,6 +1,11 @@
 /* =======响应屏幕大小的变化 */
 /* 所有移动端 重点*/
-@media only screen and (max-width: 1199px) {}
+@media only screen and (max-width: 1199px) {
+    *：hover {
+        border: none !important;
+        box-shadow: none;
+    }
+}
 /* 一般手机 重点*/
 @media only screen and (min-width: 360px) and (max-width: 479px) {
     .menu {
@@ -107,9 +112,6 @@
     }
 
     /*进度条  */
-    .top_progress {
-        top: 80px;
-    }
 
     #top-menu {
         display: block;
@@ -150,10 +152,7 @@
     }
 }
 @media only screen and (max-width: 800px) {
-    li：hover {
-        border: none !important;
-        box-shadow: none;
-    }
+ 
 
     #side-nav {
         left: -500px;

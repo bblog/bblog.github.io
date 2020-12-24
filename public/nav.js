@@ -21,10 +21,9 @@ function writeMobileTopBar() {
     document.write("				<\/svg>");
     document.write("			<\/div>");
     document.write("			<div class=\"top-title\">");
-    document.write("				<div><a href=\"..\/..\/..\/..\/\" class=\"logo\"> <img src=\"https:\/\/s3.ax1x.com\/2020\/11\/18\/DneSpV.png\" class=\"logo-img\"> <span class=\"logo-text\">Less is more<\/span><\/a><\/div>");
+    document.write("				<div><a href=\"..\/..\/..\/..\/\" class=\"logo\"> <img src=\"https:\/\/s3.ax1x.com\/2020\/11\/18\/DneSpV.png\" class=\"logo-img\"> <span class=\"logo-text\">Blue<\/span><\/a><\/div>");
     document.write("			<\/div>");
-    document.write("			<div class=\"my-daily\"><a href=\"diary\/\"><img src=\"https:\/\/i.loli.net\/2020\/03\/11\/u1aN6VbOEi2Psnd.png\" alt=\"\"><\/a>");
-    document.write("			<\/div>");
+    document.write("<a href=\"..\/..\/..\/..\/about\/search.html\"><span class=\"search-button\"><\/span><\/a>");
     document.write("		<\/div>");
 }
 

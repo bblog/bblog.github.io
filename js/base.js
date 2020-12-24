@@ -75,12 +75,12 @@ var container = document.querySelector('#container');
         document.querySelector('main').style.borderColor = "#" + Math.round(Math.random() * 0x1000000).toString(16);
     }
     // 添加进度条标签
-    if (document.querySelector("#top-menu")) {
+    // if (document.querySelector("#top-menu")) {
         var progress = document.createElement("progress");
         progress.setAttribute("class", "top_progress");
         progress.setAttribute("value", "0");
         document.body.appendChild(progress);
-    }
+    // }
     // 进度条的响应
     if (document.querySelector('.top_progress')) {
         window.onscroll = function () {
@@ -149,7 +149,7 @@ var container = document.querySelector('#container');
         }
         if (scrollTop < 250) {
             // document.querySelector('.top_progress').style.top = "60px"; //进度条
-            document.querySelector('#top-menu').style.top = "0px"; //移动端
+            // document.querySelector('#top-menu').style.top = "0px"; //移动端
             document.querySelector('.aside').style.right = -45 + "px";
             // document.querySelector('.tabbed').style.top = 0;
         }
