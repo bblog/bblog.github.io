@@ -9,15 +9,26 @@
  * https://coidea.website
  */
 var index = window.parent.document.querySelector("title").innerHTML.indexOf(" ");
-var title = window.parent.document.querySelector("title").innerHTML.substring(0, index);
+var title = window.parent.document.querySelector("title").innerHTML.substring(0, index);//获取标题名称
 var headline
-if (self != top && title.length <= 6) {
-
-  headline = title;
-} else {
-  headline = "hello !"
+function getByteLen(val) {//字节数
+  var len = 0;
+  for (var i = 0; i < val.length; i++) {
+      var a = val.charAt(i);
+      if (a.match(/[^\x00-\xff]/ig) != null) {//\x00-\xff→GBK双字节编码范围
+          len += 2;
+      }
+      else {
+          len += 1;
+      }
+  }
+  return len;
 }
-
+if (self != top &&getByteLen( title) <=10) {//最多10个字
+  headline = title;
+} else {//显示标签文字
+  headline = window.parent.document.querySelector(".mini .later").innerHTML
+}
 var canvas = document.querySelector("#canvas"),
   ctx = canvas.getContext("2d"),
   particles = [],
@@ -27,35 +38,34 @@ var canvas = document.querySelector("#canvas"),
     y: -9999
   },
   radius = 1,
-  colors = [
-    "#0000FF",
-    "#0099FF",
-    "#00CCFF",
-    "#006699",
-    "#330066"
+  colors = [//粒子颜色
+    "#F44336",
+    "##FF5722",
+     "#00CCFF",
+     "#006699",
+    "#FF5722"
   ],
 
 
   ww = window.innerWidth,
   wh = window.innerHeight;
-console.log(ww);
-console.log(wh);
 
 function Particle(x, y) {
 
-  this.x = Math.random() * ww; //形成时的动作
+  this.x = Math.random() * ww; 
   this.y = Math.random() * wh;
   this.dest = {
     x: x,
     y: y
   };
-  this.r = Math.random() * 0.2 * Math.PI;//粒子大小
+  this.r = Math.random() * 2 * Math.PI;//粒子大小
+  // this.r = 2 * Math.PI;//粒子大小
   this.vx = (Math.random() - 0.5) * 25;
   this.vy = (Math.random() - 0.5) * 25; //形成时的动作
   this.accX = 0;
   this.accY = 0;
   this.friction = Math.random() * 0.025 + 0.94;
-  this.color = colors[Math.floor(Math.random() * colors.length)]; //粒子颜色
+  this.color = colors[Math.floor(Math.random() * colors.length)]; 
 }
 
 Particle.prototype.render = function () {
@@ -89,22 +99,25 @@ Particle.prototype.render = function () {
 
 
 function initScene() {
-
+  ctx.clearRect(0, 0, canvas.width, canvas.height);//清除画布
   ww = canvas.width = window.innerWidth;
   wh = canvas.height = window.innerHeight;
   var amount2=200;
+  ctx.textAlign = "center";//文字的位置
 if (ww<600) {
-  amount2=100;
+  amount2=200;
+  ctx.font = '100 18vw "Serif"';//文字样式
+  ctx.fillText(headline, ww/2, wh / 2); //被填充的文本及其位置
+  
 } else {
   amount2=200;
+  ctx.font = '400 14vw "Serif"';//文字样式
+  ctx.fillText(headline, ww/2 , wh/1.2 ); //被填充的文本及其位置
+  
 }
-  ctx.clearRect(0, 0, canvas.width, canvas.height);//清除画布
-  ctx.font = '100 35vw "Serif"';//文字样式
-  ctx.textAlign = "center";//文字的位置
-  ctx.fillText(headline, ww / 2, wh / 2); //被填充的文本及其位置
+  
 
   var data = ctx.getImageData(0, 0, ww, wh).data;
-
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.globalCompositeOperation = "screen";
 

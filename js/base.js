@@ -238,15 +238,23 @@ if (document.querySelector(".massage")) { //通过是否有标题判断是否要
             // 判断在json是否有对应的标题
             // 读取标题所对应的json的信息  将其序号加入text中
             for (let index = 0; index < articles.length; index++) {
-                var element = articles[index];
+                const element = articles[index];
                 if (element.title == title) {
-                    var classification = element.classification
+                    classification = element.classification
                     writer = element.writer
                     tag = element.tag
                     time = element.time
                     text.push(index)
                     index_have = true
                 }
+            }
+            //设置标题下面的信息栏
+            var spanHTML=document.querySelectorAll(".later")
+            console.log();
+            if (spanHTML) {
+                spanHTML[0].innerHTML=tag;
+                spanHTML[1].innerHTML=writer;
+                spanHTML[2].innerHTML=time;
             }
             if (index_have) { //index.json中存在
                 // 1 !text.includes(index)用于防止有同一篇文章
@@ -607,3 +615,5 @@ var _hmt = _hmt || [];
 
     }
 })();
+
+

@@ -48,7 +48,7 @@ secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=js&sel
 document.body.insertBefore(secScript, document.body.lastChild);
 
 function setNav() { //导航栏设置
-    if (width < 783) { //移动端菜单栏
+    if (width < 1200) { //移动端菜单栏
         writeMobileNav();
         writeMobileTopBar();
         // 监听菜单键

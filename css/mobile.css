@@ -1,4 +1,154 @@
 /* =======响应屏幕大小的变化 */
+/* 所有移动端 重点*/
+@media only screen and (max-width: 1199px) {}
+/* 一般手机 重点*/
+@media only screen and (min-width: 360px) and (max-width: 479px) {
+    .menu {
+        display: block;
+    }
+
+    .menubar svg {
+        width: 100%;
+        height: 150%;
+        position: relative;
+        top: -19px;
+        left: -10px;
+        transform: scale(1.1, 1.1);
+    }
+
+    #top-menu {
+        display: block;
+    }
+
+    #top-menu.menu-inright {
+        margin-left: 70%;
+    }
+
+    .pagination li a.page-link {
+        width: 44px;
+        height: 45px;
+        margin-right: 2px;
+        line-height: 45px;
+
+    }
+
+    .blogs .article-list li {
+        height: 380px;
+        padding: 0;
+        margin-bottom: 22px;
+    }
+
+    .blogpic {
+        width: 100%;
+        height: 54%;
+        border-radius: 0;
+        padding: 4%;
+    }
+
+    .author span {
+        margin-right: 6%;
+    }
+
+    .bloginfo {
+        /* display: none; */
+        width: 100%;
+        height: 25%;
+        position: absolute;
+        bottom: 12%;
+    }
+
+    .bloginfo p {
+        text-align: justify;
+        padding: 0 8%;
+        line-height: 19px;
+    }
+
+    .author {
+        width: 100%;
+        height: 9%;
+        padding-left: 6%;
+
+    }
+
+    h3.blogtitle {
+        position: absolute;
+        top: 53%;
+        width: 100%;
+        margin: 0;
+        /* padding-left: 10%; */
+        text-indent: 2rem;
+        /* text-align: center; */
+    }
+
+    .access {
+        width: 100%;
+    }
+
+    .access>span {
+        width: 100%;
+        float: left;
+    }
+
+    .footer {
+        font-size: 20px;
+    }
+}
+
+/* iPad   重点 */
+@media only screen and (min-width: 480px) and (max-width: 1199px) {
+    #side-nav {
+        background-color: #fff;
+        width: 50%;
+        margin-top: 80px;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    /*进度条  */
+    .top_progress {
+        top: 80px;
+    }
+
+    #top-menu {
+        display: block;
+        height: 80px;
+    }
+
+    .top-title div {
+        font-size: 28px;
+
+    }
+
+    .blogs {
+        margin-top: 110px;
+    }
+
+    .menu ul li a {
+        font-size: 30px;
+    }
+
+    .blogs .article-list li {
+        height: 230px;
+    }
+
+    .bloginfo p {
+        line-height: 19px;
+    }
+
+    .blogpic {
+        border-radius: 0%;
+        width: 30%;
+    }
+    .logo-img {
+        margin: 20px 20px;
+    }
+    .logo-text {
+        height: 80px;
+        line-height: 80px;
+    }
+}
 @media only screen and (max-width: 800px) {
     li：hover {
         border: none !important;
@@ -39,9 +189,15 @@
     .blogs {
         width: 100%;
     }
+    .logo{
+        float: left;
+        height: 60px;
+        width: 100%;
+        margin: 0;
+    }
 }
 
-/* 超小手机 */
+/* 超小手机 一般不必理会 */
 @media only screen and (max-width: 359px) {
     .menu {
         display: block;
@@ -141,148 +297,7 @@
     }
 }
 
-/* 一般手机 */
-@media only screen and (min-width: 360px) and (max-width: 479px) {
-    .menu {
-        display: block;
-    }
 
-    .menubar svg {
-        width: 100%;
-        height: 150%;
-        position: relative;
-        top: -19px;
-        left: -10px;
-        transform: scale(1.1, 1.1);
-    }
-
-    #top-menu {
-        display: block;
-    }
-
-    #top-menu.menu-inright {
-        margin-left: 70%;
-    }
-
-    .pagination li a.page-link {
-        width: 44px;
-        height: 45px;
-        margin-right: 2px;
-        line-height: 45px;
-
-    }
-
-    .blogs .article-list li {
-        height: 380px;
-        padding: 0;
-        margin-bottom: 22px;
-    }
-
-    .blogpic {
-        width: 100%;
-        height: 54%;
-        border-radius: 0;
-        padding: 4%;
-    }
-
-    .author span {
-        margin-right: 6%;
-    }
-
-    .bloginfo {
-        /* display: none; */
-        width: 100%;
-        height: 25%;
-        position: absolute;
-        bottom: 12%;
-    }
-
-    .bloginfo p {
-        text-align: justify;
-        padding: 0 8%;
-        line-height: 19px;
-    }
-
-    .author {
-        width: 100%;
-        height: 9%;
-        padding-left: 6%;
-
-    }
-
-    h3.blogtitle {
-        position: absolute;
-        top: 53%;
-        width: 100%;
-        margin: 0;
-        /* padding-left: 10%; */
-        text-indent: 2rem;
-        /* text-align: center; */
-    }
-
-    .access {
-        width: 100%;
-    }
-
-    .access>span {
-        width: 100%;
-        float: left;
-    }
-
-    .footer {
-        font-size: 20px;
-    }
-}
-
-/* iPad    */
-@media only screen and (min-width: 480px) and (max-width: 800px) {
-    #side-nav {
-        background-color: #fff;
-        width: 50%;
-        margin-top: 80px;
-    }
-
-    .menu {
-        display: block;
-    }
-
-    /*进度条  */
-    .top_progress {
-        top: 80px;
-    }
-
-    #top-menu {
-        display: block;
-        height: 80px;
-    }
-
-    .top-title div {
-        font-size: 28px;
-
-    }
-
-    .blogs {
-        margin-top: 110px;
-    }
-
-    .menu ul li a {
-        font-size: 30px;
-    }
-
-    .blogs .article-list li {
-        height: 230px;
-    }
-
-    .bloginfo p {
-        line-height: 19px;
-    }
-
-    .blogpic {
-        border-radius: 0%;
-        width: 30%;
-    }
-
-}
 
 /* iPad Pro */
 @media screen and (min-width: 801px) and (max-width: 1199px) {
@@ -308,11 +323,6 @@
         border: none;
     }
 
-    .tabbed ul {
-        /* width: auto; */
-        /* margin: auto; */
-        /* float: right; */
-    }
 
     .sidebar {
         width: 27%;
