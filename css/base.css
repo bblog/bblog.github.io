@@ -1,6 +1,3 @@
-@import url('https://fonts.font.im/css?family=Dancing+Script:700');
-@import url('https://fonts.font.im/css?family=Calligraffitti');
-
 :root {
     --theme-color: hsl(207deg 90% 62%);
 }
@@ -11,6 +8,13 @@
 
 .blue-link:hover {
     text-decoration: underline;
+}
+
+:after,
+:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #list {
@@ -131,14 +135,13 @@
 }
 
 #bottom_frame {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    float: left;
+    position: absolute;
     width: 100%;
-    height: 300px;
-    z-index: -3;
-    transform: translateY(4px)
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
 }
 
 /* 底部推荐栏 */
@@ -373,6 +376,7 @@
 
     /*右边句子*/
     h1.t_nav span {
+        text-overflow: ellipsis;
         text-indent: 1rem;
         float: left;
         color: #999
@@ -385,18 +389,15 @@
         width: auto;
         overflow: hidden;
         float: left;
-        padding-left: 7%;
+        padding-left: 30px;
     }
 
     .tabbed {
         width: 100%;
         min-width: 400px;
         margin: 0 auto;
-        /* box-shadow: 0 0 1px 1px rgba(34,45,57,0.15); */
-        /* box-shadow: 0 9px 16px 0 rgba(0, 0, 0, 0.05); */
-        box-shadow: 0 8px 9px rgba(34, 45, 57, 0.15);
-        /* box-shadow: 0 0 1px #13c5f8; */
-        /* box-shadow: 0 0 1px rgba(0,0,0,0.25); */
+        box-shadow: 0 0 30px rgba(0,0,0,0.07);
+
         overflow: hidden;
         transition: all .8s;
         position: fixed;
@@ -888,12 +889,14 @@
         position: relative;
         color: blue;
     }
-/* 搜索按钮 */
+
+    /* 搜索按钮 */
     .search-button {
         height: 100%;
         float: left;
-        width: 20%;background: url(../svg/search.svg) no-repeat center;
-        background-size:50% 50%;
+        width: 20%;
+        background: url(../svg/search.svg) no-repeat center;
+        background-size: 50% 50%;
     }
 
 
@@ -1206,24 +1209,120 @@
         left: 0%;
         width: 100%;
         text-align: center;
-        background-color: #ffffff;
+        background: linear-gradient(to top, white 0%, white 80%, #eaeaea00 81%, #eaeaea00 100%);
         font-size: 26px;
-        text-align: center;
         padding: 0;
-
+        z-index: 10;
+        float: left;
+        padding-bottom: 150px;
+        line-height: 1.75rem;
     }
 
-    .copyright,
-    .access {
+
+    .icons {
+        width: 100%;
+        height: 2em;
+        background-color: #fff;
+        padding: 0;
+    }
+
+    .icons li:hover {
+        transform: translateY(-5px);
+    }
+
+    .icons li,
+    .icons li a,
+    .icons li a svg {
+        display: inline-block;
+        line-height: 1em;
+    }
+
+    .icons li a {
+        color: white;
+        border-radius: 100%;
+        width: 36px;
+        height: 36px;
+    }
+
+    .icons li a svg {
+        padding: 20%;
+        width: 100%;
+        height: 100%;
+    }
+
+    .qq {
+        background-color: #2196F3;
+    }
+
+    .weixin {
+        background-color: #03A9FC;
+    }
+
+    .github {
+        background-color: #000;
+    }
+
+    .weibo {
+        background-color: #ff9800;
+    }
+
+    .email {
+        background-color: #ff5722;
+    }
+
+    .link-list {
+        background-color: #fff;
+        font-size: 16px;
+        padding: 16px 0;
+    }
+
+    .link-list * {
+        margin-left: 10px;
+    }
+
+    .about-list a:hover,
+    .link-list a:hover {
+        color: #03a9f4;
+    }
+
+    .footer div:not(.canvas-wrap) {
         font-size: 14px;
         color: gray;
-        padding: 3px 0;
+        padding: 0;
+    }
+
+    .about-list * {
+
+        margin: 0;
+    }
+
+    .footer-logo img {
+        height: 40px;
+        width: 40px;
+        margin-right: 16px;
+    }
+
+    .footer-logo * {
+        display: inline-block;
 
     }
 
-    .access>span {
-        margin-right: 20px;
+    .footer-logo>div {
+        position: relative;
+        bottom: 50%;
+        transform: translateY(-50%);
+        font-size: 16px !important;
     }
+
+    .blue-link {
+        color: #03a9f4;
+        padding: 0 3px;
+    }
+
+    .canvas-wrap {
+        background: linear-gradient(to top, white 0%, white 50%, #eaeaea00 51%, #eaeaea00 100%)
+    }
+
 }
 
 /* 返回按钮及侧边栏 */
@@ -1278,6 +1377,7 @@
 .logo-text {
     /* font-family: 'Calligraffitti', cursive; */
     height: 60px;
-    font-size: 30px;
-    line-height: 72px;
+    font-size: 20px;
+    line-height: 60px;
+    position: relative;
 }

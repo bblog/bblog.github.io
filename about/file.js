@@ -4,7 +4,7 @@ xmlhttp.onreadystatechange = function () {
         document.querySelector("#container").setAttribute("value", "48")
         var articles = JSON.parse(this.responseText).articles //例化
         articles = articles.sort(function (a, b) { //按时间排序  整个对象已经排序
-            return Date.parse(a.time) - Date.parse(b.time); //时间正序
+            return Date.parse(b.time) - Date.parse(a.time); //时间正序
         });
         var year = 0
         var Month = 0
@@ -15,7 +15,7 @@ xmlhttp.onreadystatechange = function () {
                 li.classList.add("period")
                 li.querySelector(".title h3").classList.add("contents")
                 li.querySelector(".title h3").innerHTML = element.time.replace(/[^0-9]/ig, "").substring(0, 4)
-                li.querySelector(".title p").innerHTML = " "
+                li.querySelector(".title a").innerHTML = " "
                 li.querySelector(".body a").innerHTML = " "
                 document.querySelector(".timeline").appendChild(li)
                 year = element.time.replace(/[^0-9]/ig, "").substring(0, 4)
@@ -26,7 +26,7 @@ xmlhttp.onreadystatechange = function () {
                 li.classList.add("period")
                 li.querySelector(".title h3").classList.add("contents")
                 li.querySelector(".title h3").innerHTML = Month.substring(0, 4) + "年" + Month.substring(4, 6) + "月"
-                li.querySelector(".title p").innerHTML = " "
+                li.querySelector(".title a").innerHTML = " "
                 li.querySelector(".body a").innerHTML = " "
                 document.querySelector(".timeline").appendChild(li)
             }
@@ -35,7 +35,8 @@ xmlhttp.onreadystatechange = function () {
             li.querySelector(".title h3").innerHTML = element.time
             li.querySelector(".body a").innerHTML = element.title
             li.querySelector(".body a").href = element.url
-            li.querySelector(".title p").innerHTML = element.writer
+            li.querySelector(".title a").innerHTML = element.writer
+            li.querySelector(".title a").href="../../../../about/search.html#"+element.writer
             document.querySelector(".timeline").appendChild(li)
         }
         addLeftList()

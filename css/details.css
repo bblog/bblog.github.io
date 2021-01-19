@@ -39,9 +39,38 @@
     .later {
         /* background-color: aquamarine; */
         padding: 4px 7px 3px 0;
-        margin: 0 14px 4px 0;
+        margin: 0 28px 4px 0;
+        position: relative;
     }
-
+    .hh .later::before,
+    .hh :nth-child(1)::before,
+    .later::before{
+        display: inline-block;
+        width: 23px;
+        height: 14px;
+        position: absolute;
+        left: -18px;
+        bottom: 5px;
+        padding-right: 10px;
+    }
+  
+    .mini >:first-child::before{
+       content: url(../../../../svg/views.svg);
+       
+    }
+    .mini :nth-child(2)::before{
+        content: url(../../../../svg/tag.svg);
+    }
+    .mini :nth-child(3)::before{
+        content: url(../../../../svg/writer.svg);
+    }
+    .hh :nth-child(1)::before{
+        content: url(../../../../svg/time.svg);
+    }
+    #word::before{
+       
+        content: url(../../../../svg/word.svg);
+    }
     .title h2,
     .title h1 {
         margin: 3rem 0;

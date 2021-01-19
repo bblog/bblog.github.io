@@ -40,9 +40,7 @@ var container = document.querySelector('#container');
 
 
 ! function () { //文字设置
-    // 设置footer日期  设置到当前日期
-    var date = new Date();
-    document.querySelector('#now_date').innerHTML = (date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate());
+
     // 设置字数
     // 文章页
 
@@ -76,10 +74,10 @@ var container = document.querySelector('#container');
     }
     // 添加进度条标签
     // if (document.querySelector("#top-menu")) {
-        var progress = document.createElement("progress");
-        progress.setAttribute("class", "top_progress");
-        progress.setAttribute("value", "0");
-        document.body.appendChild(progress);
+    var progress = document.createElement("progress");
+    progress.setAttribute("class", "top_progress");
+    progress.setAttribute("value", "0");
+    document.body.appendChild(progress);
     // }
     // 进度条的响应
     if (document.querySelector('.top_progress')) {
@@ -103,24 +101,7 @@ var container = document.querySelector('#container');
         iframe.setAttribute("src", "../../../iframe/particle_word.html")
         container.insertBefore(iframe, container.childNodes[0]);
     }
-    // add iframe  底部动画
-    //随机几个
-    var bottom_src = [
-        "../../../iframe/bike.html",
-        "../../../iframe/horse.html",
-        "../../../iframe/train.html"
-    ]
-    if (document.querySelector(".no_particle")) { //首页几个页面footer有问题，独立添加
-        document.querySelector("#bottom_frame").setAttribute("height", h)
-        document.querySelector("#bottom_frame").setAttribute("src", bottom_src[Math.floor(Math.random() * bottom_src.length)])
-    } else {
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute("id", "bottom_frame")
-        iframe.setAttribute("frameborder", "0")
-        iframe.setAttribute("height", h)
-        iframe.setAttribute("src", bottom_src[Math.floor(Math.random() * bottom_src.length)])
-        container.insertBefore(iframe, document.querySelector(".footer"));
-    }
+
 }()
 
 //置顶键、qq相应
@@ -222,7 +203,7 @@ if (document.querySelector(".massage")) { //通过是否有标题判断是否要
             card.appendChild(bottom)
             card.setAttribute("class", "bottom_card")
             var container = document.querySelector("#container")
-            container.insertBefore(card, document.querySelector("#bottom_frame"));
+            container.insertBefore(card, document.querySelector(".footer"));
             var list = document.querySelectorAll(".b-htc ul li")
             var text = new Array();
             if (document.querySelector(".title h2")) {
@@ -231,7 +212,7 @@ if (document.querySelector(".massage")) { //通过是否有标题判断是否要
                 var title = document.querySelector(".title h1").innerHTML
             }
             var writer
-            var tag = ""
+            var tag
             var time
             var classification
             var index_have = false //判断index.json中是否存在
@@ -240,21 +221,29 @@ if (document.querySelector(".massage")) { //通过是否有标题判断是否要
             for (let index = 0; index < articles.length; index++) {
                 const element = articles[index];
                 if (element.title == title) {
-                    classification = element.classification
-                    writer = element.writer
-                    tag = element.tag
-                    time = element.time
-                    text.push(index)
-                    index_have = true
+                    classification = element.classification;
+                    writer = element.writer;
+                    tag = element.tag;
+                    time = element.time;
+                    text.push(index);
+                    index_have = true;
                 }
             }
             //设置标题下面的信息栏
-            var spanHTML=document.querySelectorAll(".later")
-            console.log();
+            var spanHTML = document.querySelectorAll(".later")
             if (spanHTML) {
-                spanHTML[0].innerHTML=tag;
-                spanHTML[1].innerHTML=writer;
-                spanHTML[2].innerHTML=time;
+                spanHTML[0].id = "busuanzi_value_page_pv";
+                if (tag != undefined) {
+                    spanHTML[1].innerHTML = tag;
+
+
+                }
+                if (writer != undefined) {
+                    spanHTML[2].innerHTML = writer;
+                }
+                if (time != undefined) {
+                    spanHTML[3].innerHTML = time;
+                }
             }
             if (index_have) { //index.json中存在
                 // 1 !text.includes(index)用于防止有同一篇文章
@@ -474,7 +463,7 @@ function addLeftList(params) { // 生成左侧菜单栏
                 }
             }
             // 目录栏响应
-            if (scrollTop > 250 && width > 800) { //防止移动端出现
+            if ((scrollTop > 250 && scrollTop < document.documentElement.scrollHeight - 900) && width > 800) { //防止移动端出现
                 document.querySelector('#side-nav').classList.add("left")
             } else {
                 document.querySelector('#side-nav').classList.remove("left")
@@ -520,10 +509,6 @@ if (document.querySelector("#word") || document.querySelector("#write")) { //详
     }
 }
 
-//底部栏优化
-if (document.querySelector('#busuanzi_container_site_uv')) {
-    document.querySelector('#busuanzi_container_site_uv').innerHTML = document.querySelector('#busuanzi_container_site_uv').innerHTML.slice(0, -1)
-}
 
 var _hmt = _hmt || [];
 (function () { //百度统计
@@ -617,3 +602,8 @@ var _hmt = _hmt || [];
 })();
 
 
+// 加载左上角句子的script 不用一个一个添加   一言API
+var secScript = document.createElement("script");
+secScript.setAttribute("type", "text/javascript");
+secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=js&select=%23hitokoto"); //一言c参数可以设置句子类型
+document.body.insertBefore(secScript, document.body.lastChild);

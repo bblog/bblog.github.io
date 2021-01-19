@@ -40,11 +40,7 @@ function writeMobileNav() {
 
 var width = document.documentElement.clientWidth;
 var container = document.querySelector('#container');
-// 加载左上角句子的script 不用一个一个添加   一言API
-var secScript = document.createElement("script");
-secScript.setAttribute("type", "text/javascript");
-secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=js&select=%23hitokoto"); //一言c参数可以设置句子类型
-document.body.insertBefore(secScript, document.body.lastChild);
+
 
 function setNav() { //导航栏设置
     if (width < 1200) { //移动端菜单栏
@@ -130,7 +126,7 @@ function setNav() { //导航栏设置
         ]
         var href = [ //链接
             "../../../../about/classification.html",
-            "../../../../sentence",
+            "../../../../mysentence",
             "javascript:void(0);"
         ]
         for (let index = 0; index < str.length; index++) {
@@ -246,7 +242,7 @@ function setNav() { //导航栏设置
 
         var str = [ //导航栏文字
             "首页",
-            "好物收录",
+            "知海拾贝",
             "我的原创",
             "查找文章",
             "关于",

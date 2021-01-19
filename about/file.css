@@ -60,6 +60,11 @@ main {
   background-color: #FF5722;
 }
 
+.title a:hover,
+.entry .body a:hover {
+  color: blue;
+}
+
 .entry .title h3 {
   margin: 0;
   font-size: 120%;
