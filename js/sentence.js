@@ -12,7 +12,6 @@ function getYiyan(nth_li) { // 用一言api添加  没有json数据的卡片
     })
     .catch(console.error)
 
-
     // var xhr = new XMLHttpRequest();
     // xhr.onreadystatechange = function () {
     //     if (this.readyState == 4 && this.status == 200) {
