@@ -4,17 +4,26 @@
  */
 
 function getYiyan(nth_li) { // 用一言api添加  没有json数据的卡片
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText); //获得字符串形式的响应数据。
-            console.log(data);
-            document.querySelectorAll("#columns li")[nth_li].querySelector("p").innerHTML = data.hitokoto //加载句子
-            document.querySelectorAll("#columns li")[nth_li].querySelectorAll("p")[1].innerHTML = "—《" + data.from + "》" //加载来源并格式化
-        }
-    }
-    xhr.open('GET', " https://v1.hitokoto.cn",true); //c参数可以的设置不同类型的句子
-    xhr.send();
+    fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      document.querySelectorAll("#columns li")[nth_li].querySelector("p").innerText = data.hitokoto
+      document.querySelectorAll("#columns li")[nth_li].querySelectorAll("p")[1].innerText = "—《" + data.from + "》" //加载来源并格式化
+    })
+    .catch(console.error)
+
+
+    // var xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = function () {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         var data = JSON.parse(this.responseText); //获得字符串形式的响应数据。
+    //         console.log(data);
+    //         document.querySelectorAll("#columns li")[nth_li].querySelector("p").innerHTML = data.hitokoto //加载句子
+    //         document.querySelectorAll("#columns li")[nth_li].querySelectorAll("p")[1].innerHTML = "—《" + data.from + "》" //加载来源并格式化
+    //     }
+    // }
+    // xhr.open('GET', " https://v1.hitokoto.cn",true); //c参数可以的设置不同类型的句子
+    // xhr.send();
 }
 // 封装Ajax加载函数  形参为加载的json文件名
 function getSentenceData(file_name) {
