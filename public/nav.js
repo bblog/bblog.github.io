@@ -1,10 +1,13 @@
+/*
+*PC、移动端菜单栏的显示与事件绑定等
+*/
 function writePCNav() {
     document.write(" <div class='tabbed round'>");
     document.write("<a href=\"..\/..\/..\/..\/\" class=\"logo\">");
     document.write("    <img src=\"https:\/\/s3.ax1x.com\/2020\/11\/18\/DneSpV.png\" class=\"logo-img\">");
-    document.write("    <span class=\"logo-text\">Less is more<\/span>");
+    document.write("    <span class=\"logo-text\">至简博客<\/span>");
     document.write("<\/a>");
-    document.write("        <ul>");
+    document.write("        <ul class=\"nav-list\">");
     document.write("            <li><a><\/a><\/li>");
     document.write("        <\/ul>");
     document.write("        <h1 class=\"t_nav\"><span id=\"hitokoto\">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 <\/span><\/h1>");
@@ -21,7 +24,7 @@ function writeMobileTopBar() {
     document.write("				<\/svg>");
     document.write("			<\/div>");
     document.write("			<div class=\"top-title\">");
-    document.write("				<div><a href=\"..\/..\/..\/..\/\" class=\"logo\"> <img src=\"https:\/\/s3.ax1x.com\/2020\/11\/18\/DneSpV.png\" class=\"logo-img\"> <span class=\"logo-text\">Blue<\/span><\/a><\/div>");
+    document.write("				<div><a href=\"..\/..\/..\/..\/\" class=\"logo\"> <img src=\"https:\/\/s3.ax1x.com\/2020\/11\/18\/DneSpV.png\" class=\"logo-img\"><\/a><\/div>");
     document.write("			<\/div>");
     document.write("<a href=\"..\/..\/..\/..\/about\/search.html\"><span class=\"search-button\"><\/span><\/a>");
     document.write("		<\/div>");
@@ -69,7 +72,7 @@ function setNav() { //导航栏设置
             "发现更多"
         ]
         var href = [ //链接 
-            "../../../../index0.html",
+            "../../../../homePage.html",
             "javascript:void(0);",
             "javascript:void(0);",
             "javascript:void(0);",
@@ -99,8 +102,8 @@ function setNav() { //导航栏设置
             "美句收录"
         ]
         var href = [ //链接
-            "../../../../article",
-            "javascript:void(0);",
+            "../../../../homePage.html#article",
+            "../../../../homePage.html#knowledge",
             "../../../../sentence"
         ]
         for (let index = 0; index < str.length; index++) {
@@ -120,14 +123,14 @@ function setNav() { //导航栏设置
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "second-menu")
         var str = [
-            "我的文章",
-            "个人感悟",
-            "闲言碎语"
+            "个人经典文章",
+            "原创技术文章",
+            "个人感悟"
         ]
         var href = [ //链接
-            "../../../../about/classification.html",
-            "../../../../mysentence",
-            "javascript:void(0);"
+            "../../../../homePage.html#myArticle",
+            "../../../../homePage.html#myKnowledge",
+            "../../../../mySentence"
         ]
         for (let index = 0; index < str.length; index++) {
             //由str的长度添加<li><a></a></li>
@@ -235,6 +238,27 @@ function setNav() { //导航栏设置
         }
         article_li.appendChild(ul2)
 
+
+        //移动端一级菜单点击展开二级菜单
+        window.onload = function (params) {
+            var navButton = document.querySelectorAll('.mobile-navbar li');
+            for (let index = 1; index < navButton.length; index++) {
+                const element = navButton[index];
+                element.addEventListener("click", function (e) {
+                    if (this.classList.contains('second-menu-open') == true) { //如果已经展开
+                        this.classList.remove("second-menu-open") //关闭
+                    } else { //如果没展开
+                        this.classList.add("second-menu-open") //展开点击的地方
+                    }
+                    for (var j = 1; j < navButton.length; j++) { //把其他的关闭
+                        if (navButton[j] != this) {
+                            navButton[j].classList.remove("second-menu-open")
+                        }
+                    }
+                })
+
+            }
+        }
     } else { //PC端导航栏
 
         //设置导航栏文字
@@ -249,7 +273,7 @@ function setNav() { //导航栏设置
             "发现更多"
         ]
         var href = [ //链接 
-            "../../../../index0.html",
+            "../../../../homePage.html",
             "javascript:void(0);",
             "javascript:void(0);",
             "../../../../about/search.html",
@@ -280,8 +304,8 @@ function setNav() { //导航栏设置
             "美句收录"
         ]
         var href = [ //链接
-            "../../../../article",
-            "javascript:void(0);",
+            "../../../../homePage.html#article",
+            "../../../../homePage.html#knowledge",
             "../../../../sentence"
         ]
         for (let index = 0; index < str.length; index++) {
@@ -301,14 +325,14 @@ function setNav() { //导航栏设置
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "ul_c")
         var str = [
-            "我的文章",
-            "个人感悟",
-            "闲言碎语"
+            "个人经典文章",
+            "原创技术文章",
+            "个人句子"
         ]
         var href = [ //链接
-            "../../../../about/classification.html",
-            "../../../../sentence",
-            "javascript:void(0);"
+            "../../../../homePage.html#myArticle",
+            "../../../../homePage.html#myKnowledge",
+            "../../../../mySentence"
         ]
         for (let index = 0; index < str.length; index++) {
             //由str的长度添加<li><a></a></li>
@@ -416,11 +440,21 @@ function setNav() { //导航栏设置
             ul2.appendChild(li1)
         }
         article_li.appendChild(ul2)
+
+        window.addEventListener("scroll", function (e) { //pc导航栏背景
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
+            const tabbed = document.querySelector('.tabbed');
+            // 目录栏响应
+            if (tabbed) {
+                if (scrollTop > 100) { //防止移动端出现
+                    tabbed.classList.add("tabbed-bg")
+                } else {
+                    tabbed.classList.remove("tabbed-bg")
+                }
+            }
+
+        })
     }
 };
 
 setNav();
-
-window.onresize = function () {
-    location.reload();
-}

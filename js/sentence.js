@@ -8,11 +8,12 @@ function getYiyan(nth_li) { // 用一言api添加  没有json数据的卡片
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText); //获得字符串形式的响应数据。
+            console.log(data);
             document.querySelectorAll("#columns li")[nth_li].querySelector("p").innerHTML = data.hitokoto //加载句子
-            document.querySelectorAll("#columns li")[nth_li].querySelectorAll("p")[1].innerHTML = "————《" + data.from + "》" //加载来源并格式化
+            document.querySelectorAll("#columns li")[nth_li].querySelectorAll("p")[1].innerHTML = "—《" + data.from + "》" //加载来源并格式化
         }
     }
-    xhr.open('get', " https://international.v1.hitokoto.cn/?c=b&c=i&c=k"); //c参数可以的设置不同类型的句子
+    xhr.open('GET', " https://v1.hitokoto.cn",true); //c参数可以的设置不同类型的句子
     xhr.send();
 }
 // 封装Ajax加载函数  形参为加载的json文件名
@@ -21,7 +22,7 @@ function getSentenceData(file_name) {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var sentence = JSON.parse(this.responseText).sentence
-            var per_page_amount = 20 //决定每页卡片数量
+            var per_page_amount = 21 //决定每页卡片数量
             var nth_page = 0 //第几页
             setCardHTML(0);
             document.querySelector(".pagination").addEventListener("click", function (e) {
@@ -75,11 +76,11 @@ function getSentenceData(file_name) {
                             sentenceHtml[nth_li].querySelectorAll("p")[nth_para].innerHTML = sentence[nth_card].content[nth_para]
                         }
                         //作家
-                        sentenceHtml[nth_li].querySelector("p:last-child").innerHTML = "———— " + sentence[nth_card].writer
+                        sentenceHtml[nth_li].querySelector("p:last-child").innerHTML = "—— " + sentence[nth_card].writer
                     } else { //用一言api添加
                         var img = document.createElement('img') //add img
                         document.querySelectorAll('#columns li')[nth_li].appendChild(img)
-                        document.querySelectorAll('#columns li')[nth_li].querySelector("img").src = "https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture" //必应图片
+                        document.querySelectorAll('#columns li')[nth_li].querySelector("img").src = "https://bing.ioliu.cn/v1/rand?w=600&h=800" 
                         var p = document.createElement('p') //添加<p></p>
                         document.querySelectorAll('#columns li')[nth_li].appendChild(p)
                         var p = document.createElement('p')

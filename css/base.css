@@ -1,15 +1,19 @@
+/*  
+*所有页面都必须包含的样式，主要包含nav、footer、aside的样式
+*/
 :root {
-    --theme-color: hsl(207deg 90% 62%);
+    --theme-color: rgb(0, 153, 255);
 }
 
-.blue-link {
-    color: #0366d6;
-}
-
-.blue-link:hover {
+/* .blue-link:hover {
     text-decoration: underline;
+} */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: initial;
 }
-
 :after,
 :before {
     -webkit-box-sizing: border-box;
@@ -23,7 +27,7 @@
     right: 25px;
     width: 32px;
     height: 32px;
-    color: #03a9f4;
+    color: var(--theme-color);
     fill: currentColor;
     z-index: 1000;
 }
@@ -310,10 +314,6 @@
 
     }
 
-    html,
-    body {
-        scroll-behavior: smooth;
-    }
 
     img {
         border: 0;
@@ -396,15 +396,13 @@
         width: 100%;
         min-width: 400px;
         margin: 0 auto;
-        box-shadow: 0 0 30px rgba(0,0,0,0.07);
 
         overflow: hidden;
-        transition: all .8s;
+        transition: all 1.2s;
         position: fixed;
         z-index: 1000;
         height: 60px;
         top: 0;
-        background-color: white;
     }
 
     .tabbed:hover {
@@ -457,7 +455,7 @@
     }
 
     .tabbed>ul>li:hover {
-        color: #3f8efd;
+        color: var(--theme-color);
         z-index: 100;
         overflow: visible;
     }
@@ -490,15 +488,23 @@
         transform: rotate(180deg);
     }
 
+    .tabbed:hover,
+    .tabbed :hover .ul_c,
+    .tabbed-bg .ul_c,
+    .tabbed-bg {
+        background: white;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.07);
+    }
+
     .ul_c {
         position: fixed;
-        background: white;
+        transition: all 1.2s;
         top: 60px;
         padding: 10px 0 0 30%;
         left: 0;
         display: none;
         width: 100% !important;
-        box-shadow: 0 8px 9px rgba(34, 45, 57, 0.15);
+
 
     }
 
@@ -520,7 +526,7 @@
     }
 
     .ul_c li:hover {
-        color: #03A9F4;
+        color: var(--theme-color);
         background-color: whitesmoke;
     }
 
@@ -528,304 +534,13 @@
         display: block;
     }
 
-    /* 
-    .tabbed ul li:hover ul li {
-        height: 60px;
-    } */
-
     #active {
-        color: #03A9F4;
+        color: var(--theme-color);
     }
 
 }
 
 /* ================导航栏结束=================== */
-
-/* =========左边栏============= */
-@media screen {
-
-    /* 上栏 */
-    .photo {
-        width: 100px;
-        border-radius: 50%;
-        z-index: 100;
-        position: absolute;
-        left: -50px;
-        top: -0px;
-    }
-
-    .sidebar {
-        float: left;
-        width: 18%;
-        background-color: hsla(0, 0%, 100%, .6);
-        position: sticky;
-        left: 4%;
-        top: 80px;
-    }
-
-    /*lmnav*/
-    .lmnav {
-        box-shadow: 0 0 35px rgba(220, 219, 255, 0.57);
-        background: #fff0;
-        overflow: hidden;
-        position: relative;
-        margin-bottom: 20px
-    }
-
-
-
-    .navbor {
-        border-left: #ff1b00 1px solid;
-        border-bottom: #ff1b00 6px solid;
-        border-bottom-left-radius: 80%;
-        position: relative;
-        margin-left: 50px;
-        background: url(https://s1.ax1x.com/2020/03/12/8ZwV8U.png) no-repeat bottom right;
-        background-size: 70% 70%;
-        height: 220px;
-    }
-
-    .writer {
-        background: url(../images/writer.svg) no-repeat left center;
-    }
-
-    .myname {
-        padding: 6% 0 0 10%;
-        color: #15b6fe;
-        text-align: center;
-        font-size: 18px;
-    }
-
-    .myin {
-        text-indent: 2em;
-        padding: 20px 0px 40px 60px;
-        color: rgba(34, 34, 47, 0.77);
-        ;
-        line-height: 26px;
-        /* text-align: center; */
-        font-size: 14px;
-
-    }
-
-    /* 搜索栏 */
-    /* .bar6 {background: #F9F0DA;} */
-    .bar6 input {
-        border: 2px solid #2196F3;
-        border-radius: 5px;
-        background: transparent;
-        top: 0;
-        right: 0;
-    }
-
-    .bar6 input:focus {
-        background-color: azure;
-        border: 2px solid red;
-    }
-
-    .bar6 input::placeholder {
-        color: rgb(10, 9, 9);
-        font-size: 16px;
-
-    }
-
-    .bar6 button :focus {
-        border: 2px solid red;
-    }
-
-    .bar6 button {
-        background: #2196F3;
-        border-radius: 0 5px 5px 0;
-        width: 60px;
-        top: 0;
-        right: 0;
-    }
-
-    .bar6 button:before {
-        content: "搜索";
-        font-size: 18px;
-        color: #F9F0DA;
-    }
-
-    div.search {
-        padding: 11px 0;
-    }
-
-    .search form {
-        position: relative;
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    /* .search form input, */
-    .search form button {
-        border: none;
-        outline: none;
-    }
-
-    .search form input {
-        width: 100%;
-        height: 42px;
-        padding-left: 13px;
-    }
-
-    .search form button {
-        height: 42px;
-        width: 42px;
-        cursor: pointer;
-        position: absolute;
-    }
-
-
-    /* 下栏 */
-    .category {
-        box-shadow: 0 0 35px rgba(220, 219, 255, 0.57);
-        padding: 20px 30px;
-        background-color: hsla(0, 0%, 100%, .66);
-    }
-
-
-
-    .widget-title h3 {
-        font-size: 20px;
-        font-weight: 700;
-        color: #7167ff;
-        margin-top: 0px;
-        margin-bottom: 15px;
-        text-align: center;
-        letter-spacing: 2px;
-    }
-
-    .category-list ul li {
-        display: block;
-    }
-
-    .category-list ul li a {
-        display: block;
-        padding: 15px 30px;
-        color: #333333;
-        font-size: 16px;
-        font-weight: 400;
-        -webkit-transition: all 0.5s;
-        -o-transition: all 0.5s;
-        -moz-transition: all 0.5s;
-        -ms-transition: all 0.5s;
-        transition: all 0.5s;
-    }
-
-    .category-list ul li a:hover {
-        background: #6c62ff;
-        color: #ffffff;
-    }
-
-    .category-list {
-        border: 2px solid #e9e8ff;
-
-    }
-}
-
-/* ================左边栏结束================ */
-/* ======================分页=========== */
-@media screen {
-    .pagination {
-        position: absolute;
-        left: 50%;
-        top: 0;
-        transform: translate(-50%, 0);
-        text-align: center;
-        display: inline-flex;
-        position: relative;
-        display: inline-block;
-        border-radius: 4px;
-        margin: 50px 0;
-        margin-bottom: 250px;
-    }
-
-    .pagination li {
-        display: inline;
-    }
-
-    .pagination li a.page-link {
-        width: 55px;
-        height: 45px;
-        border: 2px solid #6559bc;
-        padding: 0;
-        margin-right: 12px;
-        font-size: 22px;
-        font-weight: 600;
-        color: #6559bc;
-        line-height: 45px;
-        overflow: hidden;
-        position: relative;
-        transition: all 0.3s ease 0s;
-        float: left;
-        text-decoration: none;
-    }
-
-    .pagination li:last-child a.page-link {
-        margin-right: 0;
-        border-top-right-radius: 4px;
-        border-bottom-right-radius: 4px;
-    }
-
-    .pagination>li:first-child>a {
-        margin-left: 0;
-        border-top-left-radius: 4px;
-        border-bottom-left-radius: 4px;
-    }
-
-    .pagination li a.page-link:before,
-    .pagination li a.page-link:after {
-        content: "";
-        width: 0;
-        height: 100%;
-        background: #06d7fc;
-        position: absolute;
-        bottom: -1px;
-        left: -20px;
-        transform: rotate(-15deg);
-        transform-origin: top left;
-        z-index: -1;
-        transition: all 0.5s ease 0s;
-    }
-
-    .pagination li a.page-link:after {
-        background: #6559bc;
-        left: auto;
-        right: -10px;
-        transform: rotate(13deg);
-        transform-origin: bottom right;
-        transition-delay: 0.2s;
-    }
-
-    .pagination li.active a.page-link,
-    .pagination li a.page-link:hover,
-    .pagination li.active a.page-link:hover {
-        color: #fff;
-        background: transparent;
-    }
-
-    .pagination li.active a.page-link:before,
-    .pagination li a.page-link:hover:before,
-    .pagination li.active a.page-link:hover:before,
-    .pagination li.active a.page-link:after,
-    .pagination li a.page-link:hover:after,
-    .pagination li.active a.page-link:hover:after {
-        width: 150%;
-    }
-
-    @media only screen and (max-width: 480px) {
-        .pagination {
-            display: block;
-        }
-
-        .pagination li {
-            display: inline-block;
-        }
-    }
-}
-
-/* ==============分页结束============= */
-
 
 
 /* =========移动端菜单栏 与特效===== */
@@ -834,7 +549,7 @@
     /* 左边菜单图标 */
     .menubar svg path {
         fill: none;
-        stroke: blue;
+        stroke: var( --theme-color);
         stroke-width: 3;
         stroke-linecap: round;
         stroke-linejoin: round;
@@ -888,6 +603,8 @@
         font-size: 36px;
         position: relative;
         color: blue;
+        width: 80px;
+        margin: auto;
     }
 
     /* 搜索按钮 */
@@ -1081,7 +798,7 @@
         position: relative;
     }
 
-    .mobile-navbar>ul>li>a::after {
+    .mobile-navbar>ul>li:not(:first-child)>a::after {
         content: "";
         position: absolute;
         right: 0;
@@ -1277,6 +994,7 @@
     }
 
     .link-list * {
+        white-space: nowrap;
         margin-left: 10px;
     }
 
@@ -1299,7 +1017,6 @@
     .footer-logo img {
         height: 40px;
         width: 40px;
-        margin-right: 16px;
     }
 
     .footer-logo * {
@@ -1307,15 +1024,14 @@
 
     }
 
-    .footer-logo>div {
+    .footer-logo span {
         position: relative;
-        bottom: 50%;
-        transform: translateY(-50%);
         font-size: 16px !important;
+        color:  var(--theme-color);
     }
 
     .blue-link {
-        color: #03a9f4;
+        color: var(--theme-color);
         padding: 0 3px;
     }
 

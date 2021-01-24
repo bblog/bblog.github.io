@@ -1,4 +1,7 @@
 /* =======响应屏幕大小的变化 */
+:root {
+    --theme-color: rgb(0, 153, 255);
+}
 /* 所有移动端 重点*/
 @media only screen and (max-width: 1199px) {
     *：hover {
@@ -6,6 +9,7 @@
         box-shadow: none;
     }
 }
+
 /* 一般手机 重点*/
 @media only screen and (min-width: 360px) and (max-width: 479px) {
     .menu {
@@ -143,16 +147,19 @@
         border-radius: 0%;
         width: 30%;
     }
+
     .logo-img {
         margin: 20px 20px;
     }
+
     .logo-text {
         height: 80px;
         line-height: 80px;
     }
 }
+
 @media only screen and (max-width: 800px) {
- 
+
 
     #side-nav {
         left: -500px;
@@ -188,11 +195,33 @@
     .blogs {
         width: 100%;
     }
-    .logo{
+
+    .logo {
         float: left;
         height: 60px;
         width: 100%;
         margin: 0;
+    }
+
+    .items-select {
+        background-color: #fff;
+        padding: 2px 0 25px 10px;
+
+    }
+
+
+    .top-items li.active {
+        background-color: unset;
+        color: var(--theme-color);
+    }
+
+    .top-items li {
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        background-color: unset;
+        box-shadow: unset;
+        font-size: 12px;
     }
 }
 
@@ -242,7 +271,7 @@
     .blogpic {
         width: 100%;
         height: 54%;
-        border-radius: 20%;
+        border-radius: 2px;
         padding: 4%;
     }
 
@@ -349,3 +378,20 @@
         line-height: 20px;
     }
 }
+@media only screen and (max-width: 1200px) {
+    
+    .my-name {
+        /* width: 100%; */
+       color: #03a9f4;
+       font-size: 35px;
+       position: absolute;
+       top: unset;
+       right: unset;
+       white-space:nowrap;
+       bottom: 25%;
+       left: 50%;
+       transform: translateX(-50%);
+       margin: 50px auto;
+       cursor: pointer;
+    }
+    }

@@ -1,19 +1,16 @@
+/*
+*文章具体内容的样式
+*/
 html {
     overflow-x: initial !important;
 }
-
-/* 优化点击目录跳转后标题被挡住的问题 */
-#write *:target {
-    padding-top: 70px;
-    margin-top: -70px;
-}
-
 
 :root {
     /* --bg-color: #ffffff; */
     --text-color: #333333;
     --select-text-bg-color: #B5D6FC;
     --select-text-font-color: auto;
+
     --monospace: "Lucida Console", Consolas, "Courier", monospace;
 }
 
@@ -1213,11 +1210,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     box-shadow: none;
 }
 
-*,
-:after,
-:before {
-    box-sizing: border-box;
-}
+
 
 :after,
 :before {
@@ -1371,13 +1364,13 @@ content {
 
 #write h2 {
     font-size: 1.3rem;
-    border-bottom: 4px solid hsl(207deg 90% 54% / 78%);
+    border-bottom: 4px solid var(--theme-color);
 }
 
 #write h2 span {
     display: inline-block;
     font-weight: bold;
-    background: hsl(207deg 90% 54% / 78%);
+    background: var(--theme-color);
     color: #ffffff;
     padding: 3px 10px 1px;
     border-top-right-radius: 3px;
@@ -1409,8 +1402,8 @@ content {
 }
 
 #write h3 span {
-    border: 2px solid #2094f3c7;
-    border-top: 4px solid #2094f3c7;
+    border: 2px solid var(--theme-color);
+    border-top: 4px solid var(--theme-color);
     padding: 8px;
     border-radius: 4px;
 }
@@ -1420,7 +1413,7 @@ content {
 }
 
 #write h4 {
-    border-left: 4px solid #2094f3c7;
+    border-left: 4px solid var(--theme-color);
     padding-left: 8px;
     font-size: 1rem;
 }
@@ -1429,7 +1422,7 @@ content {
     content: "⭐";
     font-size: 1.4rem;
     font-weight: bold;
-    color: #2094f3c7;
+    color: var(--theme-color);
     margin-right: 6px;
 }
 
@@ -1437,7 +1430,7 @@ content {
     content: "☞";
     font-size: 1.4rem;
     font-weight: bold;
-    color: #2094f3c7;
+    color: var(--theme-color);
     margin-right: 6px;
 
 }
@@ -2344,4 +2337,158 @@ var {
 #write blockquote.results p {
     margin: 0;
     padding: 0;
+}
+
+
+
+
+/* 优化点击目录跳转后标题被挡住的问题 */
+
+*:target {
+    padding-top: 80px!important;
+    margin-top: -80px!important;
+}
+/* 主要内容 */
+@media screen {
+
+    html,
+    body {
+        scroll-behavior: smooth;
+    }
+
+    #write li p {
+        text-indent: 0rem;
+    }
+
+    main {
+        padding: 0 7.7%;
+        border-radius: 5px;
+        width: 70%;
+        border: 1px solid blue;
+        border-top: 4px solid blue;
+        box-shadow: #9E9E9E 1px 0px 10px;
+        margin: 100px auto 180px auto;
+        padding-bottom: 100px;
+        background-color: hsla(0, 0%, 100%, .88);
+
+    }
+
+    header.title {
+        position: relative;
+        width: 100%;
+        /* height: 236px; */
+        /* padding: 0 10%; */
+        /* margin-bottom: 140px; */
+        /* border-bottom: 1px solid #9e9e9e40; */
+
+    }
+
+    .later {
+        /* background-color: aquamarine; */
+        padding: 4px 7px 3px 0;
+        margin: 0 20px 4px 0;
+        position: relative;
+        white-space: nowrap;
+    }
+    .hh .later::before,
+    .hh :nth-child(1)::before,
+    .later::before{
+        display: inline-block;
+        width: 18px;
+        height: 20px;
+        position: absolute;
+        left: -18px;
+        bottom:0;
+        padding-right: 5px;
+    }
+  
+    .mini >:first-child::before{
+       content: url(../../../../svg/views.svg);
+       
+    }
+    .mini :nth-child(2)::before{
+        content: url(../../../../svg/tag.svg);
+    }
+    .mini :nth-child(3)::before{
+        content: url(../../../../svg/writer.svg);
+    }
+    .hh :nth-child(1)::before{
+        content: url(../../../../svg/time.svg);
+    }
+    #word::before{
+       
+        content: url(../../../../svg/word.svg);
+    }
+    .title h2,
+    .title h1 {
+        margin: 3rem 0;
+        font-size: 2.5rem;
+        line-height: 3.2rem;
+        text-align: center;
+        font-weight: 450;
+    }
+
+    .mini {
+        text-align: center;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #9e9e9e40;
+    }
+
+    .mini span {
+        color: #999;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+    .massage p {
+        font-family: 'Allura';
+        text-align: justify;
+        text-indent: 2rem;
+        line-height: 1.8;
+        overflow: hidden;
+        margin: .8em 0;
+    }
+
+    .massage {
+        font-size: 18px;
+        padding-bottom: 100px;
+    }
+
+    .massage h3 {
+        margin: 70px 0 30px 0;
+        line-height: 1.2;
+    }
+
+    .massage h3 span {
+        padding: 8px 15px;
+        border-left: 4px solid #3ca5f6;
+        background-color: #b2ebf28a;
+        border-radius: 0 5px 5px 0;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    main {
+        width: 95%;
+        margin-bottom: 50px;
+    }
+
+
+
+    header.title {
+        padding: 0;
+    }
+
+    header.title h2,
+    header.title h1 {
+        font-size: 24px;
+        line-height: 36px;
+        margin: 2rem 0;
+    }
+
+
+    .mini span {
+        font-size: 10px;
+    }
 }

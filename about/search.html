@@ -11,9 +11,10 @@
     <title>搜索</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        .pagination{
+        .pagination {
             margin-bottom: 0;
         }
+
         .blogs {
             width: 100% !important;
         }
@@ -94,8 +95,8 @@
 </head>
 
 <body class="no_particle none-top-word">
-	<!-- PC、移动端导航栏和菜单 -->
-	<script src="../../../../public/nav.js"></script>
+    <!-- PC、移动端导航栏和菜单 -->
+    <script src="../../../../public/nav.js"></script>
     <div id="perspective">
         <div id="container">
 
@@ -246,8 +247,8 @@
             </div>
         </div>
     </div>
-	<!-- aside可置顶显示 -->
-	<script src="../../../../public/aside.js"></script>
+    <!-- aside可置顶显示 -->
+    <script src="../../../../public/aside.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script>
         if (document.querySelector("#article_ul li")) {
@@ -302,7 +303,16 @@
                 getJsonItems(searchInput.value)
             }
         }
+        var randomPictureApi = [
+            "http://api.mtyqx.cn/api/random.php",
+            "http://www.dmoe.cc/random.php",
+            "https://api.ixiaowai.cn/api/api.php",
+            "https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture",
+            "https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture",
+            "https://bing.ioliu.cn/v1/rand?w=1920&h=1200",
+            "https://bing.ioliu.cn/v1/rand?w=600&h=800"
 
+        ]
         var result = new Array
 
         function getJsonItems(searchText) {
@@ -466,15 +476,16 @@
                         articlesHTML[nth_li].querySelector(".writer a").href = '#' +
                             articles[result_item].writer
                     } else { //无数据，加载默认内容
-                        articlesHTML[nth_li].querySelector("span a img").src =
-                            "https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"
+                        element.querySelector("span a img").src = randomPictureApi[Math.floor(Math.random() *
+                            randomPictureApi.length)]
+
                         // 图片采用必应API 图片动态更新
                         // 延时几毫秒使图片不同？  待实现
-                        articlesHTML[nth_li].querySelector(".blogtitle a").innerHTML = "没有更多结果了！"
-                        articlesHTML[nth_li].querySelector(".bloginfo p").innerHTML = "没有更多结果了！"
-                        articlesHTML[nth_li].querySelector(".lm a").innerHTML = "没有更多结果了！"
-                        articlesHTML[nth_li].querySelector(".dtime a").innerHTML = "2012-12-12"
-                        articlesHTML[nth_li].querySelector(".writer a").innerHTML = "null"
+                        element.querySelector(".blogtitle a").innerHTML = "没有更多结果了！^o^"
+                        element.querySelector(".bloginfo p").innerHTML = "欢迎来到至简博客，至简是少即是多的意思，简简单单、更少很多时候才会获得更多。"
+                        element.querySelector(".lm a").innerHTML = "demo"
+                        element.querySelector(".dtime a").innerHTML = "2012-12-12"
+                        element.querySelector(".writer a").innerHTML = "佚名"
                     }
                 }
 
@@ -491,20 +502,20 @@
     </script>
     <script type="text/javascript" src="../js/base.js"></script>
     <script src="https://cdn.bootcss.com/scrollReveal.js/4.0.5/scrollreveal.js"></script>
-	<script>
-		if (document.querySelector("#article_ul li")) {
-			ScrollReveal().reveal('#article_ul li', {
-				delay: 100, //延时
-				distance: '24px', //距离
-				duration: 800, //持续时间
-				easing: 'ease-in-out', //动画
-				interval: 300, //间隔F
-				origin: 'bottom', //起点
-				cleanup: false,
-				reset: true,
-			});
-		}
-	</script>
+    <script>
+        if (document.querySelector("#article_ul li")) {
+            ScrollReveal().reveal('#article_ul li', {
+                delay: 100, //延时
+                distance: '24px', //距离
+                duration: 800, //持续时间
+                easing: 'ease-in-out', //动画
+                interval: 300, //间隔F
+                origin: 'bottom', //起点
+                cleanup: false,
+                reset: true,
+            });
+        }
+    </script>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 </body>

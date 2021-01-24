@@ -63,11 +63,11 @@ function writeFooter(){
     document.writeln("	<a target=\'_blank\' href=\'https://bblog.github.io/\'>友情链接3</a>");
     document.writeln("	<a target=\'_blank\' href=\'https://bblog.github.io/\'>更多友链</a>");
     document.writeln("</div>");
-    document.writeln("<div class=\'link-list\'><span>");
-    document.writeln("		<a target=\'_blank\' href=\'../../../../index0.html\'>本站首页</a>");
-    document.writeln("		<a target=\'_blank\' href=\'../../../../index0.html\'>原创文章</a>");
-    document.writeln("		<a target=\'_blank\' href=\'../../../../mysentence\'>个人感悟</a>");
-    document.writeln("		<a target=\'_blank\' href=\'../../../../article\'>知洋拾贝</a>");
+    document.writeln("<div class=\'link-list\'>");
+    document.writeln("		<a target=\'_blank\' href=\'../../../../homePage.html\'>本站首页</a>");
+    document.writeln("		<a target=\'_blank\' href=\'../../../../homePage.html#myArticle\'>原创文章</a>");
+    document.writeln("		<a target=\'_blank\' href=\'../../../../mySentence\'>个人感悟</a>");
+    document.writeln("		<a target=\'_blank\' href=\'../../../../homePage.html#article\'>知海拾贝</a>");
     document.writeln("		<a target=\'_blank\' href=\'../../../../sentence\'>美句收录</a>");
     document.writeln("		<a target=\'_blank\' href=\'../../../../about/search.html#我的\'>文章搜索</a>");
     document.writeln("</div>");
@@ -82,7 +82,7 @@ function writeFooter(){
     document.writeln("</div>");
     document.writeln("<div>本站版权由<a class=\'blue-link\' href=\'../../../../about#关于本人\'>Damir Meng</a>所有，转载请注明出处。");
     document.writeln("</div>");
-    document.writeln("<div>我的理念：Less is more ! 少即是多！大道至简！</div>");
+    document.writeln("<div>至简博客：少即是多！大道至简！</div>");
  
     document.writeln("<div>");
     document.writeln("	<span id=\'busuanzi_container_site_uv\'>你是本站的第<span id=\'busuanzi_value_site_uv\'></span>位访客，</span>");
@@ -92,7 +92,7 @@ function writeFooter(){
     document.writeln("<div>本站自2020年3月8日创建以来，已运行 <span id=\'time-to-now\'></span></div>");
     document.writeln("");
     document.writeln("<div class=\'footer-logo\'><a href=\'../../../../\'>");
-    document.writeln("		<img src=\'https://s3.ax1x.com/2020/11/18/DneSpV.png\'></a>");
+    document.writeln("		<img src=\'https://s3.ax1x.com/2020/11/18/DneSpV.png\'> <span>至简博客</span></a>");
     document.writeln("");
     document.writeln("</div>");
     document.writeln("</footer>");
@@ -254,7 +254,7 @@ if (timeToNowDOM) {
 // add iframe  底部动画
 //随机几个
 var h = window.innerHeight / 2 - 50 + "px"
-var bottom_src = [
+var bottomSrc = [
     "../../../iframe/bike.html",
     "../../../iframe/horse.html",
     "../../../iframe/train.html"
@@ -264,6 +264,6 @@ var iframe = document.createElement("iframe");
 iframe.setAttribute("id", "bottom_frame")
 iframe.setAttribute("frameborder", "0")
 iframe.setAttribute("height", h)
-iframe.setAttribute("src", bottom_src[Math.floor(Math.random() * bottom_src.length)])
+iframe.setAttribute("src", bottomSrc[Math.floor(Math.random() * bottomSrc.length)])
 document.querySelector(".footer").appendChild(iframe)
 document.querySelector(".footer").style.paddingBottom=window.innerHeight / 2 - 120 + "px";

@@ -1,5 +1,5 @@
 /* 
- *各个网页均存在的JS  
+ *所有网页均存在的JS  
  */
 var width = document.documentElement.clientWidth;
 var container = document.querySelector('#container');
@@ -32,12 +32,11 @@ var container = document.querySelector('#container');
     var stateObject = {};
     var title = document.querySelector("title").innerHTML
     var newUrl = document.location.href;
-    if (GetUrlRelativePath() == "/index0.html") { //主页优化
+    if (GetUrlRelativePath() == "/homePage.html" || GetUrlRelativePath() == "/homePage.html#knowledge" || GetUrlRelativePath() == "/homePage.html#article" || GetUrlRelativePath() == "/homePage.html#myArticle" || GetUrlRelativePath() == "/homePage.html#myKnowledge") { //主页优化
         newUrl = window.location.origin
     }
     window.parent.history.pushState(stateObject, title, newUrl);
 }()
-
 
 ! function () { //文字设置
 
@@ -63,7 +62,7 @@ var container = document.querySelector('#container');
     }
     if (document.querySelector('#word')) {
         var p = document.querySelector('.massage').textContent
-        document.querySelector('#word').innerHTML = fnGetCpmisWords(p) + " 字"
+        document.querySelector('#word').innerHTML = fnGetCpmisWords(p) + "字"
     }
 }()
 
@@ -104,45 +103,12 @@ var container = document.querySelector('#container');
 
 }()
 
-//置顶键、qq相应
-! function () {
 
-    // 改变QQ地址  （腾讯QQ的API移动端与PC端链接不同） PC优先
 
-    if (width < 600) {
-        document.querySelector('#qq').href = "mqqwpa://im/chat?chat_type=wpa&uin=790430354&version=1&src_type=web&web_src=oicqzone.com"
-    }
-    // 置顶键的响应（右下角）
-    // window.onload = function () {
-    var scrollTop = 0;
-    document.onscroll = function () {
-        if (scrollTop < (document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset)) { //判断页面滚动的方向
-            //向下
-            // document.querySelector('.top_progress').style.top = "0px"; //进度条
-            // document.querySelector('#top-menu').style.top = "-62px"; //移动端
-            // document.querySelector('.tabbed').style.top = "-62px"; //PC
-            document.querySelector('.aside').style.right = -45 + "px"; //置顶键
-        } else { //向上
-            // document.querySelector('.top_progress').style.top = "60px"; //进度条
-            // document.querySelector('#top-menu').style.top = "0px"; //移动端
-            // document.querySelector('.tabbed').style.top = 0;
-            document.querySelector('.aside').style.right = 5 + "px";
-        }
-        if (scrollTop < 250) {
-            // document.querySelector('.top_progress').style.top = "60px"; //进度条
-            // document.querySelector('#top-menu').style.top = "0px"; //移动端
-            document.querySelector('.aside').style.right = -45 + "px";
-            // document.querySelector('.tabbed').style.top = 0;
-        }
-        scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
-    }
-    // }
-}()
-
-//优化pc和移动端的代码，防止无效的执行
+//移动端目录按钮
 function addListSVg(params) { //移动端菜单键
     if (width < 783) {
-        // 添加svg——菜单是否展示
+        // 添加svg——目录按钮是否展示
         var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
         svg.setAttribute("id", "list")
         var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -158,7 +124,7 @@ function addListSVg(params) { //移动端菜单键
         })
     }
 }
-
+// 推荐文章
 if (document.querySelector(".massage")) { //通过是否有标题判断是否要添加    推荐算法
     var xmlhttp = new XMLHttpRequest()
     xmlhttp.onreadystatechange = function () {
@@ -231,12 +197,10 @@ if (document.querySelector(".massage")) { //通过是否有标题判断是否要
             }
             //设置标题下面的信息栏
             var spanHTML = document.querySelectorAll(".later")
-            if (spanHTML) {
+            if (spanHTML.length > 0) {
                 spanHTML[0].id = "busuanzi_value_page_pv";
                 if (tag != undefined) {
                     spanHTML[1].innerHTML = tag;
-
-
                 }
                 if (writer != undefined) {
                     spanHTML[2].innerHTML = writer;
@@ -581,29 +545,13 @@ var _hmt = _hmt || [];
 })();
 
 
-(function (params) {
-    var navButton = document.querySelectorAll('.mobile-navbar li')
-    for (let index = 1; index < navButton.length; index++) {
-        const element = navButton[index];
-        element.addEventListener("click", function (e) {
-            if (this.classList.contains('second-menu-open') == true) { //如果已经展开
-                this.classList.remove("second-menu-open") //关闭
-            } else { //如果没展开
-                this.classList.add("second-menu-open") //展开点击的地方
-            }
-            for (var j = 1; j < navButton.length; j++) { //把其他的关闭
-                if (navButton[j] != this) {
-                    navButton[j].classList.remove("second-menu-open")
-                }
-            }
-        })
 
-    }
-})();
-
-
-// 加载左上角句子的script 不用一个一个添加   一言API
+// 加载左上角句子的script 不用一个个添加   一言API
 var secScript = document.createElement("script");
 secScript.setAttribute("type", "text/javascript");
-secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=js&select=%23hitokoto"); //一言c参数可以设置句子类型
+secScript.setAttribute("src", "https://v1.hitokoto.cn/?encode=js&select=%23hitokoto&max_length=22"); //一言c参数可以设置句子类型
 document.body.insertBefore(secScript, document.body.lastChild);
+// 页面大小变化，重载页面
+window.onresize = function () {
+    location.reload();
+}

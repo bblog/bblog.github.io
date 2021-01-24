@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#ff6600" />
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>蒙大明的个人博客</title>
+    <title>至简博客</title>
     <!-- <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png"> -->
     <link rel="icon" sizes="any" mask="" href="https://s3.ax1x.com/2020/11/18/DneSpV.png">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" defer> -->
@@ -128,7 +128,7 @@
     <div class="feedback"><img src="">
         <p></p>
     </div>
-    <iframe id="iframe" name="iframe_a" frameborder="0" scrolling-X="no"> </iframe>
+    <iframe id="iframe" name="iframe_a" frameborder="0" scrolling-X="no" src="homePage.html"> </iframe>
     <div id="aplayer"></div>
     <script>
         //刷新
@@ -136,7 +136,7 @@
             document.getElementById('iframe').src = document.location.hash.substring(1)
 
         } else {
-            document.getElementById('iframe').src = "index0.html"
+            document.getElementById('iframe').src = "homePage.html"
         }
         console.log("%cBlue Blog%c\n 蒙大明的博客\n\n  用于发布一些文章！", "font-size:96px;color:#3b3e43",
             "font-size:12px;color:#4285f4;")
