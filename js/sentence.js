@@ -21,8 +21,9 @@ function getYiyan(nth_li) { // 用一言api添加  没有json数据的卡片
     //         document.querySelectorAll("#columns li")[nth_li].querySelectorAll("p")[1].innerHTML = "—《" + data.from + "》" //加载来源并格式化
     //     }
     // }
-    // xhr.open('GET', " https://v1.hitokoto.cn",true); //c参数可以的设置不同类型的句子
+    // xhr.open('f', "https://v1.hitokoto.cn",true); //c参数可以的设置不同类型的句子
     // xhr.send();
+   
 }
 // 封装Ajax加载函数  形参为加载的json文件名
 function getSentenceData(file_name) {
@@ -84,7 +85,7 @@ function getSentenceData(file_name) {
                             sentenceHtml[nth_li].querySelectorAll("p")[nth_para].innerHTML = sentence[nth_card].content[nth_para]
                         }
                         //作家
-                        sentenceHtml[nth_li].querySelector("p:last-child").innerHTML = "—— " + sentence[nth_card].writer
+                        sentenceHtml[nth_li].querySelector("p:last-child").innerHTML = "— " + sentence[nth_card].writer
                     } else { //用一言api添加
                         var img = document.createElement('img') //add img
                         document.querySelectorAll('#columns li')[nth_li].appendChild(img)
