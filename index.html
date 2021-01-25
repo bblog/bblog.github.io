@@ -134,12 +134,39 @@
         //刷新
         if (document.location.hash.substring(1).length > 5) { //借助锚点来加载框架的src  substring(1)去除#
             document.getElementById('iframe').src = document.location.hash.substring(1)
-
         } else {
             document.getElementById('iframe').src = "homePage.html"
         }
         console.log("%cBlue Blog%c\n 蒙大明的博客\n\n  用于发布一些文章！", "font-size:96px;color:#3b3e43",
             "font-size:12px;color:#4285f4;")
+
+        function Mask(text, src) {
+            // r为反馈层圆的半径   text为提示的文本
+            var r
+            window.innerHeight > window.innerWidth ? r = window.innerHeight : r = window.innerWidth
+            document.querySelector('.feedback').style.width = r + 200 + "px"
+            document.querySelector('.feedback').style.height = r + 200 + "px"
+            document.querySelector(".mask").style.display = "block"
+            document.querySelector('.feedback').style.display = "block"
+            if (text) {
+                document.querySelector('.feedback p').innerHTML = text
+            }
+            if (src) {
+                document.querySelector('.feedback img').src = src
+            }
+            setTimeout(function () {
+                document.querySelector('.feedback').style.width = "200px"
+                document.querySelector('.feedback').style.height = "200px"
+            }, 10);
+            document.querySelector(".mask").addEventListener("click", function (e) { //点击灰色部位 反馈层消失
+                document.querySelector('.feedback').style.width = r + 200 + "px"
+                document.querySelector('.feedback').style.height = r + 200 + "px"
+                setTimeout(function () {
+                    document.querySelector(".mask").style.display = "none"
+                    document.querySelector('.feedback').style.display = "none"
+                }, 600);
+            })
+        }
     </script>
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" defer></script>
     <!-- <script src=" https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js" defer></script> -->

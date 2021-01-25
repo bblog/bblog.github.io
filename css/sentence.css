@@ -295,3 +295,40 @@ ul#columns li:hover {
 }
 
 /* ================左边栏结束================ */
+
+.top-items li {
+  position: relative;
+  display: inline-block;
+  background-color: #ffffffdb;
+}
+
+.items-select-title {
+  width: 90%;
+  margin: auto;
+
+  border-radius: 5%;
+}
+
+.items-select {
+  padding: 16px;
+}
+
+.top-items li {
+  padding: 8px;
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: 14px;
+  border-radius: 20px;
+  -moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  -webkit-box-shadow: 0 5px 10px 0 rgb(146 146 146 / 28%);
+  -moz-box-shadow: 0 5px 10px 0 rgb(146 146 146 / 28%);
+  box-shadow: 0 0 10px 0 rgb(146 146 146 / 28%);
+}
+
+.top-items li.active,
+.top-items li:hover {
+  color: white;
+  background-color: var(--theme-color);
+}

@@ -1,4 +1,4 @@
-function writeFooter(){
+function writeFooter() {
     document.write("		<footer class=\"footer\">");
     document.write("				<div class=\"canvas-wrap\"> <canvas id=\"canvas\"><\/canvas><\/div>");
     document.write("				<ul class=\"icons\">");
@@ -14,7 +14,7 @@ function writeFooter(){
     document.write("									<\/path>");
     document.write("								<\/g>");
     document.write("							<\/svg><\/a><\/li>");
-    document.write("					<li><a class=\"weixin\" title=\"微信联系我\">");
+    document.write("					<li><a id=\"weixin\" class=\"weixin\" title=\"微信联系我\">");
     document.write("							<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fab\" data-icon=\"weixin\"");
     document.write("								class=\"svg-inline--fa fa-weixin fa-w-18\" role=\"img\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\"");
     document.write("								viewBox=\"0 0 576 512\">");
@@ -83,7 +83,7 @@ function writeFooter(){
     document.writeln("<div>本站版权由<a class=\'blue-link\' href=\'../../../../about#关于本人\'>Damir Meng</a>所有，转载请注明出处。");
     document.writeln("</div>");
     document.writeln("<div>至简博客：少即是多！大道至简！</div>");
- 
+
     document.writeln("<div>");
     document.writeln("	<span id=\'busuanzi_container_site_uv\'>你是本站的第<span id=\'busuanzi_value_site_uv\'></span>位访客，</span>");
     document.writeln("	<span id=\'busuanzi_container_site_pv\'>本站的第<span id=\'busuanzi_value_site_pv\'></span>次访问！</span>");
@@ -98,7 +98,7 @@ function writeFooter(){
     document.writeln("</footer>");
 }
 
- writeFooter();
+writeFooter();
 const timeToNowDOM = document.querySelector("#time-to-now");
 if (timeToNowDOM) {
     const startTimestamp = new Date(2020, 3, 8).getTime();
@@ -128,7 +128,7 @@ if (timeToNowDOM) {
         cvs = document.getElementById("canvas");
         ctx = cvs.getContext("2d");
         resizeCanvas(cvs);
-      
+
         for (var i = 0; i < 3; i++) {
             var temp = new wave(colours[i], 1, 5);
         }
@@ -161,7 +161,7 @@ if (timeToNowDOM) {
         }
         ctx.globalCompositeOperation = "hue";
         ctx.fillStyle = fill;
-        ctx.fillRect(0,0,cvs.width,cvs.height);
+        ctx.fillRect(0, 0, cvs.width, cvs.height);
     }
 
     function wave(colour, lambda, nodes) {
@@ -266,4 +266,11 @@ iframe.setAttribute("frameborder", "0")
 iframe.setAttribute("height", h)
 iframe.setAttribute("src", bottomSrc[Math.floor(Math.random() * bottomSrc.length)])
 document.querySelector(".footer").appendChild(iframe)
-document.querySelector(".footer").style.paddingBottom=window.innerHeight / 2 - 120 + "px";
+document.querySelector(".footer").style.paddingBottom = window.innerHeight / 2 - 120 + "px";
+const weixin = document.querySelector("#weixin");
+console.log(weixin);
+if (weixin) {
+    weixin.addEventListener("click", function (e) {
+        window.parent.Mask("扫码添加微信", "https://s1.ax1x.com/2020/04/02/GJvhLj.jpg");
+    })
+}

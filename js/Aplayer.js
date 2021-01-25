@@ -1,39 +1,9 @@
 /*！ 作用：
- *1.加载网站标题  
- *2.地址栏响应  
- *3.定义反馈层函数  
- *4.Aplayer播放器的配置与音乐加载
+ *Aplayer播放器的配置与音乐加载
  */
-//反馈层函数
 var iframe = document.querySelector("#iframe")
 
-function Mask(text, src) {
-    // r为反馈层圆的半径   text为提示的文本
-    var r
-    window.innerHeight > window.innerWidth ? r = window.innerHeight : r = window.innerWidth
-    document.querySelector('.feedback').style.width = r + 200 + "px"
-    document.querySelector('.feedback').style.height = r + 200 + "px"
-    document.querySelector(".mask").style.display = "block"
-    document.querySelector('.feedback').style.display = "block"
-    if (text) {
-        document.querySelector('.feedback p').innerHTML = text
-    }
-    if (src) {
-        document.querySelector('.feedback img').src = src
-    }
-    setTimeout(function () {
-        document.querySelector('.feedback').style.width = "200px"
-        document.querySelector('.feedback').style.height = "200px"
-    }, 10);
-    document.querySelector(".mask").addEventListener("click", function (e) { //点击灰色部位 反馈层消失
-        document.querySelector('.feedback').style.width = r + 200 + "px"
-        document.querySelector('.feedback').style.height = r + 200 + "px"
-        setTimeout(function () {
-            document.querySelector(".mask").style.display = "none"
-            document.querySelector('.feedback').style.display = "none"
-        }, 600);
-    })
-}
+
 //配置音乐播放器属性  new 一个播放器
 window.ap = new APlayer({
     container: document.querySelector('#aplayer'),
