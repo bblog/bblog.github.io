@@ -8,16 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link href="../../css/base.css" rel="stylesheet">
-    <link href="../../css/mobile.css" rel="stylesheet">
-    <link href="../../css/typora.style.css" rel="stylesheet">eet">
-    
+    <link href="../../css/typora.style.css" rel="stylesheet">
+    <link href="../../css/mobile.css" rel="stylesheet">eet">
+
     <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
 
 </head>
 
 <body>
-   	<!-- PC、移动端导航栏和菜单 -->
-	<script src="../../../../public/nav.js"></script>
+    <!-- PC、移动端导航栏和菜单 -->
+    <script src="../../../../public/nav.js"></script>
     <div id="perspective">
         <div id="container">
             <!-- 正文，文章列表 -->
@@ -27,7 +27,7 @@
                     <div class="mini"><span class="later"></span><span class="later">建站 博客</span>
                         <span class="later">蒙大明</span>
                         <span class="hh"><span class="later">2020-12-20</span>
-                             <span id="word" class="later">11661字</span></span>
+                            <span id="word" class="later">11661字</span></span>
                     </div>
                 </header>
                 <div class="massage">
@@ -52,10 +52,11 @@
                         <p><strong><span>事实上，我的构想就是构建一个完全自己编写的博客系统，它是司空见惯的，但如果我可以完全自己构建，那将会是十分令人激动的！</span></strong></p>
                         <p><span>可以预见，它将会是十分灵活的，想实现什么功能都完全可以自己去编写代码。</span></p>
                         <p><span>那么，实现方法呢？</span></p>
-                        <h2  class="contents"><a name="如何实现" class="md-header-anchor"></a><span>如何实现？</span></h2>
+                        <h2 class="contents"><a name="如何实现" class="md-header-anchor"></a><span>如何实现？</span></h2>
                         <p><span>如果不考虑细节的话，实现起来似乎很简单，就是把前台的文章内容存储到数据库，然后在将数据库的内容向用户展示。</span></p>
                         <p>&nbsp;</p>
-                        <p><span>简单地说，就是有一个管理员界面，从这个界面编辑的markdown文章将会存储到数据库中，同时生成相对于的json/xml文件、对应的HTML文件。管理员界面用以发布文章，主要面向站长。</span></p>
+                        <p><span>简单地说，就是有一个管理员界面，从这个界面编辑的markdown文章将会存储到数据库中，同时生成相对于的json/xml文件、对应的HTML文件。管理员界面用以发布文章，主要面向站长。</span>
+                        </p>
                         <p><span>访客界面将从数据库加载所有文件，或者加载生成的HTML文件，所有数据将会模板化。</span></p>
                         <p><span>这些看起来都是十分容易实现的，但具体操作估计对我这种菜鸟来说难如登天。</span></p>
                         <p><span>以下是大概的图解：</span></p>
@@ -72,7 +73,7 @@
                         <p><span>通过登录页面进入管理页面，将可以随时随地发布文章，后台管理界面的功能和其他博客系统差不多这里不再赘述。</span></p>
                         <p><span>后台将使用markdown编辑器编辑文章，点击发布文章之后，文章的所有内容将会自动保存到MySQL数据库，同时生成一个对应json或xml文件，为了SEO的需求还会利用模板生成一个对应HTML文件。这些文件生成以后毫无疑问向用户展示将是比前面的内容更加简单的事情。有了这些文件，我们甚至还可以将他展示到APP中。</span>
                         </p>
-                        <h2  class="contents"><a name="需要实现的功能" class="md-header-anchor"></a><span>需要实现的功能</span></h2>
+                        <h2 class="contents"><a name="需要实现的功能" class="md-header-anchor"></a><span>需要实现的功能</span></h2>
                         <p><span>具体功能就和普通的博客系统一样，这里简单说一些吧，毫无疑问会遗漏许许多多的功能。</span></p>
                         <h3><a name="前台" class="md-header-anchor"></a><span>前台</span></h3>
                         <p><span>页面可以完全使用已有的界面，可以添加：</span></p>
@@ -95,9 +96,10 @@
                         <p>&nbsp;</p>
                         <p>&nbsp;</p>
                         <p>&nbsp;</p>
-                        <h2  class="contents"><a name="结果呢" class="md-header-anchor"></a><span>结果呢？</span></h2>
+                        <h2 class="contents"><a name="结果呢" class="md-header-anchor"></a><span>结果呢？</span></h2>
                         <p><span>大概思路是有了，可是实现呢？</span></p>
-                        <p><span>对不起，我的Java、服务器等能力不够强，加上刚刚来实习，而且从事的是单片机的工作，同时还需要做毕业设计（要学Android、Java），所以毫无疑问，我是完全没有时间的。</span></p>
+                        <p><span>对不起，我的Java、服务器等能力不够强，加上刚刚来实习，而且从事的是单片机的工作，同时还需要做毕业设计（要学Android、Java），所以毫无疑问，我是完全没有时间的。</span>
+                        </p>
                         <p><span>所以，虽然为了这个构想我花了许多时间来查询资料，甚至查了“Java和PHP的利弊和趋势等”，但是非常地遗憾，能力有限、时间有限。</span></p>
                         <p><span>所以，</span></p>
                         <p><strong><span>这个大胆的想法必须得搁置了！</span></strong></p>
@@ -117,8 +119,8 @@
             <script src="../../../../public/footer.js"></script>
         </div>
     </div>
-	<!-- aside可置顶显示 -->
-	<script src="../../../../public/aside.js"></script>
+    <!-- aside可置顶显示 -->
+    <script src="../../../../public/aside.js"></script>
     <!-- <script src="../../js/top_text.js"></script> -->
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>

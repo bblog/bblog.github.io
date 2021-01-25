@@ -2,11 +2,27 @@
 :root {
     --theme-color: rgb(0, 153, 255);
 }
+
 /* 所有移动端 重点*/
 @media only screen and (max-width: 1199px) {
     *：hover {
         border: none !important;
         box-shadow: none;
+    }
+
+    .my-name {
+        /* width: 100%; */
+        color: #03a9f4;
+        font-size: 35px;
+        position: absolute;
+        top: unset;
+        right: unset;
+        white-space: nowrap;
+        bottom: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 50px auto;
+        cursor: pointer;
     }
 }
 
@@ -160,6 +176,22 @@
 
 @media only screen and (max-width: 800px) {
 
+    .hh .later::before,
+    .hh :nth-child(1)::before,
+    .later::before {
+        width: 11px;
+        height: 23px;
+        left: -13px;
+        padding-right: 0px;
+    }
+
+    .later {
+        margin-right: 12px;
+    }
+
+    .footer div:not(.canvas-wrap) {
+        font-size: 12px;
+    }
 
     #side-nav {
         left: -500px;
@@ -378,20 +410,3 @@
         line-height: 20px;
     }
 }
-@media only screen and (max-width: 1200px) {
-    
-    .my-name {
-        /* width: 100%; */
-       color: #03a9f4;
-       font-size: 35px;
-       position: absolute;
-       top: unset;
-       right: unset;
-       white-space:nowrap;
-       bottom: 25%;
-       left: 50%;
-       transform: translateX(-50%);
-       margin: 50px auto;
-       cursor: pointer;
-    }
-    }

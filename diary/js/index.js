@@ -352,7 +352,6 @@ function setControl() {
         var length2 = document.querySelector('.contents-list').querySelectorAll('li').length
         for (let index = 0; index < length2; index++) {
             var li = document.querySelector('.contents-list').querySelectorAll('li')[index]
-            console.log(index)
             if ($(event.target).is($(li))) {
                 if (index == 0) {
                     $(".flipbook").turn("page", 6)

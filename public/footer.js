@@ -85,8 +85,8 @@ function writeFooter() {
     document.writeln("<div>至简博客：少即是多！大道至简！</div>");
 
     document.writeln("<div>");
-    document.writeln("	<span id=\'busuanzi_container_site_uv\'>你是本站的第<span id=\'busuanzi_value_site_uv\'></span>位访客，</span>");
-    document.writeln("	<span id=\'busuanzi_container_site_pv\'>本站的第<span id=\'busuanzi_value_site_pv\'></span>次访问！</span>");
+    document.writeln("	<span id=\'busuanzi_container_site_uv\'>至简博客已经有<span id=\'busuanzi_value_site_uv\'></span>位访客，</span>");
+    document.writeln("	<span id=\'busuanzi_container_site_pv\'>并且被访问<span id=\'busuanzi_value_site_pv\'></span>次！</span>");
     document.writeln("</div>");
     document.writeln("<div>本站有来自网络的资源与内容，如侵权请联系本人删除！</div>");
     document.writeln("<div>本站自2020年3月8日创建以来，已运行 <span id=\'time-to-now\'></span></div>");
@@ -268,7 +268,6 @@ iframe.setAttribute("src", bottomSrc[Math.floor(Math.random() * bottomSrc.length
 document.querySelector(".footer").appendChild(iframe)
 document.querySelector(".footer").style.paddingBottom = window.innerHeight / 2 - 120 + "px";
 const weixin = document.querySelector("#weixin");
-console.log(weixin);
 if (weixin) {
     weixin.addEventListener("click", function (e) {
         window.parent.Mask("扫码添加微信", "https://s1.ax1x.com/2020/04/02/GJvhLj.jpg");

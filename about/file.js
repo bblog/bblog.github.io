@@ -31,7 +31,6 @@ xmlhttp.onreadystatechange = function () {
                 document.querySelector(".timeline").appendChild(li)
             }
             var li = document.querySelector(".entry:not(.period)").cloneNode(true)
-            // console.log(li)
             li.querySelector(".title h3").innerHTML = element.time
             li.querySelector(".body a").innerHTML = element.title
             li.querySelector(".body a").href = element.url

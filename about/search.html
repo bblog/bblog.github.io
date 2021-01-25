@@ -454,8 +454,6 @@
                     //nth_card是json中的序号
                     var nth_li = nth_card - start_card //nth_li是HTML里的序号
                     var result_item = result[nth_card]
-                    // console.log(nth_li);
-
                     if (result_item >= 0) { //还存在json对象数据
                         articlesHTML[nth_li].querySelector("span a").href = articles[result_item].url //图片的目的链接
                         articlesHTML[nth_li].querySelector("span a img").src = articles[result_item]
