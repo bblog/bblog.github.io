@@ -97,7 +97,7 @@ var container = document.querySelector('#container');
         iframe.setAttribute("id", "top_h")
         iframe.setAttribute("frameborder", "0")
         iframe.setAttribute("height", h)
-        iframe.setAttribute("src", "../../../iframe/particle_word.html")
+        iframe.setAttribute("src", "../../../iframe/particleWord.html")
         container.insertBefore(iframe, container.childNodes[0]);
     }
 
@@ -549,7 +549,7 @@ var _hmt = _hmt || [];
 // 加载左上角句子的script 不用一个个添加   一言API
 var secScript = document.createElement("script");
 secScript.setAttribute("type", "text/javascript");
-secScript.setAttribute("src", "https://v1.hitokoto.cn/?encode=js&select=%23hitokoto&max_length=22"); //一言c参数可以设置句子类型
+secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=j&c=k&encode=js&select=%23hitokoto&max_length=22"); //一言c参数可以设置句子类型
 document.body.insertBefore(secScript, document.body.lastChild);
 // 页面大小变化，重载页面
 window.onresize = function () {

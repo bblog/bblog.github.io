@@ -2056,10 +2056,6 @@ blockquote .task-list-item input::before {
         height: 0;
     }
 
-    #write p+p {
-        margin: 0;
-    }
-
     #write blockquote,
     #write pre.md-fences,
     #write img {
@@ -2200,8 +2196,6 @@ blockquote .task-list-item input::before {
     direction: ltr;
 }
 
-/* yaml style */
-
 #write pre.md-meta-block {
     min-height: 30px;
     position: sticky;
@@ -2209,8 +2203,6 @@ blockquote .task-list-item input::before {
     margin-top: -1.5rem;
     margin-bottom: 2rem;
 }
-
-/* code & codeblock style */
 
 /* codeblock mac style */
 #write pre.md-fences {
@@ -2288,16 +2280,7 @@ var {
     border-left: none;
 }
 
-#write blockquote.results p {
-    margin: 0;
-    padding: 0;
-}
-
-
-
-
 /* 优化点击目录跳转后标题被挡住的问题 */
-
 *:target {
     padding-top: 80px!important;
     margin-top: -80px!important;
@@ -2339,8 +2322,8 @@ var {
 
     .later {
         /* background-color: aquamarine; */
-        padding: 4px 7px 3px 0;
-        margin: 0 20px 4px 0;
+        padding: 4px 7px 0 0;
+        margin: 0 36px 4px 0;
         position: relative;
         white-space: nowrap;
     }

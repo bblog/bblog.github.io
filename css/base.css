@@ -14,11 +14,25 @@ html {
     text-rendering: optimizelegibility;
     -webkit-font-smoothing: initial;
 }
+
 :after,
 :before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: auto
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--theme-color);
+}
+
+::-webkit-scrollbar-track {
+    background: transparent
 }
 
 #list {
@@ -389,6 +403,7 @@ html {
         width: auto;
         overflow: hidden;
         float: left;
+        margin: 0;
         padding-left: 30px;
     }
 
@@ -549,7 +564,7 @@ html {
     /* 左边菜单图标 */
     .menubar svg path {
         fill: none;
-        stroke: var( --theme-color);
+        stroke: var(--theme-color);
         stroke-width: 3;
         stroke-linecap: round;
         stroke-linejoin: round;
@@ -1027,7 +1042,7 @@ html {
     .footer-logo span {
         position: relative;
         font-size: 16px !important;
-        color:  var(--theme-color);
+        color: var(--theme-color);
     }
 
     .blue-link {

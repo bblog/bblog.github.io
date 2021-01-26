@@ -49,7 +49,7 @@ function getYiyan(nth_li) { // 用一言api添加  没有json数据的卡片
 }
 
 /*2.canvas_ribbon.js>>>直接引入script既可以：	
- *<script id="ribbon" zindex="-1111" alpha="0.2" size="100" src="js/canvas_ribbon .js"></script>
+ *<script id="ribbon" zindex="-1111" alpha="0.2" size="100" src="js/canvasRibbon .js"></script>
  *size>>带子宽度   alpha>>>颜色的深度
  */
 //3.Aplayer

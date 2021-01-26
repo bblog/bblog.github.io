@@ -180,7 +180,6 @@
     .hh :nth-child(1)::before,
     .later::before {
         width: 11px;
-        height: 23px;
         left: -13px;
         padding-right: 0px;
     }
