@@ -89,8 +89,8 @@
         z-index: 10;
     }
 
-    .direction-l,
-    .direction-r {
+    .timeline>li:nth-child(odd)>div,
+    .timeline>li:nth-child(even)>div {
         float: none;
         width: 100%;
     }
@@ -111,8 +111,8 @@
         border-radius: 5px;
     }
 
-    .direction-l .flag:after,
-    .direction-r .flag:after {
+    .timeline>li:nth-child(odd)>div .flag:after,
+    .timeline>li:nth-child(even)>div .flag:after {
         content: "";
         position: absolute;
         left: 50%;
@@ -126,13 +126,13 @@
         pointer-events: none;
     }
 
-    .direction-l .flag {
+    .timeline>li:nth-child(odd)>div .flag {
         -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
         -moz-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
         box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
     }
 
-    .direction-r .flag {
+    .timeline>li:nth-child(even)>div .flag {
         -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
         -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
         box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.15);
@@ -148,11 +148,11 @@
         color: #fff;
     }
 
-    .direction-l .time-wrapper {
+    .timeline>li:nth-child(odd)>div .time-wrapper {
         float: none;
     }
 
-    .direction-r .time-wrapper {
+    .timeline>li:nth-child(even)>div .time-wrapper {
         float: none;
     }
 
@@ -173,8 +173,8 @@
         z-index: 15;
     }
 
-    .direction-l .desc,
-    .direction-r .desc {
+    .timeline>li:nth-child(odd)>div .desc,
+    .timeline>li:nth-child(even)>div .desc {
         position: relative;
         margin: 1em 1em 0 1em;
         padding: 1em;
@@ -229,24 +229,26 @@
         top: 8px;
     }
 
-    .timeline .direction-l .hexa {
+    .timeline>li:nth-child(odd)>div .hexa {
+        top: 16px;
         left: auto;
-        right: -31px;
+        right: -30px;
     }
 
-    .timeline .direction-r .hexa {
-        left: -31px;
+    .timeline>li:nth-child(even)>div .hexa {
+        top: 16px;
+        left: -30px;
         right: auto;
     }
 
-    .direction-l {
+    .timeline>li:nth-child(odd)>div {
         position: relative;
         width: 310px;
         float: left;
         text-align: right;
     }
 
-    .direction-r {
+    .timeline>li:nth-child(even)>div {
         position: relative;
         width: 310px;
         float: right;
@@ -262,7 +264,7 @@
         font-size: 18px;
     }
 
-    .direction-l .flag:after {
+    .timeline>li:nth-child(odd)>div .flag:after {
         left: auto;
         right: -16px;
         top: 50%;
@@ -272,7 +274,7 @@
         border-width: 8px;
     }
 
-    .direction-r .flag:after {
+    .timeline>li:nth-child(even)>div .flag:after {
         top: 50%;
         margin-top: -8px;
         border: solid transparent;
@@ -287,11 +289,11 @@
         margin: 0;
     }
 
-    .direction-l .time-wrapper {
+    .timeline>li:nth-child(odd)>div .time-wrapper {
         float: left;
     }
 
-    .direction-r .time-wrapper {
+    .timeline>li:nth-child(even)>div .time-wrapper {
         float: right;
     }
 
@@ -299,7 +301,7 @@
         padding: 5px 10px;
     }
 
-    .direction-r .desc {
+    .timeline>li:nth-child(even)>div .desc {
         margin: 1em 0 0 0.75em;
     }
 }
@@ -312,14 +314,14 @@
         font-size: 16px;
     }
 
-    .direction-l {
+    .timeline>li:nth-child(odd)>div {
         position: relative;
         width: 380px;
         float: left;
         text-align: right;
     }
 
-    .direction-r {
+    .timeline>li:nth-child(even)>div {
         position: relative;
         width: 380px;
         float: right;

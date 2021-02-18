@@ -9,8 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link href="../../css/base.css" rel="stylesheet">
     <link href="../../css/typora.style.css" rel="stylesheet">
-    <link href="../../css/mobile.css" rel="stylesheet">eet">
-
+    <link href="../../css/mobile.css" rel="stylesheet">
     <link rel="icon" sizes="any" mask="" href="https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png">
 
 </head>
@@ -62,14 +61,14 @@
                         <p><span>以下是大概的图解：</span></p>
                         <p><a href='https://imgchr.com/i/rdPyPe'><img src="https://s3.ax1x.com/2020/12/20/rdPyPe.png"
                                     referrerpolicy="no-referrer" alt="rdPyPe.png"></a></p>
-                        <h6><a name="访客界面" class="md-header-anchor"></a><span>访客界面</span></h6>
+                        <h4><a name="访客界面" class="md-header-anchor"></a><span>访客界面</span></h4>
                         <p><span>毫无疑问，一个面向访客的页面是必要的，而且这我也早就在GitHub上面发布过不止一个站点了。但是，有别于这种无自己的服务器的静态站点，所有的数据都将自己存储，而不是利用网上的资源去为自己的网页服务，以后将不再需要第三方的评论、浏览记录等网站来实现自己的需求，当然图床还是需要的，毕竟自己的服务器资源是有限的。</span>
                         </p>
                         <p><span>简而言之，就是将所有的文章及站点信息都存储在自己的MySQL数据库中，当然如果有SEO需求将会生成静态网页。</span></p>
                         <p><span>访客页面的文章列表、句子、资源等信息都可以从数据库读取，实现动态的加载，这将会比之前直接加载json文件灵活许多。</span></p>
                         <p><span>同时，利用cookie对不同用户进行不同的文章推荐也是有必要的，但这又是一大问题了。</span></p>
                         <p><span>有了数据库，站内搜索将会得到完美地实现，直接从数据库检索即可。</span></p>
-                        <h6><a name="管理员界面" class="md-header-anchor"></a><span>管理员界面</span></h6>
+                        <h4><a name="管理员界面" class="md-header-anchor"></a><span>管理员界面</span></h4>
                         <p><span>通过登录页面进入管理页面，将可以随时随地发布文章，后台管理界面的功能和其他博客系统差不多这里不再赘述。</span></p>
                         <p><span>后台将使用markdown编辑器编辑文章，点击发布文章之后，文章的所有内容将会自动保存到MySQL数据库，同时生成一个对应json或xml文件，为了SEO的需求还会利用模板生成一个对应HTML文件。这些文件生成以后毫无疑问向用户展示将是比前面的内容更加简单的事情。有了这些文件，我们甚至还可以将他展示到APP中。</span>
                         </p>

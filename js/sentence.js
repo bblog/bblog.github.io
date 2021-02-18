@@ -1,7 +1,24 @@
 /*！
  *1.设置名人名言、个人感悟两个板块的卡片
  *2.通过json传送数据给卡片
+ *3.核心HTML节点是通过本文件动态添加的、如果json没有对应的数据或者到了结束的页码，自动使用一言API添加句子，图片通过randomPictureApi随机添加
+ *4.getSentenceData()是在HTML文件里面分别添加的
  */
+
+var randomPictureApi = [
+    "http://api.mtyqx.cn/api/random.php",
+    "http://www.dmoe.cc/random.php",
+    "https://api.ixiaowai.cn/api/api.php",
+    "https://bing.ioliu.cn/v1/rand?w=1920&h=1200",
+    "https://s3.ax1x.com/2021/01/26/sXesXR.jpg",
+    "https://s3.ax1x.com/2021/01/26/sXeYmq.jpg",
+    "https://s3.ax1x.com/2021/01/26/sXerc9.jpg",
+    "https://s3.ax1x.com/2021/01/26/sXewhF.jpg",
+    "https://s3.ax1x.com/2021/01/26/sXeN7V.jpg",
+    "https://s3.ax1x.com/2021/01/26/sXeakT.jpg",
+    "https://s3.ax1x.com/2021/01/26/sXeBp4.jpg",
+    "https://s3.ax1x.com/2021/01/26/sXeD1J.jpg"
+]
 
 function getYiyan(nth_li) { // 用一言api添加  没有json数据的卡片
     // fetch('https://international.v1.hitokoto.cn/')
@@ -12,21 +29,19 @@ function getYiyan(nth_li) { // 用一言api添加  没有json数据的卡片
     //   document.querySelectorAll("#columns li")[nth_li].querySelectorAll("p")[1].innerText = "—《" + data.from + "》" //加载来源并格式化
     // })
     // .catch(console.error)
-    console.log("执行");
+
     var xhr = new XMLHttpRequest();
     xhr.open('get', 'https://international.v1.hitokoto.cn/?encode=json'); //c参数可以的设置不同类型的句子
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log("接受成功", this);
             var data = JSON.parse(this.responseText); //获得字符串形式的响应数据。
             document.querySelectorAll("#columns li")[nth_li].querySelector("p").innerHTML = data.hitokoto //加载句子
-            document.querySelectorAll("#columns li")[nth_li].querySelectorAll("p")[1].innerHTML = "————《" + data.from + "》" //加载来源并格式化
+            document.querySelectorAll("#columns li")[nth_li].querySelectorAll("p")[1].innerHTML = "— " + data.from; //加载来源并格式化
         }
-        
     }
-
     xhr.send();
 }
+
 // 封装Ajax加载函数  形参为加载的json文件名
 function getSentenceData(file_name) {
     var xmlhttp = new XMLHttpRequest();
@@ -74,9 +89,9 @@ function getSentenceData(file_name) {
                         //nth_card是json中的序号
                         // 添加img
                         if (sentence[nth_card].img_url) {
-                            var img = document.createElement('img')
-                            document.querySelectorAll('#columns li')[nth_li].appendChild(img)
-                            document.querySelectorAll('#columns li')[nth_li].querySelector("img").src = sentence[nth_card].img_url
+                            var img = document.createElement('img');
+                            document.querySelectorAll('#columns li')[nth_li].appendChild(img);
+                            document.querySelectorAll('#columns li')[nth_li].querySelector("img").src = sentence[nth_card].img_url;
                         }
                         var content_length = sentence[nth_card].content.length
                         for (let index = 0; index < content_length + 1; index++) {
@@ -92,17 +107,13 @@ function getSentenceData(file_name) {
                     } else { //用一言api添加
                         var img = document.createElement('img') //add img
                         document.querySelectorAll('#columns li')[nth_li].appendChild(img)
-                        document.querySelectorAll('#columns li')[nth_li].querySelector("img").src = "https://bing.ioliu.cn/v1/rand?w=600&h=800"
+                        document.querySelectorAll('#columns li')[nth_li].querySelector("img").src = randomPictureApi[Math.floor(Math.random() * randomPictureApi.length)];
                         var p = document.createElement('p') //添加<p></p>
                         document.querySelectorAll('#columns li')[nth_li].appendChild(p)
                         var p = document.createElement('p')
                         document.querySelectorAll('#columns li')[nth_li].appendChild(p)
-                        var f=true
-                        if (f) {
-                            getYiyan(nth_li); //调用一言API
-                            f=false
-                        }
-                        
+                        getYiyan(nth_li); //调用一言API
+
                     }
                 }
             }

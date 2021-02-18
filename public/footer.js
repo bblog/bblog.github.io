@@ -89,7 +89,7 @@ function writeFooter() {
     document.writeln("	<span id=\'busuanzi_container_site_pv\'>并且被访问<span id=\'busuanzi_value_site_pv\'></span>次！</span>");
     document.writeln("</div>");
     document.writeln("<div>本站有来自网络的资源与内容，如侵权请联系本人删除！</div>");
-    document.writeln("<div>本站自2020年3月8日创建以来，已运行 <span id=\'time-to-now\'></span></div>");
+    document.writeln("<div>本站自2020年3月8日上线以来，已运行 <span id=\'time-to-now\'></span></div>");
     document.writeln("");
     document.writeln("<div class=\'footer-logo\'><a href=\'../../../../\'>");
     document.writeln("		<img src=\'https://s3.ax1x.com/2020/11/18/DneSpV.png\'> <span>至简博客</span></a>");
@@ -99,6 +99,8 @@ function writeFooter() {
 }
 
 writeFooter();
+
+// 时间显示
 const timeToNowDOM = document.querySelector("#time-to-now");
 if (timeToNowDOM) {
     const startTimestamp = new Date(2020, 3, 8).getTime();
@@ -115,7 +117,7 @@ if (timeToNowDOM) {
     setTimeout(updateTimeStr, 500);
 }
 
-(function () {
+(function () {//波浪
     "use strict";
 
     var cvs, ctx;
@@ -270,6 +272,6 @@ document.querySelector(".footer").style.paddingBottom = window.innerHeight / 2 -
 const weixin = document.querySelector("#weixin");
 if (weixin) {
     weixin.addEventListener("click", function (e) {
-        window.parent.Mask("扫码添加微信", "https://s1.ax1x.com/2020/04/02/GJvhLj.jpg");
+        window.parent.Mask("欢迎扫码添加微信","https://s1.ax1x.com/2020/04/02/GJvhLj.jpg");
     })
 }

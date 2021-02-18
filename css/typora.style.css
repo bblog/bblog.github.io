@@ -1276,7 +1276,7 @@ body,
     font-weight: 400;
     font-size: 16px;
     font-size: 1rem;
-    line-height: var(--lineheight);
+    /* line-height: var(--lineheight); */
     color: var(--text-color);
     text-align: justify;
 }
@@ -1305,32 +1305,37 @@ content {
 #write h4,
 #write h5,
 #write h6 {
-    margin-top: 30px;
-    margin-bottom: 15px;
+
     padding: 0px;
     font-weight: bold;
     color: black;
 }
 
 #write h1 {
+    margin-top: 45px;
+    margin-bottom: 30px;
     font-size: 1.5rem;
 }
 
 #write h2 {
-    font-size: 1.3rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
     border-bottom: 4px solid var(--theme-color);
 }
 
 #write h2 span {
+    left: 0;
     display: inline-block;
     font-weight: bold;
     background: var(--theme-color);
     color: #ffffff;
-    padding: 3px 10px 1px;
-    border-top-right-radius: 3px;
+    padding: 4px 10px 2px;
+    /* border-top-right-radius: 3px; */
     border-top-left-radius: 3px;
     margin-right: 3px;
 }
+
 
 #write h2:after {
     display: inline-block;
@@ -1340,9 +1345,9 @@ content {
     border-right: 20px solid transparent;
 }
 
-
-
 #write h3 {
+    margin-top: 40px;
+    margin-bottom: 25px;
     font-size: 1.2rem;
     padding: 8px 0;
 }
@@ -1351,9 +1356,7 @@ content {
     padding: 8px 5px;
 }
 
-#write h4 {
-    font-size: 1.1rem;
-}
+
 
 #write h3 span {
     border: 2px solid var(--theme-color);
@@ -1362,32 +1365,44 @@ content {
     border-radius: 4px;
 }
 
-#write h5 {
-    font-size: 1rem;
-}
+
 
 #write h4 {
-    border-left: 4px solid var(--theme-color);
-    padding-left: 8px;
-    font-size: 1rem;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+#write h4::before {
+    content: "☞";
+    font-size: inherit;
+    font-weight: bold;
+    color: var(--theme-color);
+    margin-right: 6px;
+
+}
+
+#write h5 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 0.92rem;
 }
 
 #write h5::before {
-    content: "♔";
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: var(--theme-color);
-    margin-right: 6px;
-}
-
-#write h6::before {
-    content: "☞";
-    font-size: 1.4rem;
+    content: "#";
+    height: 0.92rem;
     font-weight: bold;
     color: var(--theme-color);
     margin-right: 6px;
 
 }
+
+#write h6 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+}
+
 
 #write h1 *,
 #write h2 *,
@@ -1874,6 +1889,13 @@ blockquote .task-list-item input::before {
         border: none;
     }
 
+    #write h2:after {
+        display: inline-block;
+        content: "";
+        vertical-align: bottom;
+        border-bottom: 30px solid #efebe9;
+        border-right: 20px solid transparent;
+    }
 
     #write p+p {
         margin: 1rem auto;
@@ -2282,9 +2304,10 @@ var {
 
 /* 优化点击目录跳转后标题被挡住的问题 */
 *:target {
-    padding-top: 80px!important;
-    margin-top: -80px!important;
+    padding-top: 80px !important;
+    margin-top: -80px !important;
 }
+
 /* 主要内容 */
 @media screen {
 
@@ -2327,35 +2350,41 @@ var {
         position: relative;
         white-space: nowrap;
     }
+
     .hh .later::before,
     .hh :nth-child(1)::before,
-    .later::before{
+    .later::before {
         display: inline-block;
         width: 18px;
-        height: 20px;
+        height: 18px;
         position: absolute;
         left: -18px;
-        bottom:0;
+        bottom: 0;
         padding-right: 5px;
     }
-  
-    .mini >:first-child::before{
-       content: url(../../../../svg/views.svg);
-       
+
+    .mini>:first-child::before {
+        content: url(../../../../svg/views.svg);
+
     }
-    .mini :nth-child(2)::before{
+
+    .mini :nth-child(2)::before {
         content: url(../../../../svg/tag.svg);
     }
-    .mini :nth-child(3)::before{
+
+    .mini :nth-child(3)::before {
         content: url(../../../../svg/writer.svg);
     }
-    .hh :nth-child(1)::before{
+
+    .hh :nth-child(1)::before {
         content: url(../../../../svg/time.svg);
     }
-    #word::before{
-       
+
+    #word::before {
+
         content: url(../../../../svg/word.svg);
     }
+
     .title h2,
     .title h1 {
         margin: 3rem 0;
@@ -2379,7 +2408,6 @@ var {
     }
 
     .massage p {
-        font-family: 'Allura';
         text-align: justify;
         text-indent: 2rem;
         line-height: 1.8;

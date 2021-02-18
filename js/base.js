@@ -25,7 +25,7 @@ var container = document.querySelector('#container');
         window.location.href = "/" + "#" + GetUrlRelativePath(); //刷新时传递锚点
     }
     //地址栏  标题  主题
-    window.parent.document.querySelector("title").innerHTML = document.querySelector("title").innerHTML
+    window.parent.document.querySelector("title").innerText = document.querySelector("title").innerText
     window.parent.addEventListener("popstate", function (e) { //后退的优化
         window.history.back(-2);
     }, false);
@@ -38,75 +38,7 @@ var container = document.querySelector('#container');
     window.parent.history.pushState(stateObject, title, newUrl);
 }()
 
-! function () { //文字设置
-
-    // 设置字数
-    // 文章页
-
-    //用word方式计算正文字数
-    function fnGetCpmisWords(str) {
-        sLen = 0;
-        try {
-            //先将回车换行符做特殊处理
-            str = str.replace(/(\r\n+|\s+|　+)/g, "龘");
-            //处理英文字符数字，连续字母、数字、英文符号视为一个单词
-            str = str.replace(/[\x00-\xff]/g, "m");
-            //合并字符m，连续字母、数字、英文符号视为一个单词
-            str = str.replace(/m+/g, "*");
-            //去掉回车换行符
-            str = str.replace(/龘+/g, "");
-            //返回字数
-            sLen = str.length;
-        } catch (e) {}
-        return sLen;
-    }
-    if (document.querySelector('#word')) {
-        var p = document.querySelector('.massage').textContent
-        document.querySelector('#word').innerHTML = fnGetCpmisWords(p) + "字"
-    }
-}()
-
-! function () { //样式设置
-    //随机边框颜色
-    if (document.querySelector('main')) {
-        document.querySelector('main').style.borderColor = "#" + Math.round(Math.random() * 0x1000000).toString(16);
-    }
-    // 添加进度条标签
-    // if (document.querySelector("#top-menu")) {
-    var progress = document.createElement("progress");
-    progress.setAttribute("class", "top_progress");
-    progress.setAttribute("value", "0");
-    document.body.appendChild(progress);
-    // }
-    // 进度条的响应
-    if (document.querySelector('.top_progress')) {
-        window.onscroll = function () {
-            document.querySelector('.top_progress').max = document.body.scrollHeight - window.screen.availHeight
-            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            document.querySelector('.top_progress').value = scrollTop
-        }
-    }
-}();
-
-//添加框架、画布、SVG
-! function () {
-    // add iframe  粒子文字
-    var h = window.innerHeight / 2 - 50 + "px"
-    if (!document.querySelector(".none-top-word")) {
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute("id", "top_h")
-        iframe.setAttribute("frameborder", "0")
-        iframe.setAttribute("height", h)
-        iframe.setAttribute("src", "../../../iframe/particleWord.html")
-        container.insertBefore(iframe, container.childNodes[0]);
-    }
-
-}()
-
-
-
-//移动端目录按钮
-function addListSVg(params) { //移动端菜单键
+function addListSVg() { //添加移动端菜单键与监听
     if (width < 783) {
         // 添加svg——目录按钮是否展示
         var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
@@ -124,236 +56,8 @@ function addListSVg(params) { //移动端菜单键
         })
     }
 }
-// 推荐文章
-if (document.querySelector(".massage")) { //通过是否有标题判断是否要添加    推荐算法
-    var xmlhttp = new XMLHttpRequest()
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var articles = JSON.parse(this.responseText).articles //例化
-            // 顶部
-            var card = document.createElement("div"),
-                head = document.createElement("div");
-            head.setAttribute("class", "h-htc")
-            //   div.innerHTML="&lt;div></div>"
-            var ul = document.createElement("ul")
-            ul.setAttribute("class", "h-tablist-s")
-            var str = ["站长推荐", "相关阅读", "随机阅读"]
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-            for (let index = 0; index < str.length; index++) {
-                var a = document.createElement("a");
-                a.innerHTML = str[index]
-                var li = document.createElement("li");
-                if (index == 1) {
-                    li.setAttribute("class", "active")
-                }
-                li.appendChild(a)
-                ul.appendChild(li)
-            }
-            head.appendChild(ul)
-            //底部列表
-            var bottom = document.createElement("div")
-            bottom.setAttribute("class", "b-htc")
-            var ul = document.createElement("ul")
-            for (let index = 0; index < 12; index++) {
-                var a = document.createElement("a");
-                var span = document.createElement("span");
-                span.innerHTML = index + 1 //文章列表序号
-                var li = document.createElement("li");
-                li.appendChild(span)
-                li.appendChild(a)
-                ul.appendChild(li)
-            }
-            bottom.appendChild(ul)
-            card.appendChild(head)
-            card.appendChild(bottom)
-            card.setAttribute("class", "bottom_card")
-            var container = document.querySelector("#container")
-            container.insertBefore(card, document.querySelector(".footer"));
-            var list = document.querySelectorAll(".b-htc ul li")
-            var text = new Array();
-            if (document.querySelector(".title h2")) {
-                var title = document.querySelector(".title h2").innerHTML
-            } else {
-                var title = document.querySelector(".title h1").innerHTML
-            }
-            var writer
-            var tag
-            var time
-            var classification
-            var index_have = false //判断index.json中是否存在
-            // 判断在json是否有对应的标题
-            // 读取标题所对应的json的信息  将其序号加入text中
-            for (let index = 0; index < articles.length; index++) {
-                const element = articles[index];
-                if (element.title == title) {
-                    classification = element.classification;
-                    writer = element.writer;
-                    tag = element.tag;
-                    time = element.time;
-                    text.push(index);
-                    index_have = true;
-                }
-            }
-            //设置标题下面的信息栏
-            var spanHTML = document.querySelectorAll(".later")
-            if (spanHTML.length > 0) {
-                spanHTML[0].id = "busuanzi_value_page_pv";
-                if (tag != undefined) {
-                    spanHTML[1].innerHTML = tag;
-                }
-                if (writer != undefined) {
-                    spanHTML[2].innerHTML = writer;
-                }
-                if (time != undefined) {
-                    spanHTML[3].innerHTML = time;
-                }
-            }
-            if (index_have) { //index.json中存在
-                // 1 !text.includes(index)用于防止有同一篇文章
-                // 提取标题中有同样文字的文章序号
-                if (text.length < list.length + 1) {
-                    var title_word = title.split(""); //剪辑成数组
-                    for (let index = 0; index < articles.length; index++) {
-                        var element = articles[index];
-                        for (let i = 0; i < title_word.length; i++) { //遍历是否有对应的字
-                            if (element.title.includes(title_word[i]) && text.length < list.length + 1 && !text.includes(index)) {
-                                text.push(index)
-                            }
-                        }
-                    }
-                }
-                // 提取同一个分类（classification）的文章序号
-                if (text.length < list.length + 1) {
-                    for (let index = 0; index < articles.length; index++) {
-                        var element = articles[index];
-                        if (element.classification == classification && text.length < list.length + 1 && !text.includes(index)) {
-                            text.push(index)
-                        }
-                    }
-                }
-                // 提取同一个作者（writer）的文章序号
-                if (text.length < list.length + 1) {
-                    for (let index = 0; index < articles.length; index++) {
-                        var element = articles[index];
-                        if (element.writer == writer && text.length < list.length + 1 && !text.includes(index)) {
-                            text.push(index)
-                        }
-                    }
-                }
-                // 提取同一个标签（tag）的文章序号
-                if (text.length < list.length + 1) {
-                    for (let index = 0; index < articles.length; index++) {
-                        var element = articles[index];
-                        if (element.tag == tag && text.length < list.length + 1 && !text.includes(index)) {
-                            text.push(index)
-                        }
-                    }
-                }
-                // 提取同一个同一年（time）的文章序号
-                if (text.length < list.length + 1) {
-                    for (let index = 0; index < articles.length; index++) {
-                        var element = articles[index];
-                        if (element.time.substring(0, 4) == time.substring(0, 4) && text.length < list.length + 1 && !text.includes(index)) {
-                            text.push(index)
-                        }
-                    }
-                }
 
-            } else { //index.json中不存在时
-                // 提取标题中有同样文字的文章序号
-                text.push("none")
-                if (text.length < list.length + 1) {
-                    var title_word = title.split(""); //剪辑成数组
-                    for (let index = 0; index < articles.length; index++) {
-                        var element = articles[index];
-                        for (let i = 0; i < title_word.length; i++) { //遍历是否有对应的字
-                            if (element.title.includes(title_word[i]) && text.length < list.length + 1 && !text.includes(index)) {
-                                text.push(index)
-                            }
-                        }
-                    }
-                }
-            }
-            // 如果数量不够，随机添加
-            while (text.length < list.length + 1) {
-                var random = Math.floor(Math.random() * articles.length)
-                if (!text.includes(random)) {
-                    text.push(random)
-                }
-            }
-            // 使用text数组添加，title和href
-            for (let index = 0; index < list.length; index++) {
-                var element = list[index];
-                element.querySelector("a").innerHTML = articles[text[index + 1]].title //index+1是因为第一个是当前的文章的序号
-                element.querySelector("a").href = articles[text[index + 1]].url
-            }
-
-            // 添加监听ul
-            document.querySelector(".h-tablist-s").addEventListener("click", function name(e) {
-                for (let index = 0; index < this.childNodes.length; index++) { //清空.active
-                    if (this.childNodes[index].classList.contains('active')) {
-                        this.childNodes[index].classList.remove("active")
-                    }
-                }
-                // 防止触发源的不理想（好像不存在）  添加active
-                if (e.target.localName == "a") {
-                    e.target.parentNode.classList.add("active")
-                } //else if (e.target.localName == "li") {
-                //   e.target.classList.add("active")
-                //  }
-                if (e.target.innerHTML == "站长推荐") { //点击站长推荐
-                    var num = new Array
-                    for (let index = 0; index < articles.length; index++) {
-                        var element = articles[index];
-                        if (element.recommend) { //优先显示json中recommend=true的文章
-                            num.push(index)
-                        }
-                    }
-                    // 防止数量不够，随机添加
-                    while (num.length < list.length) {
-                        var random = Math.floor(Math.random() * articles.length)
-                        if (!num.includes(random)) {
-                            num.push(random)
-                        }
-                    }
-                    // 添加底部展示信息
-                    for (let index = 0; index < list.length; index++) {
-                        var element = list[index];
-                        element.querySelector("a").innerHTML = articles[num[index]].title
-                        element.querySelector("a").href = articles[num[index]].url
-                    }
-                } else if (e.target.innerHTML == "相关阅读") { //点击相关阅读
-                    // 利用数组text设置信息
-                    for (let index = 0; index < list.length; index++) {
-                        var element = list[index];
-                        element.querySelector("a").innerHTML = articles[text[index + 1]].title
-                        element.querySelector("a").href = articles[text[index + 1]].url
-                    }
-                } else if (e.target.innerHTML == "随机阅读") { //点击随机阅读
-                    var Random = new Array
-                    // 获取随机序号且无重复
-                    while (Random.length < list.length) {
-                        var random = Math.floor(Math.random() * articles.length)
-                        if (!Random.includes(random)) {
-                            Random.push(random)
-                        }
-                    }
-                    // 设置信息
-                    for (let index = 0; index < list.length; index++) {
-                        var element = list[index];
-                        element.querySelector("a").innerHTML = articles[Random[index]].title
-                        element.querySelector("a").href = articles[Random[index]].url
-                    }
-                }
-            })
-        }
-    }
-    xmlhttp.open("GET", "../../../../json/index.json", true);
-    xmlhttp.send();
-}
-
-function addLeftList(params) { // 生成左侧菜单栏   
+function addLeftList() { // 生成左侧菜单栏   
     var contents = document.querySelectorAll(".contents")
     if (contents.length > 0) {
         var li = document.createElement("li")
@@ -370,43 +74,24 @@ function addLeftList(params) { // 生成左侧菜单栏
             var element = contents[index];
             var li = document.querySelector("#side-nav li").cloneNode(true) //克隆  true：子节点也克隆
             if (element.dataset.titleName != undefined) { //data-title-name 可以设置标题
-                id = element.dataset.titleName
+                id = element.dataset.titleName;
             } else {
-                const l = 15
-                if (element.children.length > 0) {
-                    if (element.firstChild.innerHTML.replace(/\s+/g, "").length > l) {
-                        //优化,字符串过长时截取前面的非空格字符
-                        id = element.innerText.replace(/\s+/g, "").substring(0, l)
-                    } else {
-                        id = element.innerText //元素里面的所有文本，包括子结点
-                    }
-                } else {
-                    if (element.innerHTML.replace(/\s+/g, "").length > l) { //优化
-                        id = element.innerHTML.replace(/\s+/g, "").substring(0, l)
-                    } else {
-                        id = element.innerHTML
-                    }
-                }
+                id = element.innerText;
             }
-            li.firstChild.innerHTML = id
-            li.firstChild.href = "#" + id
-            element.setAttribute("id", id)
-            ul.appendChild(li)
+            li.firstChild.innerHTML = id;
+            li.firstChild.href = "#" + id;
+            element.setAttribute("id", id);
+            ul.appendChild(li);
         }
-        // 添加监听ul
-        document.querySelector("#side-nav").addEventListener("click", function (e) {
-            var t = this
-            setTimeout(function () {
-                for (let index = 0; index < t.childNodes.length; index++) { //清空.active
-                    if (t.childNodes[index].classList.contains('active')) {
-                        t.childNodes[index].classList.remove("active")
-                    }
+        
+        document.querySelector("#side-nav").addEventListener("click", function (e) {// 添加监听ul
+            
+            if (e.target.localName == "a") {
+                for (let index = 0; index < this.childNodes.length; index++) { //清空.active
+                    this.childNodes[index].classList.remove("active");
                 }
-                // 被点击后添加样式
-                if (e.target.localName == "a") {
-                    e.target.parentNode.classList.add("active")
-                }
-            }, 500);
+                e.target.parentNode.classList.add("active");// 被点击后添加样式
+            }
         })
         window.addEventListener("scroll", function (e) { //监听滚动 便于active的响应
             // h获取被滚动的高度
@@ -437,49 +122,334 @@ function addLeftList(params) { // 生成左侧菜单栏
     }
 }
 
-if (document.querySelector("#word") || document.querySelector("#write")) { //详情页
-    addLeftList(); //添加目录
-    // 添加来必力评论
-    //添加html
-    var main = document.querySelector("main"),
-        h2 = document.createElement("h2"),
-        div = document.createElement("div"),
-        span = document.createElement("span");
-    h2.innerText = "留言";
-    span.innerText = "文明上网，理性发言";
-    span.setAttribute('id', 'tips');
-    h2.appendChild(span);
-    div.setAttribute('id', 'lv-container');
-    div.setAttribute('data-id', 'city');
-    div.setAttribute('data-uid', 'MTAyMC80OTE3Mi8yNTY2Ng==');
-    main.appendChild(h2);
-    main.appendChild(div);
-    //添加js
-    (function (d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') {
-            return;
-        }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-    })(document, 'script');
-    // 顶部栏去掉id=active
-    var tabbed = document.querySelectorAll(".tabbed ul li")
-    for (let index = 0; index < tabbed.length; index++) {
-        const element = tabbed[index];
-        element.id = "";
+! function () { //文章字数、左侧目录、头部粒子文字、留言板块
+    
+    function fnGetCpmisWords(str) {//用word方式计算正文字数
+        var sLen = 0;
+        try {
+            //先将回车换行符做特殊处理
+            str = str.replace(/(\r\n+|\s+|　+)/g, "龘");
+            //处理英文字符数字，连续字母、数字、英文符号视为一个单词
+            str = str.replace(/[\x00-\xff]/g, "m");
+            //合并字符m，连续字母、数字、英文符号视为一个单词
+            str = str.replace(/m+/g, "*");
+            //去掉回车换行符
+            str = str.replace(/龘+/g, "");
+            //返回字数
+            sLen = str.length;
+        } catch (e) {}
+        return sLen;
     }
-}
 
+    if (document.querySelector("#word") || document.querySelector("#write")) { //文章详情页的内容设置
+        //设置页头的字数
+        if (document.querySelector('#word')) {
+            var p = document.querySelector('.massage').textContent;
+            document.querySelector('#word').innerHTML = fnGetCpmisWords(p) + "字";
+        }
 
-var _hmt = _hmt || [];
-(function () { //百度统计
+        addLeftList(); //添加左侧目录
+
+        // 添加来必力评论
+        var main = document.querySelector("main"),
+            h2 = document.createElement("h2"),
+            div = document.createElement("div"),
+            span = document.createElement("span");
+        h2.innerText = "留言";
+        span.innerText = "文明上网，理性发言";
+        span.setAttribute('id', 'tips');
+        h2.appendChild(span);
+        div.setAttribute('id', 'lv-container');
+        div.setAttribute('data-id', 'city');
+        div.setAttribute('data-uid', 'MTAyMC80OTE3Mi8yNTY2Ng==');
+        main.appendChild(h2);
+        main.appendChild(div);
+        //添加js
+        (function (d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+            if (typeof LivereTower === 'function') {
+                return;
+            }
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+
+        // add iframe  添加头部粒子文字
+        var h = window.innerHeight / 2 - 50 + "px"
+        if (!document.querySelector(".none-top-word")) {
+            var iframe = document.createElement("iframe");
+            iframe.setAttribute("id", "top_h")
+            iframe.setAttribute("frameborder", "0")
+            iframe.setAttribute("height", h)
+            iframe.setAttribute("src", "../../../iframe/particleWord.html")
+            container.insertBefore(iframe, container.childNodes[0]);
+        }
+    }
+}()
+
+! function () { //main边框、进度条
+    //随机边框颜色
+    if (document.querySelector('main')) {
+        document.querySelector('main').style.borderColor = "#" + Math.round(Math.random() * 0x1000000).toString(16);
+    }
+    // 添加进度条标签
+    var progress = document.createElement("progress");
+    progress.setAttribute("class", "top_progress");
+    progress.setAttribute("value", "0");
+    document.body.appendChild(progress);
+
+    // 进度条的响应
+    if (document.querySelector('.top_progress')) {
+        window.onscroll = function () {
+            document.querySelector('.top_progress').max = document.body.scrollHeight - window.screen.availHeight
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            document.querySelector('.top_progress').value = scrollTop;
+        }
+    }
+}();
+
+(function () { // 站长推荐、相关阅读、随机阅读栏目DOM的生成与内容加载
+    if (document.querySelector(".massage")) { //通过是否有标题判断是否要添加    推荐算法
+        var xmlhttp = new XMLHttpRequest()
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var articles = JSON.parse(this.responseText).articles //例化
+                // 顶部
+                var card = document.createElement("div"),
+                    head = document.createElement("div");
+                head.setAttribute("class", "h-htc")
+                //   div.innerHTML="&lt;div></div>"
+                var ul = document.createElement("ul");
+                ul.setAttribute("class", "h-tablist-s");
+                var str = ["站长推荐", "相关阅读", "随机阅读"]
+                //由str的长度添加<li><a></a></li>
+                //并设置文字  href
+                for (let index = 0; index < str.length; index++) {
+                    var a = document.createElement("a");
+                    a.innerHTML = str[index];
+                    var li = document.createElement("li");
+                    if (index == 1) {
+                        li.setAttribute("class", "active");
+                    }
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                }
+                head.appendChild(ul)
+                //底部列表
+                var bottom = document.createElement("div");
+                bottom.setAttribute("class", "b-htc");
+                var ul = document.createElement("ul");
+                for (let index = 0; index < 12; index++) {
+                    var a = document.createElement("a");
+                    var span = document.createElement("span");
+                    span.innerHTML = index + 1 //文章列表序号
+                    var li = document.createElement("li");
+                    li.appendChild(span);
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                }
+                bottom.appendChild(ul);
+                card.appendChild(head);
+                card.appendChild(bottom);
+                card.setAttribute("class", "bottom_card");
+                var container = document.querySelector("#container");
+                container.insertBefore(card, document.querySelector(".footer"));
+                var list = document.querySelectorAll(".b-htc ul li");
+                var text = new Array();
+                if (document.querySelector(".title h2")) {
+                    var title = document.querySelector(".title h2").innerText
+                } else {
+                    var title = document.querySelector(".title h1").innerText
+                }
+                var writer
+                var tag
+                var time
+                var classification
+                var index_have = false //判断index.json中是否存在
+                // 判断在json是否有对应的标题
+                // 读取标题所对应的json的信息  将其序号加入text中
+                for (let index = 0; index < articles.length; index++) {
+                    const element = articles[index];
+                    if (element.title == title) {
+                        classification = element.classification;
+                        writer = element.writer;
+                        tag = element.tag;
+                        time = element.time;
+                        text.push(index);
+                        index_have = true;
+                    }
+                }
+                //设置标题下面的信息栏
+                var spanHTML = document.querySelectorAll(".later")
+                if (spanHTML.length > 0) {
+                    spanHTML[0].id = "busuanzi_value_page_pv";
+                    if (tag != undefined) {
+                        spanHTML[1].innerHTML = tag;
+                    }
+                    if (writer != undefined) {
+                        spanHTML[2].innerHTML = writer;
+                    }
+                    if (time != undefined) {
+                        spanHTML[3].innerHTML = time;
+                    }
+                }
+                if (index_have) { //index.json中存在
+                    // 1 !text.includes(index)用于防止有同一篇文章
+                    // 提取标题中有同样文字的文章序号
+                    if (text.length < list.length + 1) {
+                        var title_word = title.split(""); //剪辑成数组
+                        for (let index = 0; index < articles.length; index++) {
+                            var element = articles[index];
+                            for (let i = 0; i < title_word.length; i++) { //遍历是否有对应的字
+                                if (element.title.includes(title_word[i]) && text.length < list.length + 1 && !text.includes(index)) {
+                                    text.push(index)
+                                }
+                            }
+                        }
+                    }
+                    // 提取同一个分类（classification）的文章序号
+                    if (text.length < list.length + 1) {
+                        for (let index = 0; index < articles.length; index++) {
+                            var element = articles[index];
+                            if (element.classification == classification && text.length < list.length + 1 && !text.includes(index)) {
+                                text.push(index)
+                            }
+                        }
+                    }
+                    // 提取同一个作者（writer）的文章序号
+                    if (text.length < list.length + 1) {
+                        for (let index = 0; index < articles.length; index++) {
+                            var element = articles[index];
+                            if (element.writer == writer && text.length < list.length + 1 && !text.includes(index)) {
+                                text.push(index)
+                            }
+                        }
+                    }
+                    // 提取同一个标签（tag）的文章序号
+                    if (text.length < list.length + 1) {
+                        for (let index = 0; index < articles.length; index++) {
+                            var element = articles[index];
+                            if (element.tag == tag && text.length < list.length + 1 && !text.includes(index)) {
+                                text.push(index)
+                            }
+                        }
+                    }
+                    // 提取同一个同一年（time）的文章序号
+                    if (text.length < list.length + 1) {
+                        for (let index = 0; index < articles.length; index++) {
+                            var element = articles[index];
+                            if (element.time.substring(0, 4) == time.substring(0, 4) && text.length < list.length + 1 && !text.includes(index)) {
+                                text.push(index)
+                            }
+                        }
+                    }
+
+                } else { //index.json中不存在时
+                    // 提取标题中有同样文字的文章序号
+                    text.push("none")
+                    if (text.length < list.length + 1) {
+                        var title_word = title.split(""); //剪辑成数组
+                        for (let index = 0; index < articles.length; index++) {
+                            var element = articles[index];
+                            for (let i = 0; i < title_word.length; i++) { //遍历是否有对应的字
+                                if (element.title.includes(title_word[i]) && text.length < list.length + 1 && !text.includes(index)) {
+                                    text.push(index)
+                                }
+                            }
+                        }
+                    }
+                }
+                // 如果数量不够，随机添加
+                while (text.length < list.length + 1) {
+                    var random = Math.floor(Math.random() * articles.length)
+                    if (!text.includes(random)) {
+                        text.push(random)
+                    }
+                }
+                // 使用text数组添加，title和href
+                for (let index = 0; index < list.length; index++) {
+                    var element = list[index];
+                    element.querySelector("a").innerHTML = articles[text[index + 1]].title //index+1是因为第一个是当前的文章的序号
+                    element.querySelector("a").href = articles[text[index + 1]].url
+                }
+
+                // 添加监听ul
+                document.querySelector(".h-tablist-s").addEventListener("click", function name(e) {
+                    for (let index = 0; index < this.childNodes.length; index++) { //清空.active
+                        if (this.childNodes[index].classList.contains('active')) {
+                            this.childNodes[index].classList.remove("active")
+                        }
+                    }
+                    // 防止触发源的不理想（好像不存在）  添加active
+                    if (e.target.localName == "a") {
+                        e.target.parentNode.classList.add("active")
+                    }
+                    if (e.target.innerHTML == "站长推荐") { //点击站长推荐
+                        var num = new Array
+                        for (let index = 0; index < articles.length; index++) {
+                            var element = articles[index];
+                            if (element.recommend) { //优先显示json中recommend=true的文章
+                                num.push(index)
+                            }
+                        }
+                        // 防止数量不够，随机添加
+                        while (num.length < list.length) {
+                            var random = Math.floor(Math.random() * articles.length)
+                            if (!num.includes(random)) {
+                                num.push(random)
+                            }
+                        }
+                        // 添加底部展示信息
+                        for (let index = 0; index < list.length; index++) {
+                            var element = list[index];
+                            element.querySelector("a").innerHTML = articles[num[index]].title
+                            element.querySelector("a").href = articles[num[index]].url
+                        }
+                    } else if (e.target.innerHTML == "相关阅读") { //点击相关阅读
+                        // 利用数组text设置信息
+                        for (let index = 0; index < list.length; index++) {
+                            var element = list[index];
+                            element.querySelector("a").innerHTML = articles[text[index + 1]].title
+                            element.querySelector("a").href = articles[text[index + 1]].url
+                        }
+                    } else if (e.target.innerHTML == "随机阅读") { //点击随机阅读
+                        var Random = new Array
+                        // 获取随机序号且无重复
+                        while (Random.length < list.length) {
+                            var random = Math.floor(Math.random() * articles.length)
+                            if (!Random.includes(random)) {
+                                Random.push(random)
+                            }
+                        }
+                        // 设置信息
+                        for (let index = 0; index < list.length; index++) {
+                            var element = list[index];
+                            element.querySelector("a").innerHTML = articles[Random[index]].title
+                            element.querySelector("a").href = articles[Random[index]].url
+                        }
+                    }
+                })
+            }
+        }
+        xmlhttp.open("GET", "../../../../json/index.json", true);
+        xmlhttp.send();
+    }
+})();
+
+(function () { //添加百度统计、一言API的script
+    var _hmt = _hmt || [];
     var hm = document.createElement("script");
     hm.src = "https://hm.baidu.com/hm.js?dfb2e9af2c4ea3536c96e73ddb3dc6b8";
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
+
+    // 加载左上角句子的script 不用一个个添加   一言API
+    var secScript = document.createElement("script");
+    secScript.setAttribute("type", "text/javascript");
+    secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=j&c=k&encode=js&select=%23hitokoto&max_length=22"); //一言c参数可以设置句子类型
+    document.body.insertBefore(secScript, document.body.lastChild);
 })();
 
 (function () { // 代码块右上角添加复制按钮和功能
@@ -544,14 +514,6 @@ var _hmt = _hmt || [];
     }
 })();
 
-
-
-// 加载左上角句子的script 不用一个个添加   一言API
-var secScript = document.createElement("script");
-secScript.setAttribute("type", "text/javascript");
-secScript.setAttribute("src", "https://v1.hitokoto.cn/?c=d&c=i&c=j&c=k&encode=js&select=%23hitokoto&max_length=22"); //一言c参数可以设置句子类型
-document.body.insertBefore(secScript, document.body.lastChild);
-// 页面大小变化，重载页面
-window.onresize = function () {
+window.onresize = function () { // 页面大小变化，重载页面
     location.reload();
 }

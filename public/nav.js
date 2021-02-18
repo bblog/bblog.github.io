@@ -125,12 +125,14 @@ function setNav() { //导航栏设置
         var str = [
             "个人经典文章",
             "原创技术文章",
-            "个人感悟"
+            "个人句子",
+            "我的说说"
         ]
         var href = [ //链接
             "../../../../homePage.html#myArticle",
             "../../../../homePage.html#myKnowledge",
-            "../../../../mySentence"
+            "../../../../mySentence",
+            "../../../../about/saySomething.html"
         ]
         for (let index = 0; index < str.length; index++) {
             //由str的长度添加<li><a></a></li>
@@ -180,16 +182,14 @@ function setNav() { //导航栏设置
             "关于本站",
             "更新日志",
             "本站统计",
-            "本站代码结构",
-            "关于发文",
+            "本站概述",
             "留言板"
         ]
         var href = [
             "../../../../about",
             "../../../../about/timeline.html",
             "https://tongji.baidu.com/web/welcome/ico?s=dfb2e9af2c4ea3536c96e73ddb3dc6b8",
-            "../../../../about/structure.html",
-            "../../../../about/docs.html",
+            "../../../../about/summary.html",
             "../../../../about/guestbook.html"
         ]
         for (let index = 0; index < str.length; index++) {
@@ -327,12 +327,14 @@ function setNav() { //导航栏设置
         var str = [
             "个人经典文章",
             "原创技术文章",
-            "个人句子"
+            "个人句子",
+            "我的说说"
         ]
         var href = [ //链接
             "../../../../homePage.html#myArticle",
             "../../../../homePage.html#myKnowledge",
-            "../../../../mySentence"
+            "../../../../mySentence",
+            "../../../../about/saySomething.html"
         ]
         for (let index = 0; index < str.length; index++) {
             //由str的长度添加<li><a></a></li>
@@ -383,16 +385,14 @@ function setNav() { //导航栏设置
             "关于本站",
             "更新日志",
             "本站统计",
-            "本站代码结构",
-            "关于发文",
+            "本站概述",
             "留言板"
         ]
         var href = [
             "../../../../about",
             "../../../../about/timeline.html",
             "https://tongji.baidu.com/web/welcome/ico?s=dfb2e9af2c4ea3536c96e73ddb3dc6b8",
-            "../../../../about/structure.html",
-            "../../../../about/docs.html",
+            "../../../../about/summary.html",
             "../../../../about/guestbook.html"
         ]
         for (let index = 0; index < str.length; index++) {

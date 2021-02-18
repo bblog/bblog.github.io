@@ -184,10 +184,10 @@ xmlhttp.onreadystatechange = function () {
                 div.classList.add('page-number')
                 if (index % 2 == 0) {
                     img1.classList.add('change', 'change-right')
-                    img1.src = "https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png"
+                    img1.src = "https://s3.ax1x.com/2020/11/18/DneSpV.png"
                 } else {
                     img1.classList.add('change', 'change-left')
-                    img1.src = "https://i.loli.net/2020/03/12/C9SY8baEqQklv61.png"
+                    img1.src = "https://s3.ax1x.com/2020/11/18/DneSpV.png"
                 }
                 if (index > 0) {
                     document.querySelectorAll('.title-image')[index - First].src = "image/title.png"
@@ -268,38 +268,21 @@ xmlhttp.onreadystatechange = function () {
                 }
             }
 
-            // 遍历所有的pages    的  items-----事项
+            // 遍历所有的pages    设置秘密secret
             for (let index = 0; index < length; index++) {
                 //获取json中content的段数
-                if (myObj.pages[index].done) {
-                    var dones = myObj.pages[index].done.length //选择li元素class=done的数组c长度
-                    // 设置done（已完成）de 的内容
-                    for (let i = 0; i < dones; i++) { //设置li的数量
-                        var li = document.createElement('li')
-                        document.querySelectorAll('.items')[index].appendChild(li)
-                        li.classList.add('done')
-                        var items_done = document.querySelectorAll('.items')[index].querySelectorAll('.done')[i]
-                        var json_done = myObj.pages[index].done[i]
-                        items_done.innerHTML = json_done
+                if (myObj.pages[index].secret) {
+                    var secrets = myObj.pages[index].secret.length
+                    // 设置secret（未完成）de 的内容
+                    for (let i = 0; i < secrets; i++) { //设置li的数量
+                        var p = document.createElement('p')
+                        document.querySelectorAll('.items')[index].appendChild(p)
+                        p.classList.add('secret')
+                        var items_secret = document.querySelectorAll('.items')[index].querySelectorAll('.secret')[i]
+                        var json_secret = myObj.pages[index].secret[i]
+                        items_secret.innerHTML = json_secret
                     }
                 }
-                if (myObj.pages[index].undone) {
-                    var undones = myObj.pages[index].undone.length
-                    // 设置undone（未完成）de 的内容
-                    for (let i = 0; i < undones; i++) { //设置li的数量
-                        var li = document.createElement('li')
-                        document.querySelectorAll('.items')[index].appendChild(li)
-                        li.classList.add('undone')
-                        var items_undone = document.querySelectorAll('.items')[index].querySelectorAll('.undone')[i]
-                        var json_undone = myObj.pages[index].undone[i]
-                        items_undone.innerHTML = json_undone
-                    }
-
-                }
-
-
-
-
             }
         }
         //扉页的设置

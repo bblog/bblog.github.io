@@ -307,8 +307,6 @@
             "http://api.mtyqx.cn/api/random.php",
             "http://www.dmoe.cc/random.php",
             "https://api.ixiaowai.cn/api/api.php",
-            "https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture",
-            "https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture",
             "https://bing.ioliu.cn/v1/rand?w=1920&h=1200",
             "https://bing.ioliu.cn/v1/rand?w=600&h=800"
 
@@ -453,25 +451,26 @@
                     per_page_amount; nth_card++) { //遍历所有的s十个json对象
                     //nth_card是json中的序号
                     var nth_li = nth_card - start_card //nth_li是HTML里的序号
-                    var result_item = result[nth_card]
+                    var result_item = result[nth_card];
+                    var element = articlesHTML[nth_li];
                     if (result_item >= 0) { //还存在json对象数据
-                        articlesHTML[nth_li].querySelector("span a").href = articles[result_item].url //图片的目的链接
-                        articlesHTML[nth_li].querySelector("span a img").src = articles[result_item]
+                        element.querySelector("span a").href = articles[result_item].url //图片的目的链接
+                        element.querySelector("span a img").src = articles[result_item]
                             .img_url //图片链接src用于图片显示
-                        articlesHTML[nth_li].querySelector(".blogtitle a").innerHTML = articles[result_item]
+                        element.querySelector(".blogtitle a").innerHTML = articles[result_item]
                             .title //标题
-                        articlesHTML[nth_li].querySelector(".blogtitle a").href = articles[result_item]
+                        element.querySelector(".blogtitle a").href = articles[result_item]
                             .url //标题的目的链接
-                        articlesHTML[nth_li].querySelector(".bloginfo p").innerHTML = articles[result_item]
+                        element.querySelector(".bloginfo p").innerHTML = articles[result_item]
                             .introduction //文章简介
-                        articlesHTML[nth_li].querySelector(".lm a").innerHTML = articles[result_item].tag //标签
-                        articlesHTML[nth_li].querySelector(".lm a").href = '../../../../about/search.html' + '#' +
+                        element.querySelector(".lm a").innerHTML = articles[result_item].tag //标签
+                        element.querySelector(".lm a").href = '../../../../about/search.html' + '#' +
                             articles[result_item].tag
-                        articlesHTML[nth_li].querySelector(".dtime a").innerHTML = articles[result_item].time //发表时间
-                        articlesHTML[nth_li].querySelector(".dtime a").href = '../../../../about/search.html' + '#' +
+                        element.querySelector(".dtime a").innerHTML = articles[result_item].time //发表时间
+                        element.querySelector(".dtime a").href = '../../../../about/search.html' + '#' +
                             articles[result_item].time
-                        articlesHTML[nth_li].querySelector(".writer a").innerHTML = articles[result_item].writer //作者
-                        articlesHTML[nth_li].querySelector(".writer a").href = '#' +
+                        element.querySelector(".writer a").innerHTML = articles[result_item].writer //作者
+                        element.querySelector(".writer a").href = '#' +
                             articles[result_item].writer
                     } else { //无数据，加载默认内容
                         element.querySelector("span a img").src = randomPictureApi[Math.floor(Math.random() *

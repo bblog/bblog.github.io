@@ -13,8 +13,8 @@ xmlhttp.onreadystatechange = function () {
             if (year != element.time.replace(/[^0-9]/ig, "").substring(0, 4)) {//添加年
                 var li = document.querySelector(".entry:not(.period)").cloneNode(true)
                 li.classList.add("period")
-                li.querySelector(".title h3").classList.add("contents")
-                li.querySelector(".title h3").innerHTML = element.time.replace(/[^0-9]/ig, "").substring(0, 4)
+                li.querySelector(".title div").classList.add("contents")
+                li.querySelector(".title div").innerHTML = element.time.replace(/[^0-9]/ig, "").substring(0, 4)
                 li.querySelector(".title a").innerHTML = " "
                 li.querySelector(".body a").innerHTML = " "
                 document.querySelector(".timeline").appendChild(li)
@@ -24,14 +24,14 @@ xmlhttp.onreadystatechange = function () {
                 var li = document.querySelector(".entry:not(.period)").cloneNode(true)
                 Month = element.time.replace(/[^0-9]/ig, "").substring(0, 6)
                 li.classList.add("period")
-                li.querySelector(".title h3").classList.add("contents")
-                li.querySelector(".title h3").innerHTML = Month.substring(0, 4) + "年" + Month.substring(4, 6) + "月"
+                li.querySelector(".title div").classList.add("contents")
+                li.querySelector(".title div").innerHTML = Month.substring(0, 4) + "年" + Month.substring(4, 6) + "月"
                 li.querySelector(".title a").innerHTML = " "
                 li.querySelector(".body a").innerHTML = " "
                 document.querySelector(".timeline").appendChild(li)
             }
             var li = document.querySelector(".entry:not(.period)").cloneNode(true)
-            li.querySelector(".title h3").innerHTML = element.time
+            li.querySelector(".title div").innerHTML = element.time
             li.querySelector(".body a").innerHTML = element.title
             li.querySelector(".body a").href = element.url
             li.querySelector(".title a").innerHTML = element.writer

@@ -14,8 +14,8 @@
 </head>
 
 <body>
-	<!-- PC、移动端导航栏和菜单 -->
-	<script src="../../../../public/nav.js"></script>
+    <!-- PC、移动端导航栏和菜单 -->
+    <script src="../../../../public/nav.js"></script>
     <div id="perspective">
         <div id="container">
             <!-- 正文，文章列表 -->
@@ -35,9 +35,36 @@
             <script src="../../../../public/footer.js"></script>
         </div>
     </div>
- 	<!-- aside可置顶显示 -->
-     <script src="../../../../public/aside.js"></script>
+    <!-- aside可置顶显示 -->
+    <script src="../../../../public/aside.js"></script>
     <script type="text/javascript" src="../js/base.js"></script>
+    <script>
+        // 添加来必力评论
+        var main = document.querySelector("main"),
+            h2 = document.createElement("h2"),
+            div = document.createElement("div"),
+            span = document.createElement("span");
+        h2.innerText = "留言";
+        span.innerText = "文明上网，理性发言";
+        span.setAttribute('id', 'tips');
+        h2.appendChild(span);
+        div.setAttribute('id', 'lv-container');
+        div.setAttribute('data-id', 'city');
+        div.setAttribute('data-uid', 'MTAyMC80OTE3Mi8yNTY2Ng==');
+        main.appendChild(h2);
+        main.appendChild(div);
+        //添加js
+        (function (d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+            if (typeof LivereTower === 'function') {
+                return;
+            }
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+    </script>
     <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
 </body>
 
