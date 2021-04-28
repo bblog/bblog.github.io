@@ -1,6 +1,6 @@
 /*
-*PC、移动端菜单栏的显示与事件绑定等
-*/
+ *PC、移动端菜单栏的显示与事件绑定等
+ */
 function writePCNav() {
     document.write(" <div class='tabbed round'>");
     document.write("<a href=\"..\/..\/..\/..\/\" class=\"logo\">");
@@ -10,7 +10,7 @@ function writePCNav() {
     document.write("        <ul class=\"nav-list\">");
     document.write("            <li><a><\/a><\/li>");
     document.write("        <\/ul>");
-    document.write("        <h1 class=\"t_nav\"><span id=\"hitokoto\">虽说路途遥远，但已经上路，正在走来，告诉你，它绝不会后退，也不会停下。 <\/span><\/h1>");
+    document.write("        <h1 class=\"t_nav\"><span id=\"hitokoto\">生如逆旅，一苇以航！<\/span><\/h1>");
     document.write(" <\/div");
 }
 
@@ -44,14 +44,93 @@ function writeMobileNav() {
 var width = document.documentElement.clientWidth;
 var container = document.querySelector('#container');
 
-
 function setNav() { //导航栏设置
+
+    var str = [ //导航栏一级文字
+        "首页",
+        "知海拾贝",
+        "我的原创",
+        "查找文章",
+        "关于",
+        "发现更多"
+    ]
+    var href = [ //链接 
+        "../../../../homePage.html",
+        "javascript:void(0);",
+        "javascript:void(0);",
+        "javascript:void(0);",
+        "javascript:void(0);",
+        "javascript:void(0);"
+    ]
+    // 第2项二级标题
+    var strList2 = [
+        "经典文章",
+        "技术文章",
+        "美句收录"
+    ]
+    var hrefList2 = [ //链接
+        "../../../../homePage.html#article",
+        "../../../../homePage.html#knowledge",
+        "../../../../sentence"
+    ]
+    // 第3项二级标题
+    var strList3 = [
+        "传统文章",
+        "技术",
+        "个人句子",
+        "我的说说"
+    ]
+    var hrefList3 = [ //链接
+        "../../../../homePage.html#myArticle",
+        "../../../../homePage.html#myKnowledge",
+        "../../../../mySentence",
+        "../../../../about/saySomething.html"
+    ]
+    // 第4项二级标题
+    var strList4 = [
+        "分类查找",
+        "标签",
+        "存档",
+        "搜索"
+    ]
+    var hrefList4 = [
+        "../../../../about/classification.html",
+        "../../../../about/tags.html",
+        "../../../../about/file.html",
+        "../../../../about/search.html#我的",
+    ]
+    // 第5项二级标题
+    var strList5 = [
+        "关于本站",
+        "更新日志",
+        "本站统计",
+        "本站概述",
+        "留言板"
+    ]
+    var hrefList5 = [
+        "../../../../about",
+        "../../../../about/timeline.html",
+        "https://tongji.baidu.com/web/welcome/ico?s=dfb2e9af2c4ea3536c96e73ddb3dc6b8",
+        "../../../../about/summary.html",
+        "../../../../about/guestbook.html"
+    ]
+    // 第6项二级标题
+    var strList6 = [
+        "首个网站",
+        "每日明记",
+        "计时器"
+    ]
+    var hrefList6 = [
+        "https://mdming.github.io",
+        "../../../../diary",
+        "../../../../tools/timer"
+    ]
+
     if (width < 1200) { //移动端菜单栏
         writeMobileNav();
         writeMobileTopBar();
         // 监听菜单键
-        document.querySelector(".menubar").addEventListener("click", //
-            // 手机端菜单键点击后执行的函数
+        document.querySelector(".menubar").addEventListener("click", // 手机端菜单键点击后执行的函数
             function () {
                 if (document.querySelector(".menubar").classList.contains('arrow')) {
                     document.querySelector(".menubar").classList.remove("arrow");
@@ -62,27 +141,11 @@ function setNav() { //导航栏设置
                 }
             })
 
-
-        var str = [ //导航栏文字
-            "首页",
-            "好物收录",
-            "我的原创",
-            "查找文章",
-            "关于",
-            "发现更多"
-        ]
-        var href = [ //链接 
-            "../../../../homePage.html",
-            "javascript:void(0);",
-            "javascript:void(0);",
-            "javascript:void(0);",
-            "javascript:void(0);",
-            "javascript:void(0);"
-        ]
         while (document.querySelectorAll(".mobile-navbar ul li").length < str.length) { //li的数量为6
             var last = document.querySelectorAll(".mobile-navbar ul li")[0].cloneNode(true);
             document.querySelector(".mobile-navbar ul").appendChild(last);
         }
+
         var mobileNavbar = document.querySelectorAll(".mobile-navbar ul li")
         for (let index = 0; index < mobileNavbar.length; index++) {
             //为每个li设置文字与链接
@@ -96,22 +159,12 @@ function setNav() { //导航栏设置
         var article_li = ul.children[1]
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "second-menu")
-        var str = [
-            "经典文章",
-            "技术文章",
-            "美句收录"
-        ]
-        var href = [ //链接
-            "../../../../homePage.html#article",
-            "../../../../homePage.html#knowledge",
-            "../../../../sentence"
-        ]
-        for (let index = 0; index < str.length; index++) {
+        for (let index = 0; index < strList2.length; index++) {
             //由str的长度添加<li><a></a></li>
             //并设置文字  href
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
+            a.innerHTML = strList2[index]
+            a.href = hrefList2[index]
             var li1 = document.createElement("li");
             li1.appendChild(a)
             ul2.appendChild(li1)
@@ -122,24 +175,10 @@ function setNav() { //导航栏设置
         var article_li = ul.children[2]
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "second-menu")
-        var str = [
-            "个人经典文章",
-            "原创技术文章",
-            "个人句子",
-            "我的说说"
-        ]
-        var href = [ //链接
-            "../../../../homePage.html#myArticle",
-            "../../../../homePage.html#myKnowledge",
-            "../../../../mySentence",
-            "../../../../about/saySomething.html"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
+        for (let index = 0; index < hrefList3.length; index++) {
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
+            a.innerHTML = strList3[index]
+            a.href = hrefList3[index]
             var li1 = document.createElement("li");
             li1.appendChild(a)
             ul2.appendChild(li1)
@@ -150,24 +189,10 @@ function setNav() { //导航栏设置
         var article_li = ul.children[3]
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "second-menu")
-        var str = [
-            "分类查找",
-            "标签",
-            "存档",
-            "搜索"
-        ]
-        var href = [
-            "../../../../about/classification.html",
-            "../../../../about/tags.html",
-            "../../../../about/file.html",
-            "../../../../about/search.html#我的",
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
+        for (let index = 0; index < strList4.length; index++) {
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
+            a.innerHTML = strList4[index]
+            a.href = hrefList4[index]
             var li1 = document.createElement("li");
             li1.appendChild(a)
             ul2.appendChild(li1)
@@ -178,28 +203,11 @@ function setNav() { //导航栏设置
         var article_li = ul.children[4]
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "second-menu")
-        var str = [
-            "关于本站",
-            "更新日志",
-            "本站统计",
-            "本站概述",
-            "留言板"
-        ]
-        var href = [
-            "../../../../about",
-            "../../../../about/timeline.html",
-            "https://tongji.baidu.com/web/welcome/ico?s=dfb2e9af2c4ea3536c96e73ddb3dc6b8",
-            "../../../../about/summary.html",
-            "../../../../about/guestbook.html"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-
+        for (let index = 0; index < strList5.length; index++) {
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
-            if (str[index] == "本站统计") {
+            a.innerHTML = strList5[index]
+            a.href = hrefList5[index]
+            if (strList5[index] == "本站统计") {
                 a.target = "_blank";
             }
             var li1 = document.createElement("li");
@@ -208,36 +216,20 @@ function setNav() { //导航栏设置
         }
         article_li.appendChild(ul2)
 
-
         // 第6个的展开页
-
         var article_li = ul.children[5]
-        //article_li.classList.add("li-list")
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "second-menu")
-        var str = [
-            "首个网站",
-            "每日明记",
-            "计时器"
-        ]
-        var href = [
-            "https://mdming.github.io",
-            "../../../../diary",
-            "../../../../tools/timer"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
+        for (let index = 0; index < strList6.length; index++) {
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
+            a.innerHTML = strList6[index]
+            a.href = hrefList6[index]
             a.target = "_blank"; //新页面
             var li1 = document.createElement("li");
             li1.appendChild(a)
             ul2.appendChild(li1)
         }
         article_li.appendChild(ul2)
-
 
         //移动端一级菜单点击展开二级菜单
         window.onload = function (params) {
@@ -264,14 +256,6 @@ function setNav() { //导航栏设置
         //设置导航栏文字
         writePCNav();
 
-        var str = [ //导航栏文字
-            "首页",
-            "知海拾贝",
-            "我的原创",
-            "查找文章",
-            "关于",
-            "发现更多"
-        ]
         var href = [ //链接 
             "../../../../homePage.html",
             "javascript:void(0);",
@@ -285,6 +269,7 @@ function setNav() { //导航栏设置
             var last = document.querySelectorAll(".tabbed ul li")[0].cloneNode(true);
             document.querySelector(".tabbed ul").appendChild(last);
         }
+
         var tabbed = document.querySelectorAll(".tabbed ul li")
         for (let index = 0; index < tabbed.length; index++) {
             //为每个li设置文字与链接
@@ -298,22 +283,10 @@ function setNav() { //导航栏设置
         var article_li = ul.children[1]
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "ul_c")
-        var str = [
-            "经典文章",
-            "技术文章",
-            "美句收录"
-        ]
-        var href = [ //链接
-            "../../../../homePage.html#article",
-            "../../../../homePage.html#knowledge",
-            "../../../../sentence"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
+        for (let index = 0; index < strList2.length; index++) {
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
+            a.innerHTML = strList2[index]
+            a.href = hrefList2[index]
             var li1 = document.createElement("li");
             li1.appendChild(a)
             ul2.appendChild(li1)
@@ -324,24 +297,10 @@ function setNav() { //导航栏设置
         var article_li = ul.children[2]
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "ul_c")
-        var str = [
-            "个人经典文章",
-            "原创技术文章",
-            "个人句子",
-            "我的说说"
-        ]
-        var href = [ //链接
-            "../../../../homePage.html#myArticle",
-            "../../../../homePage.html#myKnowledge",
-            "../../../../mySentence",
-            "../../../../about/saySomething.html"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
+        for (let index = 0; index < strList3.length; index++) {
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
+            a.innerHTML = strList3[index]
+            a.href = hrefList3[index]
             var li1 = document.createElement("li");
             li1.appendChild(a)
             ul2.appendChild(li1)
@@ -352,24 +311,10 @@ function setNav() { //导航栏设置
         var article_li = ul.children[3]
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "ul_c")
-        var str = [
-            "分类查找",
-            "标签",
-            "存档",
-            "搜索"
-        ]
-        var href = [
-            "../../../../about/classification.html",
-            "../../../../about/tags.html",
-            "../../../../about/file.html",
-            "../../../../about/search.html#我的",
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
+        for (let index = 0; index < strList4.length; index++) {
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
+            a.innerHTML = strList4[index]
+            a.href = hrefList4[index]
             var li1 = document.createElement("li");
             li1.appendChild(a)
             ul2.appendChild(li1)
@@ -378,30 +323,12 @@ function setNav() { //导航栏设置
 
         // 第5个的展开页
         var article_li = ul.children[4]
-        //article_li.classList.add("li-list")
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "ul_c")
-        var str = [
-            "关于本站",
-            "更新日志",
-            "本站统计",
-            "本站概述",
-            "留言板"
-        ]
-        var href = [
-            "../../../../about",
-            "../../../../about/timeline.html",
-            "https://tongji.baidu.com/web/welcome/ico?s=dfb2e9af2c4ea3536c96e73ddb3dc6b8",
-            "../../../../about/summary.html",
-            "../../../../about/guestbook.html"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
-
+        for (let index = 0; index < strList5.length; index++) {
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
+            a.innerHTML = strList5[index]
+            a.href = hrefList5[index]
             if (str[index] == "本站统计") {
                 a.target = "_blank";
             }
@@ -411,29 +338,15 @@ function setNav() { //导航栏设置
         }
         article_li.appendChild(ul2)
 
-
         // 第6个的展开页
-
         var article_li = ul.children[5]
         //article_li.classList.add("li-list")
         var ul2 = document.createElement("ul");
         ul2.setAttribute("class", "ul_c")
-        var str = [
-            "首个网站",
-            "每日明记",
-            "计时器"
-        ]
-        var href = [
-            "https://mdming.github.io",
-            "../../../../diary",
-            "../../../../tools/timer"
-        ]
-        for (let index = 0; index < str.length; index++) {
-            //由str的长度添加<li><a></a></li>
-            //并设置文字  href
+        for (let index = 0; index < strList6.length; index++) {
             var a = document.createElement("a");
-            a.innerHTML = str[index]
-            a.href = href[index]
+            a.innerHTML = strList6[index]
+            a.href = hrefList6[index]
             a.target = "_blank"; //新页面
             var li1 = document.createElement("li");
             li1.appendChild(a)
@@ -444,8 +357,7 @@ function setNav() { //导航栏设置
         window.addEventListener("scroll", function (e) { //pc导航栏背景
             var scrollTop = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
             const tabbed = document.querySelector('.tabbed');
-            // 目录栏响应
-            if (tabbed) {
+            if (tabbed) { // 目录栏响应
                 if (scrollTop > 100) { //防止移动端出现
                     tabbed.classList.add("tabbed-bg")
                 } else {

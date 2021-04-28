@@ -126,7 +126,6 @@ function getArticleData(file_name) { //file_name为要加载的json文件名  �
                         element.querySelector(".writer a").innerHTML = "佚名";
                     }
                 }
-
             }
             setCardHTML(0); //未点击前自动加载第一页
             window.parent.LoadingClose(); //关闭
@@ -135,9 +134,9 @@ function getArticleData(file_name) { //file_name为要加载的json文件名  �
     xmlhttp.open("GET", file_name, true);
     xmlhttp.send();
 }
+
 const topItems = document.querySelectorAll(".top-items li");
 (function () { //根据跳转时的锚点来响应展示的内容
-
     var target = decodeURI(document.location.hash.substring(1));
     if (target == "article") {
         getArticleData("json/article.json"); //展示把他的文章
@@ -236,7 +235,6 @@ const topItems = document.querySelectorAll(".top-items li");
 
 (function () { //文章列表上面的按钮、首页向下箭头
     //文章列表上面的按钮显示效果、点击哪个就active哪个
-
     if (document.querySelector(".top-items")) {
         document.querySelector(".top-items").addEventListener("click", function (e) {
             for (let index = 0; index < topItems.length; index++) {

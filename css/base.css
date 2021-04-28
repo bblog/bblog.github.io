@@ -22,7 +22,7 @@ html {
     box-sizing: border-box;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 10px;
     height: auto
 }
@@ -33,7 +33,7 @@ html {
 
 ::-webkit-scrollbar-track {
     background: transparent
-}
+} */
 
 #list {
     position: fixed;

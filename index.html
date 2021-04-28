@@ -181,7 +181,6 @@
 
         #loading img,
         #feedback img {
-
             height: 50%;
             width: 50%;
             padding: 0 0 2em;
@@ -205,7 +204,6 @@
 
 
         /* 动画 */
-
         @keyframes anim-dash {
             0% {
                 stroke-dashoffset: 1680;
@@ -312,9 +310,8 @@
         <div class="dialog-inner">
             <h2>欢迎访问至简博客！</h2>
             <img>
-            <div><button class="action">关闭</button></div>
+            <div><button class="feedback-close">关闭</button></div>
         </div>
-
     </div>
 
     <iframe id="iframe" name="iframe_a" frameborder="0" scrolling-X="no" src="homePage.html"> </iframe>
@@ -352,7 +349,7 @@
                 mask.classList.remove('feedback-open');
             })
 
-            feedback.querySelector('button').addEventListener("click", function (e) { //点击灰色部位 反馈层消失
+            feedback.querySelector('.feedback-close').addEventListener("click", function (e) { //点击按键 反馈层消失
                 feedback.classList.remove('feedback-open');
                 mask.classList.remove('feedback-open');
             })
@@ -363,12 +360,10 @@
         var myLoading
 
         function Loading() {
-
             myLoading = setTimeout(function () { //延时，加载快的话不必显示
                 mask.classList.add('feedback-open');
                 loading.classList.add('loading-open');
                 mask.addEventListener("click", function (e) { //点击灰色部位 反馈层消失
-
                     mask.classList.remove('feedback-open');
                     loading.classList.remove('loading-open');
                 })
@@ -387,6 +382,5 @@
     <script id="ribbon" zindex="-1111" alpha="0.2" size="100" src="../../js/ribbon.js" defer></script>
 
 </body>
-
 
 </html>

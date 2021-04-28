@@ -85,8 +85,8 @@ function writeFooter() {
     document.writeln("<div>至简博客：少即是多！大道至简！</div>");
 
     document.writeln("<div>");
-    document.writeln("	<span id=\'busuanzi_container_site_uv\'>至简博客已经有<span id=\'busuanzi_value_site_uv\'></span>位访客，</span>");
-    document.writeln("	<span id=\'busuanzi_container_site_pv\'>并且被访问<span id=\'busuanzi_value_site_pv\'></span>次！</span>");
+    document.writeln("	<span id=\'busuanzi_container_site_uv\'>自2021.04.28以来已有<span id=\'busuanzi_value_site_uv\'></span>位访客，</span>");
+    document.writeln("	<span id=\'busuanzi_container_site_pv\'><span id=\'busuanzi_value_site_pv\'></span>次访问！</span>");
     document.writeln("</div>");
     document.writeln("<div>本站有来自网络的资源与内容，如侵权请联系本人删除！</div>");
     document.writeln("<div>本站自2020年3月8日上线以来，已运行 <span id=\'time-to-now\'></span></div>");
@@ -117,9 +117,8 @@ if (timeToNowDOM) {
     setTimeout(updateTimeStr, 500);
 }
 
-(function () {//波浪
+(function () { //波浪
     "use strict";
-
     var cvs, ctx;
     //var nodes = 5;
     var waves = [];
@@ -134,9 +133,7 @@ if (timeToNowDOM) {
         for (var i = 0; i < 3; i++) {
             var temp = new wave(colours[i], 1, 5);
         }
-
         setInterval(update, 16);
-
     }
 
     function randomColour() {
@@ -175,16 +172,13 @@ if (timeToNowDOM) {
         for (var i = 0; i <= nodes + 2; i++) {
             var temp = [(i - 1) * cvs.width / nodes, 0, Math.random() * 200, .3]; //this.speed*plusOrMinus
             this.nodes.push(temp);
-            // console.log(temp);
         }
-        // console.log(this.nodes);
         waves.push(this);
     }
 
     function bounce(node) {
         node[1] = waveHeight / 2 * Math.sin(node[2] / 20) + cvs.height / 2;
         node[2] = node[2] + node[3];
-
     }
 
     function drawWave(obj) {
@@ -205,7 +199,6 @@ if (timeToNowDOM) {
                 ctx.lineTo(obj.nodes[i][0], obj.nodes[i][1]);
                 ctx.lineTo(cvs.width, cvs.height);
             }
-
         }
         ctx.closePath();
         ctx.fill();
@@ -219,7 +212,6 @@ if (timeToNowDOM) {
             ctx.closePath();
             ctx.stroke();
         }
-
     }
 
     function drawLine(array) {
@@ -242,7 +234,6 @@ if (timeToNowDOM) {
             } else {
                 canvas.width = 1920;
             }
-
             canvas.height = waveHeight;
         }
 
@@ -251,27 +242,27 @@ if (timeToNowDOM) {
     document.addEventListener("DOMContentLoaded", init, false);
 })();
 
+(function () {
+    // add iframe  底部动画
+    //随机几个
+    var h = window.innerHeight / 2 - 50 + "px"
+    var bottomSrc = [
+        "../../../iframe/bike.html",
+        "../../../iframe/horse.html",
+        "../../../iframe/train.html"
+    ]
+    var iframe = document.createElement("iframe");
+    iframe.setAttribute("id", "bottom_frame")
+    iframe.setAttribute("frameborder", "0")
+    iframe.setAttribute("height", h)
+    iframe.setAttribute("src", bottomSrc[Math.floor(Math.random() * bottomSrc.length)])
+    document.querySelector(".footer").appendChild(iframe)
+    document.querySelector(".footer").style.paddingBottom = window.innerHeight / 2 - 120 + "px";
+})();
 
-
-// add iframe  底部动画
-//随机几个
-var h = window.innerHeight / 2 - 50 + "px"
-var bottomSrc = [
-    "../../../iframe/bike.html",
-    "../../../iframe/horse.html",
-    "../../../iframe/train.html"
-]
-
-var iframe = document.createElement("iframe");
-iframe.setAttribute("id", "bottom_frame")
-iframe.setAttribute("frameborder", "0")
-iframe.setAttribute("height", h)
-iframe.setAttribute("src", bottomSrc[Math.floor(Math.random() * bottomSrc.length)])
-document.querySelector(".footer").appendChild(iframe)
-document.querySelector(".footer").style.paddingBottom = window.innerHeight / 2 - 120 + "px";
 const weixin = document.querySelector("#weixin");
 if (weixin) {
     weixin.addEventListener("click", function (e) {
-        window.parent.Mask("欢迎扫码添加微信","https://s1.ax1x.com/2020/04/02/GJvhLj.jpg");
+        window.parent.Mask("欢迎扫码添加微信", "https://s1.ax1x.com/2020/04/02/GJvhLj.jpg");
     })
 }
