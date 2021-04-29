@@ -83,7 +83,6 @@ function writeFooter() {
     document.writeln("<div>本站版权由<a class=\'blue-link\' href=\'../../../../about#关于本人\'>Damir Meng</a>所有，转载请注明出处。");
     document.writeln("</div>");
     document.writeln("<div>至简博客：少即是多！大道至简！</div>");
-
     document.writeln("<div>");
     document.writeln("	<span id=\'busuanzi_container_site_uv\'>自2021年4月28日起共有<span id=\'busuanzi_value_site_uv\'></span>位访客，</span>");
     document.writeln("<span id=\'busuanzi_container_site_pv\'><span id=\'busuanzi_value_site_pv\'></span>次访问！</span>");
