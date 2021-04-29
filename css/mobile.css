@@ -24,6 +24,14 @@
         margin: 50px auto;
         cursor: pointer;
     }
+    .top-items{
+        display: flex;
+
+    }
+    .top-items li{
+        flex: 1;
+        text-align: center;
+    }
 }
 
 /* 一般手机 重点*/
@@ -236,10 +244,9 @@
 
     .items-select {
         background-color: #fff;
-        padding: 2px 0 25px 10px;
+        padding: 2px 0 25px 0;
 
     }
-
 
     .top-items li.active {
         background-color: unset;
@@ -291,9 +298,6 @@
         font-size: 18px;
 
     }
-
-
-
 
     .blogs .article-list li {
         height: 380px;
@@ -355,8 +359,6 @@
         font-size: 20px;
     }
 }
-
-
 
 /* iPad Pro */
 @media screen and (min-width: 801px) and (max-width: 1199px) {

@@ -141,6 +141,7 @@ li:after {
   background-color: #fff;
   transform: translateX(10px);
 }
+
 @media only screen and (max-width: 800px) {
   .entry .title {
     padding-right: 20px;

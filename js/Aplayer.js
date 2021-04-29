@@ -3,7 +3,6 @@
  */
 var iframe = document.querySelector("#iframe")
 
-
 //配置音乐播放器属性  new 一个播放器
 window.ap = new APlayer({
     container: document.querySelector('#aplayer'),

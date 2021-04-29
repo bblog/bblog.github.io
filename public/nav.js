@@ -256,7 +256,7 @@ function setNav() { //导航栏设置
         //设置导航栏文字
         writePCNav();
 
-        var href = [ //链接 
+        var href = [ //链接重新设置 
             "../../../../homePage.html",
             "javascript:void(0);",
             "javascript:void(0);",

@@ -88,7 +88,7 @@ function getArticleData(file_name) { //file_name为要加载的json文件名  �
                     if (art_index > 0) { //还存在json对象数据
                         if (index < top.length && nth_page == 0) { //第一页显示置顶的文章
                             i = top[index]
-                            // 设置置顶项的值
+                            // 设置置项的值
                             element.querySelector("span a").href = articles[i].url; //图片的目的链接
                             element.querySelector("span a img").src = articles[i].img_url; //图片链接src用于图片显示
                             element.querySelector(".blogtitle a").innerHTML = "【置顶】" + articles[i].title; //标题
