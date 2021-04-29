@@ -85,11 +85,11 @@ function writeFooter() {
     document.writeln("<div>至简博客：少即是多！大道至简！</div>");
 
     document.writeln("<div>");
-    document.writeln("	<span id=\'busuanzi_container_site_uv\'>自2021.04.28以来已有<span id=\'busuanzi_value_site_uv\'></span>位访客，</span>");
-    document.writeln("	<span id=\'busuanzi_container_site_pv\'><span id=\'busuanzi_value_site_pv\'></span>次访问！</span>");
+    document.writeln("	<span id=\'busuanzi_container_site_uv\'>自2021年4月28日起共有<span id=\'busuanzi_value_site_uv\'></span>位访客，</span>");
+    document.writeln("<span id=\'busuanzi_container_site_pv\'><span id=\'busuanzi_value_site_pv\'></span>次访问！</span>");
     document.writeln("</div>");
     document.writeln("<div>本站有来自网络的资源与内容，如侵权请联系本人删除！</div>");
-    document.writeln("<div>本站自2020年3月8日上线以来，已运行 <span id=\'time-to-now\'></span></div>");
+    document.writeln("<div>本站自2020年3月8日上线以来，已运行<span id=\'time-to-now\'></span></div>");
     document.writeln("");
     document.writeln("<div class=\'footer-logo\'><a href=\'../../../../\'>");
     document.writeln("		<img src=\'https://s3.ax1x.com/2020/11/18/DneSpV.png\'> <span>至简博客</span></a>");
