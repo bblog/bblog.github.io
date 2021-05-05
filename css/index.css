@@ -13,6 +13,7 @@ article {
     position: relative;
 }
 
+
 /* =========左边栏============= */
 @media screen {
 
@@ -147,13 +148,12 @@ article {
     }
 
     .blogs .article-list li {
-
         border: 1px solid #eaeaea00;
         box-shadow: 0 2px 5px #dcdbff;
         margin-bottom: 10px;
-        overflow: hidden;
-        height: 180px;
-        padding: 16px;
+        /* overflow: hidden; */
+        height: 160px;
+        /* padding: 8px; */
         position: relative;
         background: #ffffffdb;
         visibility: hidden;
@@ -245,7 +245,7 @@ article {
     .blogpic img {
         width: 100%;
         height: 100%;
-        border-radius: 2px;
+        border-radius: 1px;
         opacity: .95;
     }
 
@@ -257,6 +257,75 @@ article {
         font-size: 13px;
         text-align: justify;
 
+    }
+
+    .isTop-ribbon {
+        word-wrap: break-word;
+        -webkit-text-size-adjust: 100%;
+        word-break: break-all;
+        font: 16px "Microsoft YaHei", Helvetica, Arial, Lucida Grande, Tahoma, sans-serif;
+        box-sizing: border-box;
+        margin: 0;
+        outline: 0;
+        border: 0;
+        vertical-align: baseline;
+        font-style: inherit;
+        font-family: inherit;
+        text-align: center;
+        line-height: 26px;
+        color: #fff;
+        font-size: 13px;
+        margin-top: -10px;
+        position: absolute;
+        left: 14px;
+        top: 0;
+        padding: 0 7px;
+        float: left;
+        background-color: var(--theme-color);
+        z-index: 1;
+    }
+
+    .corner {
+        word-wrap: break-word;
+        -webkit-text-size-adjust: 100%;
+        word-break: break-all;
+        font: 16px "Microsoft YaHei", Helvetica, Arial, Lucida Grande, Tahoma, sans-serif;
+        text-align: center;
+        line-height: 25px;
+        color: #fff;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        border: 0;
+        vertical-align: baseline;
+        font-style: inherit;
+        font-size: 100%;
+        font-family: inherit;
+        position: absolute;
+        left: -10px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 0 10px 10px;
+        border-color: transparent transparent var(--theme-color) transparent;
+    }
+
+    .corner:before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 0 10px 10px;
+        border-color: transparent transparent rgba(0, 0, 0, .15) transparent;
+    }
+    .isTop-div.isTop-ribbon{
+        display: block;
+    }
+    .isTop-div{
+        display: none;
     }
 }
 
@@ -832,7 +901,7 @@ path#f3-l9 {
 .items-select-title {
     width: 90%;
     margin: auto;
-
+    margin-bottom: 30px;
     border-radius: 5%;
 }
 

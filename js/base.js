@@ -29,6 +29,7 @@ var container = document.querySelector('#container');
     window.parent.addEventListener("popstate", function (e) { //后退的优化
         window.history.back(-2);
     }, false);
+    
     var stateObject = {};
     var title = document.querySelector("title").innerHTML
     var newUrl = document.location.href;

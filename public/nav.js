@@ -83,7 +83,7 @@ function setNav() { //导航栏设置
     var hrefList3 = [ //链接
         "../../../../homePage.html#myArticle",
         "../../../../homePage.html#myKnowledge",
-        "../../../../mySentence",
+        "../../../../sentence/mySentence.html",
         "../../../../about/saySomething.html"
     ]
     // 第4项二级标题

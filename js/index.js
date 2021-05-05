@@ -89,9 +89,10 @@ function getArticleData(file_name) { //file_name为要加载的json文件名  �
                         if (index < top.length && nth_page == 0) { //第一页显示置顶的文章
                             i = top[index]
                             // 设置置项的值
+                            element.querySelector(".isTop-div").classList.add("isTop-ribbon"); //添加左上角置顶标志
                             element.querySelector("span a").href = articles[i].url; //图片的目的链接
                             element.querySelector("span a img").src = articles[i].img_url; //图片链接src用于图片显示
-                            element.querySelector(".blogtitle a").innerHTML = "【置顶】" + articles[i].title; //标题
+                            element.querySelector(".blogtitle a").innerHTML =  articles[i].title; //标题
                             element.querySelector(".blogtitle a").href = articles[i].url; //标题的目的链接
                             element.querySelector(".bloginfo p").innerHTML = articles[i].introduction; //文章简介
                             element.querySelector(".lm a").innerHTML = articles[i].tag; //标签
@@ -104,6 +105,9 @@ function getArticleData(file_name) { //file_name为要加载的json文件名  �
                             art_index--;
                             i = art[art_index] //取数组的值
                             // 设置未置顶项的值
+                            if (element.querySelector(".isTop-div")) {
+                                element.querySelector(".isTop-div").classList.remove("isTop-ribbon"); //移除左上角置顶标志
+                            }
                             element.querySelector("span a").href = articles[i].url; //图片的目的链接
                             element.querySelector("span a img").src = articles[i].img_url; //图片链接src用于图片显示
                             element.querySelector(".blogtitle a").innerHTML = articles[i].title; //标题
