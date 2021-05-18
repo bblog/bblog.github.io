@@ -44,87 +44,87 @@ function writeMobileNav() {
 var width = document.documentElement.clientWidth;
 var container = document.querySelector('#container');
 
-function setNav() { //导航栏设置
+var str = [ //导航栏一级文字
+    "首页",
+    "知海拾贝",
+    "我的原创",
+    "查找文章",
+    "关于",
+    "发现更多"
+]
+var href = [ //链接 
+    "../../../../homePage.html",
+    "javascript:void(0);",
+    "javascript:void(0);",
+    "javascript:void(0);",
+    "javascript:void(0);",
+    "javascript:void(0);"
+]
+// 第2项二级标题
+var strList2 = [
+    "经典文章",
+    "技术文章",
+    "美句收录"
+]
+var hrefList2 = [ //链接
+    "../../../../homePage.html#article",
+    "../../../../homePage.html#knowledge",
+    "../../../../sentence"
+]
+// 第3项二级标题
+var strList3 = [
+    "传统文章",
+    "技术",
+    "个人句子",
+    "我的说说"
+]
+var hrefList3 = [ //链接
+    "../../../../homePage.html#myArticle",
+    "../../../../homePage.html#myKnowledge",
+    "../../../../sentence/mySentence.html",
+    "../../../../about/saySomething.html"
+]
+// 第4项二级标题
+var strList4 = [
+    "分类查找",
+    "标签",
+    "存档",
+    "搜索"
+]
+var hrefList4 = [
+    "../../../../about/classification.html",
+    "../../../../about/tags.html",
+    "../../../../about/file.html",
+    "../../../../about/search.html#我的",
+]
+// 第5项二级标题
+var strList5 = [
+    "关于本站",
+    "更新日志",
+    "本站统计",
+    "本站概述",
+    "留言板"
+]
+var hrefList5 = [
+    "../../../../about",
+    "../../../../about/timeline.html",
+    "https://tongji.baidu.com/web/welcome/ico?s=dfb2e9af2c4ea3536c96e73ddb3dc6b8",
+    "../../../../about/summary.html",
+    "../../../../about/guestbook.html"
+]
+// 第6项二级标题
+var strList6 = [
+    "首个网站",
+    "每日明记",
+    "计时器"
+]
+var hrefList6 = [
+    "https://mdming.github.io",
+    "../../../../diary",
+    "../../../../tools/timer"
+]
 
-    var str = [ //导航栏一级文字
-        "首页",
-        "知海拾贝",
-        "我的原创",
-        "查找文章",
-        "关于",
-        "发现更多"
-    ]
-    var href = [ //链接 
-        "../../../../homePage.html",
-        "javascript:void(0);",
-        "javascript:void(0);",
-        "javascript:void(0);",
-        "javascript:void(0);",
-        "javascript:void(0);"
-    ]
-    // 第2项二级标题
-    var strList2 = [
-        "经典文章",
-        "技术文章",
-        "美句收录"
-    ]
-    var hrefList2 = [ //链接
-        "../../../../homePage.html#article",
-        "../../../../homePage.html#knowledge",
-        "../../../../sentence"
-    ]
-    // 第3项二级标题
-    var strList3 = [
-        "传统文章",
-        "技术",
-        "个人句子",
-        "我的说说"
-    ]
-    var hrefList3 = [ //链接
-        "../../../../homePage.html#myArticle",
-        "../../../../homePage.html#myKnowledge",
-        "../../../../sentence/mySentence.html",
-        "../../../../about/saySomething.html"
-    ]
-    // 第4项二级标题
-    var strList4 = [
-        "分类查找",
-        "标签",
-        "存档",
-        "搜索"
-    ]
-    var hrefList4 = [
-        "../../../../about/classification.html",
-        "../../../../about/tags.html",
-        "../../../../about/file.html",
-        "../../../../about/search.html#我的",
-    ]
-    // 第5项二级标题
-    var strList5 = [
-        "关于本站",
-        "更新日志",
-        "本站统计",
-        "本站概述",
-        "留言板"
-    ]
-    var hrefList5 = [
-        "../../../../about",
-        "../../../../about/timeline.html",
-        "https://tongji.baidu.com/web/welcome/ico?s=dfb2e9af2c4ea3536c96e73ddb3dc6b8",
-        "../../../../about/summary.html",
-        "../../../../about/guestbook.html"
-    ]
-    // 第6项二级标题
-    var strList6 = [
-        "首个网站",
-        "每日明记",
-        "计时器"
-    ]
-    var hrefList6 = [
-        "https://mdming.github.io",
-        "../../../../diary",
-        "../../../../tools/timer"
-    ]
+function setNav() { //导航栏设置
 
     if (width < 1200) { //移动端菜单栏
         writeMobileNav();

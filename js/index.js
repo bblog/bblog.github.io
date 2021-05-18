@@ -140,6 +140,13 @@ function getArticleData(file_name) { //file_name为要加载的json文件名  �
 }
 
 const topItems = document.querySelectorAll(".top-items li");
+//strList为nav.js中定义的标题名称
+
+// 设置标题名称
+topItems[1].textContent=strList2[0];
+topItems[2].textContent=strList2[1];
+topItems[3].textContent=strList3[0];
+topItems[4].textContent=strList3[1];
 (function () { //根据跳转时的锚点来响应展示的内容
     var target = decodeURI(document.location.hash.substring(1));
     if (target == "article") {
@@ -174,19 +181,19 @@ const topItems = document.querySelectorAll(".top-items li");
                 const element = topItems[index];
                 element.classList.remove("active")
             }
-            if (target == "经典文章") {
+            if (target == strList2[0]) {
                 getArticleData("json/article.json");
                 topItems[1].classList.add("active");
                 document.documentElement.scrollTop = window.innerHeight
-            } else if (target == "技术文章") {
+            } else if (target == strList2[1]) {
                 getArticleData("json/knowledge.json");
                 topItems[2].classList.add("active");
                 document.documentElement.scrollTop = window.innerHeight
-            } else if (target == "个人经典文章") {
+            } else if (target == strList3[0]) {
                 getArticleData("json/myArticle.json");
                 topItems[3].classList.add("active");
                 document.documentElement.scrollTop = window.innerHeight
-            } else if (target == "原创技术文章") {
+            } else if (target == strList3[1]) {
                 getArticleData("json/myKnowledge.json");
                 topItems[4].classList.add("active");
                 document.documentElement.scrollTop = window.innerHeight
@@ -194,7 +201,7 @@ const topItems = document.querySelectorAll(".top-items li");
                 getArticleData("json/index.json");
                 topItems[0].classList.add("active");
             }
-            if (target == "经典文章" || target == "技术文章" || target == "个人经典文章" || target == "原创技术文章") {
+            if (target == strList2[0] || target == strList2[1] || target == strList3[0] || target ==strList3[1]) {
                 if (document.querySelector(".menubar").classList.contains('arrow')) {
                     document.querySelector(".menubar").classList.remove("arrow");
                     document.querySelector(".nav-container").style.display = "none";
@@ -214,17 +221,17 @@ const topItems = document.querySelectorAll(".top-items li");
                 const element = topItems[index];
                 element.classList.remove("active")
             }
-            if (target == "经典文章") {
+            if (target == strList2[0]) {
                 getArticleData("json/article.json");
                 topItems[1].classList.add("active");
-            } else if (target == "技术文章") {
+            } else if (target == strList2[1]) {
                 getArticleData("json/knowledge.json");
                 topItems[2].classList.add("active");
-            } else if (target == "个人经典文章") {
+            } else if (target == strList3[0]) {
                 getArticleData("json/myArticle.json");
                 topItems[3].classList.add("active");
 
-            } else if (target == "原创技术文章") {
+            } else if (target == strList3[1]) {
                 getArticleData("json/myKnowledge.json");
                 topItems[4].classList.add("active");
             } else {
