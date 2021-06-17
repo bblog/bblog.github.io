@@ -52,14 +52,8 @@ var str = [ //导航栏一级文字
     "关于",
     "发现更多"
 ]
-var href = [ //链接 
-    "../../../../homePage.html",
-    "javascript:void(0);",
-    "javascript:void(0);",
-    "javascript:void(0);",
-    "javascript:void(0);",
-    "javascript:void(0);"
-]
+
+
 // 第2项二级标题
 var strList2 = [
     "经典文章",
@@ -129,6 +123,7 @@ function setNav() { //导航栏设置
     if (width < 1200) { //移动端菜单栏
         writeMobileNav();
         writeMobileTopBar();
+
         // 监听菜单键
         document.querySelector(".menubar").addEventListener("click", // 手机端菜单键点击后执行的函数
             function () {
@@ -145,31 +140,38 @@ function setNav() { //导航栏设置
             var last = document.querySelectorAll(".mobile-navbar ul li")[0].cloneNode(true);
             document.querySelector(".mobile-navbar ul").appendChild(last);
         }
-
+        var href = [ //链接 
+            "../../../../homePage.html",
+            "javascript:void(0);",
+            "javascript:void(0);",
+            "javascript:void(0);",
+            "javascript:void(0);",
+            "javascript:void(0);"
+        ]
         var mobileNavbar = document.querySelectorAll(".mobile-navbar ul li")
         for (let index = 0; index < mobileNavbar.length; index++) {
             //为每个li设置文字与链接
             const element = mobileNavbar[index];
-            element.querySelector("a").innerHTML = str[index]
-            element.querySelector("a").href = href[index]
+            element.querySelector("a").innerHTML = str[index];
+            element.querySelector("a").href = href[index];
         }
 
         // 第2个的展开页
         var ul = document.querySelector(".mobile-navbar ul")
         var article_li = ul.children[1]
         var ul2 = document.createElement("ul");
-        ul2.setAttribute("class", "second-menu")
+        ul2.setAttribute("class", "second-menu");
         for (let index = 0; index < strList2.length; index++) {
             //由str的长度添加<li><a></a></li>
             //并设置文字  href
             var a = document.createElement("a");
-            a.innerHTML = strList2[index]
-            a.href = hrefList2[index]
+            a.innerHTML = strList2[index];
+            a.href = hrefList2[index];
             var li1 = document.createElement("li");
-            li1.appendChild(a)
-            ul2.appendChild(li1)
+            li1.appendChild(a);
+            ul2.appendChild(li1);
         }
-        article_li.appendChild(ul2)
+        article_li.appendChild(ul2);
 
         // 第3个的展开页
         var article_li = ul.children[2]
